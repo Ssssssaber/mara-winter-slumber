@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq75kkhxy1ekn"]
+
+[ext_resource type="PackedScene" uid="uid://divb33gv0c1u3" path="res://scenes/3d/characters/base_character.tscn" id="1_4smly"]
+[ext_resource type="Script" uid="uid://cxyundco2bjol" path="res://scripts/3d/characters/movement/move_along_path.gd" id="2_2as12"]
+
+[node name="PathFollower" instance=ExtResource("1_4smly")]
+
+[node name="MoveAlongThePath" type="Node3D" parent="." index="2"]
+script = ExtResource("2_2as12")

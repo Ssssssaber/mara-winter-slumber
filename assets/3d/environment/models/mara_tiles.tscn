@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://15l4uijo1to6"]
+
+[ext_resource type="PackedScene" uid="uid://db3fehdniv4ts" path="res://assets/3d/environment/models/mara-tiles.glb" id="1_yu7by"]
+
+[node name="mara-tiles" instance=ExtResource("1_yu7by")]
