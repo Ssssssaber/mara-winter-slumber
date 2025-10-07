@@ -1,14 +1,6 @@
 extends AnimatedSprite3D
 
-@export var camera_node_path: NodePath
-
-var camera: Camera3D
-
-func _ready():
-    if camera_node_path != null:
-        camera = get_node(camera_node_path)
-    else:
-        camera = get_viewport().get_camera_3d()
+@onready var camera: Camera3D = GameManager.GetCamera()
 
 func _process(_delta):
     if camera == null:

@@ -1,18 +1,15 @@
 extends Node3D
 
-@export var path_node_path: NodePath = NodePath("Path3D")
 @export var movement_system_path: NodePath = NodePath("MovementSystem")
 @export var loop_path: bool = true
 
-var path: Path3D
+@onready var path: Path3D = GameManager.GetMainPath()
+@onready var movement_system: Node = get_parent().get_node("MovementSystem")
 var curve: Curve3D
-var movement_system: Node
 
 var path_progress: float = 0.0  # Distance along the path
 
 func _ready():
-	path = get_node(path_node_path)
-	movement_system = get_node(movement_system_path)
 	curve = path.curve
 	if curve == null:
 		push_error("Path3D has no Curve3D assigned!")
