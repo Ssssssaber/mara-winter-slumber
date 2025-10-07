@@ -24,7 +24,7 @@ transform = Transform3D(0.9369469, -0.3494716, 0, 0.3494716, 0.9369469, 0, 0, 0,
 curve = SubResource("Curve3D_xrmru")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9135454, 0.40673664, 0, -0.40673664, 0.9135454, 80.017006, 31.448, -9.084972)
+transform = Transform3D(1, 0, 0, 0, 0.7547096, 0.656059, 0, -0.656059, 0.7547096, 53.949, 31.448, 17.698)
 script = ExtResource("6_sqiv5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
