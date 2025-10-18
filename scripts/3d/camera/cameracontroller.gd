@@ -5,6 +5,11 @@ extends Camera3D
 @export var zoom_speed: float = 5.0 
 @export var border_threshold: float = 50.0
 
+@export var target: Node3D  # The target node to follow (set to null for free movement)
+@export var follow_offset: Vector3 = Vector3(0, 5, 10)  # Fixed 3D offset relative to the target's transform (e.g., 0 right, 5 up, 10 back)
+@export var follow_smoothness: float = 5.0  # Speed of lerping towards the target position (higher = faster)
+@export var zoom_factor: float = 1.0  # Multiplier for the follow_offset (adjusted by zoom in following mode)
+
 var direction: Vector3 = Vector3.ZERO
 var rotating: bool = false  # Flag for when middle mouse is held
 
@@ -12,13 +17,27 @@ func _ready() -> void:
     Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta: float) -> void:
+    if target != null:
+        # Following mode: Always look at the target and maintain fixed offset
+        look_at(target.global_transform.origin)
+        
+        # Calculate desired position: Apply the fixed offset relative to the target's transform, scaled by zoom_factor
+        var desired_pos = target.global_transform.origin + target.global_transform.basis * (follow_offset * zoom_factor)
+        
+        # Smoothly interpolate towards the desired position
+        global_transform.origin = global_transform.origin.lerp(desired_pos, follow_smoothness * delta)
+        
+        # No manual movement or rotation in following mode
+        return
+    
+    # Free movement mode (when target is null)
     direction.x = Input.get_axis("ui_left", "ui_right")
     direction.z = Input.get_axis("ui_up", "ui_down")
     
     var mouse_pos = get_viewport().get_mouse_position()
     var viewport_rect = get_viewport().get_visible_rect()
 
-	# Check if mouse is inside the viewport
+    # Check if mouse is inside the viewport
     if viewport_rect.has_point(mouse_pos): 
         if mouse_pos.x < border_threshold:
             direction.x -= 1
@@ -40,6 +59,16 @@ func _process(delta: float) -> void:
     direction = Vector3.ZERO
 
 func _input(event: InputEvent) -> void:
+    if target != null:
+        # In following mode, allow zoom (adjust zoom_factor to scale the offset) but disable other controls
+        if event is InputEventMouseButton:
+            if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+                zoom_factor = max(zoom_factor - 0.1, 0.1)  # Prevent too small zoom (adjust step as needed)
+            elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+                zoom_factor += 0.1
+        return  # Skip other inputs (no panning, orbiting, or WASD in following mode)
+    
+    # Free movement mode inputs
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_MIDDLE:
             if event.pressed:
