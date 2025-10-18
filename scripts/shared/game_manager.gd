@@ -1,10 +1,14 @@
 extends Node
 
-@onready var Camera : Camera3D = get_parent().get_node("World/Camera3D")
-@onready var MainPath : Path3D = get_parent().get_node("World/GridMap/MainPath")
+@onready var Camera : Camera3D = get_parent().get_node("World/CameraParent/Camera3D")
+@onready var FloorGridMap : GridMap = get_parent().get_node("World/FloorGridMap")
+@onready var MainPath : Path3D = get_parent().get_node("World/FloorGridMap/MainPath")
 
 func GetCamera() -> Camera3D:
-    return Camera
+	return Camera
 
 func GetMainPath() -> Path3D:
-    return MainPath
+	return MainPath
+
+func GetFloorGridMap() -> GridMap:
+	return FloorGridMap
