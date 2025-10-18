@@ -4,7 +4,8 @@ extends Node3D
 @export var acceleration: float = 20.0 # How quickly to reach target speed
 @export var friction: float = 15.0 # How quickly to stop
 
-@onready var body: CharacterBody3D = get_parent().get_node("Body")
+@onready var body: CharacterBody3D = get_parent() as CharacterBody3D
+
 
 var current_direction: Vector3 = Vector3.ZERO
 
@@ -13,6 +14,14 @@ var speed_modifiers: Array = []
 
 signal movement_started(direction: Vector3)
 signal movement_stopped
+
+func _ready() -> void:
+	var keke = get_parent()
+	print(keke.name)
+
+	if body == null:
+		push_error("Parent is not a CharacterBody3D! Check your node hierarchy.")
+		set_process(false)  # Disable script if invalid
 
 # Public method to set movement direction
 func set_direction(direction: Vector3) -> void:

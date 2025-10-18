@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq75kkhxy1ekn"]
+[gd_scene load_steps=3 format=3 uid="uid://bjybqhq0m5xlk"]
 
-[ext_resource type="PackedScene" uid="uid://divb33gv0c1u3" path="res://scenes/3d/characters/base_character.tscn" id="1_4smly"]
+[ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base_character.tscn" id="1_4smly"]
 [ext_resource type="Script" uid="uid://cxyundco2bjol" path="res://scripts/3d/characters/movement/move_along_path.gd" id="2_2as12"]
 
 [node name="PathFollower" instance=ExtResource("1_4smly")]
 
-[node name="AnimatedSprite3D" parent="Body" index="1"]
-max_scale = 4.0
-min_scale = 1.0
-
-[node name="MoveAlongThePath" type="Node3D" parent="." index="2"]
+[node name="MoveAlongPath" parent="MovementSystem" index="0"]
 script = ExtResource("2_2as12")
+movement_system_path = NodePath("MovementSystem")
+loop_path = true

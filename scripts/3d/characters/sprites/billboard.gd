@@ -6,8 +6,8 @@ extends AnimatedSprite3D
 
 @export var distance_scaling : bool = true
 
-@export var max_scale: float = 10.0
-@export var min_scale: float = 0.5
+@export var max_scale: float = 3.0
+@export var min_scale: float = 1.0
 @export var min_distance: float = 20.0
 @export var max_distance: float = 150.0
 

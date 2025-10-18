@@ -4,10 +4,12 @@ extends Node3D
 @export var loop_path: bool = true
 
 @onready var path: Path3D = GameManager.GetMainPath()
-@onready var movement_system: Node = get_parent().get_node("MovementSystem")
+@onready var movement_system: Node = get_parent()
+
 var curve: Curve3D
 
 var path_progress: float = 0.0  # Distance along the path
+var original_position: Vector3
 
 func _ready():
 	curve = path.curve
@@ -25,10 +27,8 @@ func _physics_process(delta):
 
 	# Get current position on the path
 	var current_pos = curve.sample_baked(path_progress)
-	global_transform.origin = current_pos
 
-	# Calculate next progress point a bit ahead for direction
-	var look_ahead_distance = 1.0  # Adjust for smoothness
+	var look_ahead_distance = 1.0
 	var next_progress = path_progress + look_ahead_distance
 	if next_progress > path_length:
 		if loop_path:
@@ -44,12 +44,7 @@ func _physics_process(delta):
 	# Send direction to MovementSystem
 	movement_system.set_direction(direction)
 
-	# Advance progress based on MovementSystem speed and delta
-	# Use effective speed from MovementSystem if you want exact sync (optional)
-	var speed = movement_system.base_speed
-	# If you want to consider modifiers, you can add a getter to MovementSystem for effective speed
-
-	path_progress += speed * delta
+	path_progress += movement_system.base_speed * delta
 	if path_progress > path_length:
 		if loop_path:
 			path_progress = fmod(next_progress, path_length)

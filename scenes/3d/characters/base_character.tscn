@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://divb33gv0c1u3"]
+[gd_scene load_steps=6 format=3 uid="uid://cp1rsicixl8if"]
 
 [ext_resource type="Script" uid="uid://b3xot43mefxax" path="res://scripts/3d/characters/movement/movement_system.gd" id="1_4wvuy"]
 [ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="1_67ifx"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_5qtrv"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e1e52"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fwara"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_67ifx"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kng6v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -17,16 +17,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BaseCharacter" type="Node3D"]
+[node name="PathFollower" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fwara")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kng6v")
+script = ExtResource("3_5qtrv")
 
 [node name="MovementSystem" type="Node3D" parent="."]
 script = ExtResource("1_4wvuy")
 
-[node name="Body" type="CharacterBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
-shape = SubResource("SphereShape3D_e1e52")
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Body"]
-sprite_frames = SubResource("SpriteFrames_67ifx")
-script = ExtResource("3_5qtrv")
+[node name="MoveAlongPath" type="Node3D" parent="MovementSystem"]
+script = ExtResource("1_4wvuy")

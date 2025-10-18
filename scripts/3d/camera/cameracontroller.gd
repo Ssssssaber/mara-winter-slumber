@@ -5,10 +5,11 @@ extends Camera3D
 @export var zoom_speed: float = 5.0 
 @export var border_threshold: float = 50.0
 
+@export var post_offset: Vector3 = Vector3(0.0, 10.0, 0.0)
 @export var target: Node3D  # The target node to follow (set to null for free movement)
-@export var follow_offset: Vector3 = Vector3(0, 5, 10)  # Fixed 3D offset relative to the target's transform (e.g., 0 right, 5 up, 10 back)
+@export var follow_offset: Vector3 = Vector3(0, 5, 10)  # This now defines the *magnitude* of the post_offset (length of this vector). The direction will be dynamic.
 @export var follow_smoothness: float = 5.0  # Speed of lerping towards the target position (higher = faster)
-@export var zoom_factor: float = 1.0  # Multiplier for the follow_offset (adjusted by zoom in following mode)
+@export var zoom_factor: float = 1.0  # Multiplier for the post_offset magnitude (adjusted by zoom in following mode)
 
 var direction: Vector3 = Vector3.ZERO
 var rotating: bool = false  # Flag for when middle mouse is held
@@ -18,11 +19,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
     if target != null:
-        # Following mode: Always look at the target and maintain fixed offset
+        # Following mode: Always look at the target
         look_at(target.global_transform.origin)
         
-        # Calculate desired position: Apply the fixed offset relative to the target's transform, scaled by zoom_factor
-        var desired_pos = target.global_transform.origin + target.global_transform.basis * (follow_offset * zoom_factor)
+        # Calculate the magnitude from the exported follow_offset vector (its length)
+        var magnitude = follow_offset.length()
+        
+        # Dynamic post_offset: Direction from world origin (Vector3.ZERO) to the target's position, normalized
+        var offset_direction = (target.global_transform.origin - Vector3.ZERO).normalized()
+        
+        # If the target is exactly at the origin, offset_direction will be Vector3.ZERO (no post_offset)
+        # Otherwise, scale by magnitude and zoom_factor for the full post_offset vector
+        var offset_vector = offset_direction * magnitude * zoom_factor
+        
+        # Desired position: Target's position + dynamic post_offset (in world space, away from origin)
+        var desired_pos = target.global_transform.origin + offset_vector + post_offset
         
         # Smoothly interpolate towards the desired position
         global_transform.origin = global_transform.origin.lerp(desired_pos, follow_smoothness * delta)
@@ -60,7 +71,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
     if target != null:
-        # In following mode, allow zoom (adjust zoom_factor to scale the offset) but disable other controls
+        # In following mode, allow zoom (adjust zoom_factor to scale the post_offset magnitude) but disable other controls
         if event is InputEventMouseButton:
             if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
                 zoom_factor = max(zoom_factor - 0.1, 0.1)  # Prevent too small zoom (adjust step as needed)
