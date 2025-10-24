@@ -1,5 +1,7 @@
 extends Camera3D
 
+class_name CameraController
+
 @export var movement_speed: float = 20.0 
 @export var rotation_speed: float = 0.005
 @export var zoom_speed: float = 5.0 

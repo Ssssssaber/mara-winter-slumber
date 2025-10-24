@@ -1,5 +1,7 @@
 extends Node
 
+class_name PathInitializer
+
 @export var ROAD_TILE_ID : int = 0
 @export var CELL_SIZE : Vector3 = Vector3(2, 2, 2)
 

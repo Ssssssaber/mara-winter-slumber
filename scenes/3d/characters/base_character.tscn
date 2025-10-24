@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp1rsicixl8if"]
+[gd_scene load_steps=5 format=3 uid="uid://cp1rsicixl8if"]
 
 [ext_resource type="Script" uid="uid://b3xot43mefxax" path="res://scripts/3d/characters/movement/movement_system.gd" id="1_4wvuy"]
 [ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="1_67ifx"]
-[ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_5qtrv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fwara"]
 
@@ -23,10 +22,10 @@ animations = [{
 shape = SubResource("SphereShape3D_fwara")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+shaded = true
+no_depth_test = true
 sprite_frames = SubResource("SpriteFrames_kng6v")
-script = ExtResource("3_5qtrv")
-look_at_x = false
-look_at_z = false
 
 [node name="MovementSystem" type="Node3D" parent="."]
 script = ExtResource("1_4wvuy")

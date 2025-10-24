@@ -1,5 +1,7 @@
 extends AnimatedSprite3D
 
+class_name Billbard
+
 @export var look_at_x: bool = true
 @export var look_at_y: bool = true
 @export var look_at_z: bool = true
