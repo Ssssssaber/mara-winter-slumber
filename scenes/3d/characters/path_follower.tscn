@@ -5,6 +5,13 @@
 
 [node name="PathFollower" instance=ExtResource("1_4smly")]
 
+[node name="AnimatedSprite3D" parent="." index="1"]
+look_at_x = true
+look_at_z = true
+
+[node name="MovementSystem" parent="." index="2"]
+base_speed = 4.975
+
 [node name="MoveAlongPath" parent="MovementSystem" index="0"]
 script = ExtResource("2_2as12")
 movement_system_path = NodePath("MovementSystem")
