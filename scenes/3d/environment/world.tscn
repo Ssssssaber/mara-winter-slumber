@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnkmmpyyb4g63"]
+[gd_scene load_steps=9 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkss215w24hy0" path="res://assets/3d/environment/models/mara_houses.tres" id="1_x6wyf"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
