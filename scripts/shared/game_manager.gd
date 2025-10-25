@@ -19,7 +19,7 @@ func GetMainPath() -> Path3D:
 func GetFloorGridMap() -> GridMap:
 	return FloorGridMap
 
-func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0) -> PathFollow3D:
+func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_movement = false, keep_global_transform = true) -> PathFollow3D:
 	if MainPath == null:
 		push_error("MainPath was not initialized!")
 		return null
@@ -33,13 +33,14 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0) -> PathFollo
 		push_error("Failed to load PathFollower script!")
 		return null
 
+	entity.reparent(path_follower, keep_global_transform)
+	if not keep_global_transform:
+		entity.transform.origin = Vector3.ZERO
 
-	path_follower.add_child(entity)
 	path_follower.progress = initial_progress
+	path_follower.inversed_movement = inversed_movement
 
 	MainPath.add_child(path_follower)
-	# # Optional: Ensure the path_follower is ready (forces initialization if needed)
-	# path_follower.call_deferred("set_process", true)
 
 	print("Added entity '" + entity.name + "' to path at progress: ", initial_progress)
 	return path_follower

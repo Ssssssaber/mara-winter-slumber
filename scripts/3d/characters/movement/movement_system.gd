@@ -8,11 +8,11 @@ class_name MovementSystem
 
 @onready var body: CharacterBody3D = get_parent() as CharacterBody3D
 
-
 var current_direction: Vector3 = Vector3.ZERO
+var effective_speed: float = base_speed
 
 # Speed modifiers: Array of dictionaries { "multiplier": float, "duration": float }
-var speed_modifiers: Array = []
+var speed_modifiers: Dictionary = {}
 
 signal movement_started(direction: Vector3)
 signal movement_stopped
@@ -21,8 +21,6 @@ func _ready() -> void:
 	if body == null:
 		push_error("Parent is not a CharacterBody3D! Check your node hierarchy.")
 		set_process(false)  # Disable script if invalid
-
-
 
 func set_direction(direction: Vector3) -> void:
 	current_direction = direction.normalized()
@@ -36,28 +34,29 @@ For example, a 1.5 multiplier increases speed by 50%, while 0.8 decreases it by 
 @param multiplier: The speed multiplier (e.g., 1.5 for +50%, 0.8 for -20%).
 @param duration: Duration in seconds (-1 for permanent).
 """
-func apply_speed_modifier(multiplier: float, duration: float) -> void:
-	speed_modifiers.append({
+func apply_speed_modifier(modifier_name : String, multiplier: float, duration: float) -> void:
+	speed_modifiers[modifier_name] = {
 		"multiplier": multiplier,
 		"duration": duration
-	})
+	}
 
-# Internal
-func _get_effective_speed() -> float:
+func remove_modifier(modifier_name : String) -> bool:
+	return speed_modifiers.erase(modifier_name)
+
+func _calculate_effective_speed() -> float:
 	var total_multiplier = 1.0
-	for modifier in speed_modifiers:
-		total_multiplier *= modifier["multiplier"]
+	for modifier_name in speed_modifiers:
+		total_multiplier *= speed_modifiers[modifier_name]["multiplier"]
 	return base_speed * total_multiplier
 
 func _physics_process(delta: float) -> void:
-	# Update speed modifiers (decrease duration, remove expired)
-	for i in range(speed_modifiers.size() - 1, -1, -1):  # Iterate backwards to safely remove
-		if speed_modifiers[i]["duration"] > 0:
-			speed_modifiers[i]["duration"] -= delta
-		if speed_modifiers[i]["duration"] <= 0 and speed_modifiers[i]["duration"] != -1:
-			speed_modifiers.remove_at(i)
+	for modifier_name in speed_modifiers:  # Iterate backwards to safely remove
+		if speed_modifiers[modifier_name]["duration"] > 0:
+			speed_modifiers[modifier_name]["duration"] -= delta
+		if speed_modifiers[modifier_name]["duration"] <= 0 and speed_modifiers[modifier_name]["duration"] != -1:
+			speed_modifiers.erase(modifier_name)
 	
-	var effective_speed = _get_effective_speed()
+	effective_speed = _calculate_effective_speed()
 	
 	if current_direction != Vector3.ZERO:
 		var target_velocity = current_direction * effective_speed

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlw7boxson22m"]
+[gd_scene load_steps=6 format=3 uid="uid://dlw7boxson22m"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
 [ext_resource type="Texture2D" uid="uid://o0nxouyveoja" path="res://assets/3d/characters/mara/mara.png" id="2_obn03"]
@@ -15,8 +15,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_obn03"]
+radius = 3.0
+
 [node name="Mara" instance=ExtResource("1_n58j3")]
+collision_mask = 4
 script = ExtResource("2_siey8")
 
 [node name="AnimatedSprite3D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_sx7sv")
+
+[node name="InteractionArea" type="Area3D" parent="." index="3"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0"]
+shape = SubResource("SphereShape3D_obn03")

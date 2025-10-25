@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="mara-winter-slumber"
-run/main_scene="uid://dnkmmpyyb4g63"
+run/main_scene="uid://npsgmyqx2xme"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://scripts/shared/game_manager.gd"
+Constants="*res://scripts/shared/constants.gd"

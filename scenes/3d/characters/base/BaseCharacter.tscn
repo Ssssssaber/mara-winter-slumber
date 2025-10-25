@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="BaseCharacter" type="CharacterBody3D"]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_fwara")
