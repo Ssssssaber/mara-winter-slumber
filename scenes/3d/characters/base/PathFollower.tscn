@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgebvwr051pek"]
 
 [ext_resource type="Script" uid="uid://4sam4cl7xbnu" path="res://scripts/3d/characters/movement/path/path_follower.gd" id="1_7b23v"]
-[ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/BaseCharacter.tscn" id="2_t7hg3"]
+[ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="2_t7hg3"]
 
 [node name="PathFollower" type="PathFollow3D"]
 script = ExtResource("1_7b23v")

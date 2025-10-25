@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlw7boxson22m"]
+
+[ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
+[ext_resource type="Texture2D" uid="uid://o0nxouyveoja" path="res://assets/3d/characters/mara/mara.png" id="2_obn03"]
+[ext_resource type="Script" uid="uid://gdvi04fooqf1" path="res://scripts/3d/characters/mara/mara_behaviour.gd" id="2_siey8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sx7sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_obn03")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mara" instance=ExtResource("1_n58j3")]
+script = ExtResource("2_siey8")
+
+[node name="AnimatedSprite3D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_sx7sv")

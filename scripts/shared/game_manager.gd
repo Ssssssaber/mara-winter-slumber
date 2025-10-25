@@ -4,6 +4,12 @@ extends Node
 @onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
 @onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")
 
+signal OnGameManagerReady()
+
+func _ready() -> void:
+	OnGameManagerReady.emit()
+	print("Game Manager initialized")
+
 func GetCamera() -> Camera3D:
 	return Camera
 
@@ -12,3 +18,28 @@ func GetMainPath() -> Path3D:
 
 func GetFloorGridMap() -> GridMap:
 	return FloorGridMap
+
+func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0) -> PathFollow3D:
+	if MainPath == null:
+		push_error("MainPath was not initialized!")
+		return null
+	
+	var path_follower = PathFollow3D.new()
+
+	var script = load("res://scripts/3d/characters/movement/path/path_follower.gd")
+	if script:
+		path_follower.set_script(script)
+	else:
+		push_error("Failed to load PathFollower script!")
+		return null
+
+
+	path_follower.add_child(entity)
+	path_follower.progress = initial_progress
+
+	MainPath.add_child(path_follower)
+	# # Optional: Ensure the path_follower is ready (forces initialization if needed)
+	# path_follower.call_deferred("set_process", true)
+
+	print("Added entity '" + entity.name + "' to path at progress: ", initial_progress)
+	return path_follower

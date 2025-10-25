@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4i5q1xmww22i"]
+
+[ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_gp6pm"]
+[ext_resource type="Script" uid="uid://cpvkaqvunumpl" path="res://scripts/3d/characters/ghost/ghost_behaviour.gd" id="2_2ovv7"]
+
+[node name="Ghost" instance=ExtResource("1_gp6pm")]
+script = ExtResource("2_2ovv7")
