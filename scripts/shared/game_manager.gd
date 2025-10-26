@@ -1,6 +1,7 @@
 extends Node
 
 @onready var Camera : Camera3D = get_parent().get_node("World/CameraParent/Camera3D")
+@onready var BuildingGridMap : GridMap= get_parent().get_node_or_null("World/GridMaps/BuildingsGridMap")
 @onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
 @onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")
 
@@ -18,6 +19,11 @@ func GetMainPath() -> Path3D:
 
 func GetFloorGridMap() -> GridMap:
 	return FloorGridMap
+
+func GetBuildingGridMap() -> GridMap:
+	if BuildingGridMap == null:
+		push_error("BuildingGridMap node not found!")
+	return BuildingGridMap
 
 func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_movement = false, keep_global_transform = true) -> PathFollow3D:
 	if MainPath == null:
