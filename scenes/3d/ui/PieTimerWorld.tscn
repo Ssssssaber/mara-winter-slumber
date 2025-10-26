@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c124a2irr2bng"]
+
+[ext_resource type="Script" uid="uid://c0f8cvms2kn5s" path="res://scripts/3d/ui/pie_timer.gd" id="1_wg5xy"]
+[ext_resource type="Texture2D" uid="uid://cd26qvtiiyq0i" path="res://assets/3d/environment/ui/timer.png" id="1_xnnse"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xnnse"]
+viewport_path = NodePath("ViewportTextureSprite/SubViewport")
+
+[node name="PieTimerWorld" type="Node3D"]
+script = ExtResource("1_wg5xy")
+
+[node name="ViewportTextureSprite" type="Sprite3D" parent="."]
+billboard = 1
+texture = SubResource("ViewportTexture_xnnse")
+
+[node name="SubViewport" type="SubViewport" parent="ViewportTextureSprite"]
+
+[node name="PieTimer" type="TextureProgressBar" parent="ViewportTextureSprite/SubViewport"]
+fill_mode = 4
+texture_under = ExtResource("1_xnnse")
+texture_progress = ExtResource("1_xnnse")
+tint_progress = Color(0.23450002, 0.7, 0.21000001, 1)
+
+[node name="Timer" type="Timer" parent="."]

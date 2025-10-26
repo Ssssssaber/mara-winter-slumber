@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=9 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkss215w24hy0" path="res://assets/3d/environment/models/mara_houses.tres" id="1_x6wyf"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://blpquasp367lp" path="res://scripts/3d/scenario/setup.gd" id="5_qnawv"]
 [ext_resource type="PackedScene" uid="uid://dlw7boxson22m" path="res://scenes/3d/characters/Mara.tscn" id="6_xqoag"]
 [ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/Ghost.tscn" id="7_gh3kt"]
+[ext_resource type="PackedScene" uid="uid://c124a2irr2bng" path="res://scenes/3d/ui/PieTimerWorld.tscn" id="7_uu8a4"]
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
 closed = true
@@ -41,6 +42,20 @@ data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.125, 0, 0)
 curve = SubResource("Curve3D_8rukn")
 
+[node name="PathFollow3D2" type="PathFollow3D" parent="Paths/MainPath"]
+transform = Transform3D(0.79427433, 0, 0.607558, 0, 1, 0, -0.607558, 0, 0.79427433, -11.835456, 0, -35.621918)
+progress = 40.11091
+h_offset = -1.425
+
+[node name="Ghost" parent="Paths/MainPath/PathFollow3D2" instance=ExtResource("7_gh3kt")]
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Paths/MainPath"]
+transform = Transform3D(0.7942747, 0, 0.6075583, 0, 1, 0, -0.6075583, 0, 0.7942747, -11.243721, 0, -36.07455)
+progress = 40.11091
+h_offset = -0.68
+
+[node name="Ghost" parent="Paths/MainPath/PathFollow3D" instance=ExtResource("7_gh3kt")]
+
 [node name="CameraParent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
 
@@ -54,7 +69,7 @@ follow_offset = Vector3(-0.16, 8.625, 6.99)
 
 [node name="MainLight" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(-0.838581, 0.47037882, -0.274819, 0.28471762, 0.80849963, 0.5150381, 0.46445403, 0.3536554, -0.81191766, 0, 30, 0)
-light_color = Color(0.72, 0.79933333, 1, 1)
+light_color = Color(0.52514637, 0.65031147, 1, 1)
 shadow_enabled = true
 shadow_blur = 2.0
 
@@ -81,3 +96,6 @@ ghost = NodePath("../../Ghost")
 
 [node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9799156, 0, 0)
+
+[node name="PieTimerWorld" parent="." instance=ExtResource("7_uu8a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.026176, 13.203257, -43.949944)
