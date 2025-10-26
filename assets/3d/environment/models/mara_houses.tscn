@@ -219,7 +219,6 @@ shadow_mesh = SubResource("ArrayMesh_kkkcd")
 [node name="mara_houses" type="Node3D"]
 
 [node name="big-home-rotated" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 mesh = SubResource("ArrayMesh_sqda5")
 skeleton = NodePath("")
 
@@ -227,7 +226,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.165, 0)
 
 [node name="small-home" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.097404, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.097, 0, 0)
 mesh = SubResource("ArrayMesh_ygpgo")
 skeleton = NodePath("")
 script = ExtResource("2_8i5n2")
@@ -242,7 +241,7 @@ collision_layer = 16
 shape = SubResource("SphereShape3D_i8nuw")
 
 [node name="bigger home" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 9.196748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.197)
 mesh = SubResource("ArrayMesh_76m3h")
 skeleton = NodePath("")
 
@@ -250,17 +249,17 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4397573, 0)
 
 [node name="graveyard" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
 mesh = SubResource("ArrayMesh_edw5u")
 skeleton = NodePath("")
 
 [node name="mill" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 10, 9.196748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 9.197)
 mesh = SubResource("ArrayMesh_mfoio")
 skeleton = NodePath("")
 
 [node name="tree" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 mesh = SubResource("ArrayMesh_gt0y8")
 skeleton = NodePath("")
 

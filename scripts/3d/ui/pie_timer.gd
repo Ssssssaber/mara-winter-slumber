@@ -2,9 +2,12 @@ extends Node3D
 
 @onready var pie_timer_ui : TextureProgressBar = get_node("ViewportTextureSprite/SubViewport/PieTimer")
 @onready var timer : Timer = get_node("Timer")
-var rng = RandomNumberGenerator.new()
+
+@export var start_color : Color = Color(0, 1, 0)
+@export var end_color : Color = Color(1, 0, 0)
 
 func _ready() -> void:
+	var rng = RandomNumberGenerator.new()
 	timer.timeout.connect(_on_PieTimer_timeout)
 	pie_timer_ui.visible = false
 
@@ -18,7 +21,9 @@ func start_timer(duration : float) -> void:
 
 func _process(_delta: float) -> void:
 	if timer.time_left > 0:
+		var progress = timer.time_left / timer.wait_time
 		pie_timer_ui.value = (timer.time_left / timer.wait_time) * 100
+		pie_timer_ui.tint_progress = Color(1.0 - progress, progress, 0.0)
 
 func _on_PieTimer_timeout() -> void:
 	pie_timer_ui.visible = false
