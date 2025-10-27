@@ -1,32 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp1rsicixl8if"]
+[gd_scene load_steps=3 format=3 uid="uid://cp1rsicixl8if"]
 
 [ext_resource type="Script" uid="uid://b3xot43mefxax" path="res://scripts/3d/characters/movement/movement_system.gd" id="1_4wvuy"]
-[ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="1_67ifx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fwara"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kng6v"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_67ifx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="BaseCharacter" type="CharacterBody3D"]
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_fwara")
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-billboard = 1
-shaded = true
-alpha_cut = 2
-sprite_frames = SubResource("SpriteFrames_kng6v")
 
 [node name="MovementSystem" type="Node3D" parent="."]
 script = ExtResource("1_4wvuy")

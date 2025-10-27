@@ -15,6 +15,9 @@ func _ready() -> void:
 func GetCamera() -> Camera3D:
 	return Camera
 
+func SetCameraTarget(target : Node3D) -> void:
+	Camera.target = target 
+
 func GetMainPath() -> Path3D:
 	return MainPath
 

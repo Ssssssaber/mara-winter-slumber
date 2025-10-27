@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bd7q8l3hs6gto"]
+
+[ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="1_6feqe"]
+[ext_resource type="Texture2D" uid="uid://o0nxouyveoja" path="res://assets/3d/characters/mara/mara.png" id="2_vaqj2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6feqe")
+shader_parameter/sprite_texture = ExtResource("2_vaqj2")
+shader_parameter/enable_billboard = true
+shader_parameter/enable_outline = true
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/glowSize = 15.0
+shader_parameter/glowDensity = 5
+shader_parameter/glowRadialCoverage = 4
+shader_parameter/glowAngle = 1.57
+shader_parameter/glowSharpness = 1.0
+shader_parameter/alphaThreshold = 0.2

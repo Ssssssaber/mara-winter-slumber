@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=15 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkss215w24hy0" path="res://assets/3d/environment/models/mara_houses.tres" id="1_x6wyf"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dunld80hvsdff" path="res://scenes/3d/environment/houses/mill.tscn" id="10_bh3yo"]
 [ext_resource type="PackedScene" uid="uid://ctdntkn4t6i6u" path="res://scenes/3d/environment/houses/graveyard.tscn" id="11_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://cmjp8iqyl8p8q" path="res://scenes/2d/environment/battle_scene.tscn" id="12_xabbn"]
+[ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/characters/mara/camera_on_mara.gd" id="13_capxm"]
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
 closed = true
@@ -140,7 +141,7 @@ ghost = NodePath("../../Ghost")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.916086, 0, -42.254913)
 
 [node name="Mara" parent="." instance=ExtResource("6_xqoag")]
-transform = Transform3D(0.9999992, 0, 0, 0, 1, 0, 0, 0, 0.9999992, 48.712692, 0, 1.813)
+transform = Transform3D(0.9999992, 0, 0, 0, 1, 0, 0, 0, 0.9999992, 48.712692, 2.2197595, 1.813)
 
 [node name="mill" parent="." instance=ExtResource("10_bh3yo")]
 transform = Transform3D(1, 0, 0, 0, 0.67, 0, 0, 0, 1, 19.975388, 5.698704, 34.364132)
@@ -152,6 +153,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.121905, 0, -30.32909)
 transform = Transform3D(0.96633565, 0, 0.25728458, 0, 1, 0, -0.25728458, 0, 0.96633565, 2.4347618, 0, -35.84855)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]
+visible = false
+
+[node name="Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("mara_reference")]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Camera On Mara"
+script = ExtResource("13_capxm")
+mara_reference = NodePath("../../Mara")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

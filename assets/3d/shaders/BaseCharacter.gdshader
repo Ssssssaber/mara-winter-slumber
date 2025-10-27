@@ -1,33 +1,61 @@
 shader_type spatial;
-render_mode unshaded, cull_disabled;
+render_mode unshaded, blend_mix, depth_prepass_alpha, cull_disabled, specular_disabled;
 
-uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);  // White outline
-uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform sampler2D sprite_texture : source_color, filter_nearest;
+uniform bool enable_billboard = true;
+uniform bool enable_outline = true;
 
-// Manually define the texture size (adjust based on your sprite's resolution)
-const vec2 TEXTURE_SIZE = vec2(128.0, 128.0);  // Replace with your sprite's resolution
+uniform vec4 line_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform float glowSize: hint_range(0.0, 300) = 15.0;
+uniform int glowDensity: hint_range(0, 30) = 3;
+uniform int glowRadialCoverage: hint_range(0, 32) = 4;
+uniform float glowAngle: hint_range(0.0, 6.28) = 1.57;
+uniform float glowSharpness: hint_range(0.0, 5.0) = 1.0;
+uniform float alphaThreshold: hint_range(0.0, 1.0) =  0.2;
 
-const vec2 OFFSETS[8] = {
-    vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1),
-    vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
+void vertex() {
+    if (enable_billboard) {
+        vec3 world_origin = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+        float scale_x = length(MODEL_MATRIX[0].xyz);
+        float scale_y = length(MODEL_MATRIX[1].xyz);
+        vec3 cam_right = normalize(INV_VIEW_MATRIX[0].xyz);
+        vec3 cam_up    = normalize(INV_VIEW_MATRIX[1].xyz);
+        vec2 local = VERTEX.xy;
+        vec3 world_billboard = world_origin
+            + cam_right * local.x * scale_x
+            + cam_up    * local.y * scale_y;
+        POSITION = PROJECTION_MATRIX * VIEW_MATRIX * vec4(world_billboard, 1.0);
+    } else {
+        POSITION = PROJECTION_MATRIX * VIEW_MATRIX * (MODEL_MATRIX * vec4(VERTEX, 1.0));
+    }
+}
 
 void fragment() {
-    // Calculate the pixel size based on the texture size
-    vec2 size = line_thickness / TEXTURE_SIZE;
+    vec4 col = texture(sprite_texture, UV);
 
-    float outline = 0.0;
+    ALBEDO = col.rgb;
+    ALPHA = col.a;
 
-    // Sample neighboring pixels using ALBEDO_TEXTURE
-    for (int i = 0; i < OFFSETS.length(); i++) {
-        outline += texture(ALBEDO_TEXTURE, UV + size * OFFSETS[i]).a;
+    if (enable_outline) {
+        vec2 pixel_size = 1.0 / vec2(textureSize(sprite_texture, 0));
+        float alph = 0.0;
+        for (int i = 0; i < glowRadialCoverage; i++) {
+            for (int j = 0; j < glowDensity; j++) {
+                float radians360 = 6.28;
+                float angle = (radians360 / float(glowRadialCoverage)) * float(i+1) + glowAngle;
+                float dist = glowSize * float(j + 1) / float(glowDensity);
+                vec2 pixel_coor = vec2(sin(angle), cos(angle));
+                vec4 tex = texture(sprite_texture, UV + pixel_coor * pixel_size * dist);
+
+                float distFrom = float(glowDensity - j) / float(glowDensity);
+                float sharpness = mix(0.0, 1.0, pow(distFrom, glowSharpness));
+                alph += (tex.a * line_color.a) * sharpness;
+            }
+        }
+
+        if (ALPHA < alphaThreshold) {
+            ALBEDO = line_color.rgb;
+            ALPHA = alph;
+        }
     }
-    outline = min(outline, 1.0);
-
-    // Sample the current pixel using ALBEDO_TEXTURE
-    vec4 color = texture(ALBEDO, UV);
-
-    // Mix the original color with the outline color
-    ALBEDO = mix(color.rgb, line_color.rgb, outline - color.a);
-    ALPHA = color.a;
 }
