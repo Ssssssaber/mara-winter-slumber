@@ -86,5 +86,7 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_mov
 	path_follower.progress_ratio = initial_progress
 	path_follower.inversed_movement = inversed_movement
 
+	path_follower.call_deferred("find_movement_system")
+
 	print("Added entity '" + entity.name + "' to path at progress: ", initial_progress)
 	return path_follower

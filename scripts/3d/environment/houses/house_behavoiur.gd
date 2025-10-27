@@ -6,7 +6,7 @@ extends Node3D
 func _ready() -> void:
 	interaction_area.body_entered.connect(_on_area_3d_body_entered)
 	pie_timer.timer.timeout.connect(_on_pie_timer_timeout)
-	_spawn_ghost_near_self()
+	# _spawn_ghost_near_self()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("House entered by: ", body.name)

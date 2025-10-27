@@ -30,3 +30,4 @@ func _process(_delta: float) -> void:
 
 func _on_PieTimer_timeout() -> void:
 	pie_timer_ui.visible = false
+	timer.stop()

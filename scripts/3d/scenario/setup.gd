@@ -13,7 +13,5 @@ func _init() -> void:
 	GameManager.OnGameManagerReady.connect(setup)
 
 func setup() -> void:
-	print("Setup game scenario")
-	# GameManager.SetCameraTarget(mara);
 	GameManager.AddEntityToPathAutoProgress(mara, mara_inverted)
 	GameManager.AddEntityToPathAutoProgress(ghost, ghost_inverted)

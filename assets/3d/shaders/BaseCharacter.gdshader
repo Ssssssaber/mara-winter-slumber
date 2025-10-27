@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, blend_mix, depth_prepass_alpha, cull_disabled, specular_disabled;
+render_mode blend_mix, depth_prepass_alpha, cull_disabled, specular_disabled, depth_draw_opaque;  // Added 'depth_draw_opaque' to enable dynamic shadows for translucent material
 
 uniform sampler2D sprite_texture : source_color, filter_nearest;
 uniform bool enable_billboard = true;

@@ -81,26 +81,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -1)
 [node name="Paths" type="Node3D" parent="."]
 
 [node name="MainPath" type="Path3D" parent="Paths"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.125, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.125, 2, 0)
 curve = SubResource("Curve3D_8rukn")
-
-[node name="PathFollow3D2" type="PathFollow3D" parent="Paths/MainPath"]
-transform = Transform3D(0.7206046, 0, 0.6933434, 0, 1, 0, -0.6933434, 0, 0.7206046, -13.607693, 0, -36.786175)
-progress = 42.94894
-h_offset = -1.425
-
-[node name="Ghost" parent="Paths/MainPath/PathFollow3D2" instance=ExtResource("7_gh3kt")]
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Paths/MainPath"]
-transform = Transform3D(0.7942747, 0, 0.6075583, 0, 1, 0, -0.6075583, 0, 0.7942747, -11.243721, 0, -36.07455)
-progress = 40.11091
-h_offset = -0.68
-
-[node name="Ghost" parent="Paths/MainPath/PathFollow3D" instance=ExtResource("7_gh3kt")]
-
-[node name="PathFollow3D3" type="PathFollow3D" parent="Paths/MainPath"]
-transform = Transform3D(-0.8639778, 0, 0.50352824, 0, 1, 0, -0.50352824, 0, -0.8639778, -93.6204, 0, 1.8133793)
-progress = 157.66866
 
 [node name="CameraParent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
@@ -137,12 +119,6 @@ ghost_inverted = true
 mara = NodePath("../../Mara")
 ghost = NodePath("../../Ghost")
 
-[node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.916086, 0, -42.254913)
-
-[node name="Mara" parent="." instance=ExtResource("6_xqoag")]
-transform = Transform3D(0.9999992, 0, 0, 0, 1, 0, 0, 0, 0.9999992, 48.712692, 2.2197595, 1.813)
-
 [node name="mill" parent="." instance=ExtResource("10_bh3yo")]
 transform = Transform3D(1, 0, 0, 0, 0.67, 0, 0, 0, 1, 19.975388, 5.698704, 34.364132)
 
@@ -152,16 +128,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.121905, 0, -30.32909)
 [node name="SmallHome" parent="." instance=ExtResource("9_jsy7v")]
 transform = Transform3D(0.96633565, 0, 0.25728458, 0, 1, 0, -0.25728458, 0, 0.96633565, 2.4347618, 0, -35.84855)
 
+[node name="Mara" parent="." instance=ExtResource("6_xqoag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.515625, 0, -1.0177422)
+
+[node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.652822, 0, -45.748768)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]
 visible = false
 
-[node name="Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("mara_reference")]
+[node name="Button" type="Button" parent="CanvasLayer"]
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Camera On Mara"
 script = ExtResource("13_capxm")
-mara_reference = NodePath("../../Mara")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

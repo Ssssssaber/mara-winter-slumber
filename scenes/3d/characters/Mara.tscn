@@ -40,4 +40,5 @@ texture = ExtResource("4_siey8")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 material_override = ExtResource("4_3ollr")
+billboard = 1
 sprite_frames = SubResource("SpriteFrames_obn03")
