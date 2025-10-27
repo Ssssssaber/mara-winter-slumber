@@ -6,12 +6,15 @@ extends Node3D
 @export var start_color : Color = Color(0, 1, 0)
 @export var end_color : Color = Color(1, 0, 0)
 
+@export var min_time : float = 10.0
+@export var max_time : float = 40.0
+
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	timer.timeout.connect(_on_PieTimer_timeout)
 	pie_timer_ui.visible = false
 
-	start_timer(rng.randf_range(5.0, 20.0)) # Example: start a 5-second timer
+	start_timer(rng.randf_range(min_time, max_time)) # Example: start a 5-second timer
 
 func start_timer(duration : float) -> void:
 	timer.wait_time = duration

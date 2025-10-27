@@ -1,7 +1,7 @@
 extends Node
 
-@export var mara_progress : float = 0.0
-@export var ghost_progress : float = 0.0
+# @export var mara_progress : float = 0.0
+# @export var ghost_progress : float = 0.0
 
 @export var mara_inverted : bool = 0.0
 @export var ghost_inverted : bool = 0.0
@@ -14,5 +14,5 @@ func _init() -> void:
 
 func setup() -> void:
 	print("Setup game scenario")
-	GameManager.AddEntityToPath(mara, mara_progress, mara_inverted, false)
-	GameManager.AddEntityToPath(ghost, ghost_progress, ghost_inverted, false)
+	GameManager.AddEntityToPathAutoProgress(mara, mara_inverted)
+	GameManager.AddEntityToPathAutoProgress(ghost, ghost_inverted)

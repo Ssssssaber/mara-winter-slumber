@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=4 uid="uid://d36nxws7hx4rx"]
+
+[ext_resource type="Script" uid="uid://dgunln4r8ojm4" path="res://scripts/3d/environment/houses/house_behavoiur.gd" id="1_v4gnb"]
+[ext_resource type="PackedScene" uid="uid://c124a2irr2bng" path="res://scenes/3d/ui/PieTimerWorld.tscn" id="2_dr7jm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if7rs"]
+resource_name = "house"
+cull_mode = 2
+albedo_color = Color(0.40520698, 0.2202688, 0.18086664, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m540s"]
+_surfaces = [{
+"aabb": AABB(-2.4, -1.5, -4, 4.8, 5.6215796, 8),
+"format": 34359742465,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAwAAAAIAAwACAAQABAACAAEAAAADAAUABAAFAAMAAAAFAAYAAQAAAAYABQAEAAcABAABAAcABQAIAAYAAQAGAAkACQAGAAgABQAKAAgACgAJAAgABQALAAoACgALAAkABQAHAAsAAQAJAAwACwAHAA0AAQANAAcADQAJAAsAAQAMAA0ADQAMAAkA"),
+"name": "house",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 14,
+"vertex_data": PackedByteArray("AAAAwAAAwL8AAIBAAAAAQAAAwD8AAIBAAAAAQAAAwL8AAIBAAAAAwAAAwL8AAIDAAAAAQAAAwL8AAIDAAAAAwAAAwD8AAIDAAAAAwAAAwD8AAIBAAAAAQAAAwD8AAIDAmpkZwAAAwD8AAIBAAAAAAPvjg0AAAIBAmpkZwAAAwD8AAIDAAAAAAPvjg0AAAIDAmpkZQAAAwD8AAIBAmpkZQAAAwD8AAIDA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ygpgo"]
+resource_name = "mara_houses_Cube_002"
+_surfaces = [{
+"aabb": AABB(-2.4, -1.5, -4, 4.8, 5.6215796, 8),
+"attribute_data": PackedByteArray("AADAPgAAAAAAACA/AACAPgAAwD4AAIA+AAAgPwAAAAAAACA/AAAAPgAAID8AAIA+AABgPwAAgD4AAGA/AACAPgAAwD4AAIA/AAAgPwAAQD8AACA/AACAPwAAwD4AAEA/AAAAPgAAAD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAgD4AAMA+AAAAPwAAID8AAIA+AAAgPwAAAD8AAMA+AACAPgAAwD4AAAA/AAAgPwAAQD8AAMA+AABAPwAAID8AAAA/AAAgPwAAID8AACA/AAAAPwAAYD8AAAA/AAAgPwAAgD4AACA/AAAAPwAAID8AAAA/AAAgPwAAgD4AAGA/AAAAPwAAYD8AAIA+AABgPwAAgD4AAGA/AAAAPwAAYD8AAAA/AAAgPwAAAD4AAGA/AACAPgAAID8AACA/AAAgPwAAAD8AACA/AAAAPgAAID8AACA/AAAgPwAAgD4="),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAQADAAQAAQAEAAUABAAGAAcACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFQAUABcAFQAXABgAGAAXABkAFQAYABoAGwAcAB0AGwAeABwAHwAgACEAHwAiACAAIwAkACUAIwAmACQAJwAoACkAJwAqACgA"),
+"material": SubResource("StandardMaterial3D_if7rs"),
+"name": "house",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 43,
+"vertex_data": PackedByteArray("AAAAwAAAwL8AAIBAAAAAQAAAwD8AAIBAAAAAQAAAwL8AAIBAAAAAwAAAwD8AAIBAAAAAAPvjg0AAAIBAmpkZQAAAwD8AAIBAAAAAwAAAwD8AAIBAmpkZwAAAwD8AAIBAAAAAwAAAwL8AAIBAAAAAwAAAwD8AAIDAAAAAwAAAwD8AAIBAAAAAwAAAwL8AAIDAAAAAwAAAwL8AAIDAAAAAQAAAwL8AAIBAAAAAQAAAwL8AAIDAAAAAwAAAwL8AAIBAAAAAQAAAwL8AAIDAAAAAQAAAwD8AAIBAAAAAQAAAwD8AAIDAAAAAQAAAwL8AAIBAAAAAQAAAwL8AAIDAAAAAwAAAwD8AAIDAAAAAwAAAwL8AAIDAAAAAQAAAwD8AAIDAAAAAAPvjg0AAAIDAmpkZQAAAwD8AAIDAmpkZwAAAwD8AAIDAAAAAQAAAwD8AAIBAmpkZQAAAwD8AAIDAAAAAQAAAwD8AAIDAmpkZQAAAwD8AAIBAAAAAwAAAwD8AAIDAmpkZwAAAwD8AAIBAAAAAwAAAwD8AAIBAmpkZwAAAwD8AAIDAmpkZwAAAwD8AAIDAAAAAAPvjg0AAAIBAmpkZwAAAwD8AAIBAAAAAAPvjg0AAAIDAmpkZQAAAwD8AAIDAAAAAAPvjg0AAAIBAAAAAAPvjg0AAAIDAmpkZQAAAwD8AAIBA/3//f/9/////f/9//3////9//3//f////3//f/9/////f/9/////P/9//3////8//3//f////z//f/9/////PwAA/3//f///AAD/f/9///8AAP9//3///wAA/3//f////38AAP///7//fwAA////v/9/AAD///+//38AAP///7////9//3///////3//f///////f/9///////9//3//////////f////////8wKmLr//////3//////////f////////5hFM53/////////v/////+YRTOd/38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////vyw9K72kOtaaLD0rvadUUqgsPSu98l1mrSw9K73KL9+V0sIrvf///7/Swiu9////v9LCK73///+/0sIrvf///78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m540s")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i8nuw"]
+radius = 7.642
+
+[node name="SmallHome" type="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_ygpgo")
+skeleton = NodePath("")
+script = ExtResource("1_v4gnb")
+
+[node name="PieTimerWorld" parent="." instance=ExtResource("2_dr7jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.846843, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_i8nuw")
