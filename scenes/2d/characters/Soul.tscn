@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4vcy61g6muyu"]
+
+[ext_resource type="Texture2D" uid="uid://dqsce4q362yct" path="res://assets/2d/temporary/redsquare.png" id="1_yj76j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnwsa"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wm0it"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yj76j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Soul" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cnwsa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wm0it")

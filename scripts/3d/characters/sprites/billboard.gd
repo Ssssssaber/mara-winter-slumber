@@ -36,5 +36,3 @@ func _process(_delta: float) -> void:
 	distance = clamp(distance, min_distance, max_distance)
 	var scale_factor = lerpf(min_scale, max_scale, (distance - min_distance) / (max_distance - min_distance))
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
-
-
