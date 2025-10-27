@@ -6,10 +6,10 @@ class_name BattleController
 @onready var soul_area: ColorRect = get_node("../SoulArea")
 @onready var soul: Soul = get_node("../SoulArea/Soul")
 @onready var capture_zones_container: Node2D = get_node("../CaptureZone")
-@onready var battle_text: Label = get_node("../UI/BattleText")
-@onready var soul_health_label: Label = get_node("../UI/SoulHealth")
-@onready var intimidate_btn: Button = get_node("../UI/ActionButtons/IntimidateButton")
-@onready var capture_btn: Button = get_node("../UI/ActionButtons/CaptureButton")
+@onready var battle_text: Label = get_node("../BattleText")
+@onready var soul_health_label: Label = get_node("../SoulHealth")
+@onready var intimidate_btn: Button = get_node("../ActionButtons/IntimidateButton")
+@onready var capture_btn: Button = get_node("../ActionButtons/CaptureButton")
 
 # Настройки зон захвата
 var capture_zone_scene: PackedScene

@@ -22,39 +22,38 @@ offset_bottom = 450.0
 [node name="Soul" parent="SoulArea" instance=ExtResource("1_1niic")]
 script = ExtResource("2_1niic")
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="ActionButtons" type="HBoxContainer" parent="UI"]
-offset_right = 40.0
+[node name="ActionButtons" type="HBoxContainer" parent="."]
+offset_right = 182.0
 offset_bottom = 40.0
 
-[node name="IntimidateButton" type="Button" parent="UI/ActionButtons"]
+[node name="IntimidateButton" type="Button" parent="ActionButtons"]
 layout_mode = 2
 text = "Запугивание"
 
-[node name="CaptureButton" type="Button" parent="UI/ActionButtons"]
+[node name="CaptureButton" type="Button" parent="ActionButtons"]
 layout_mode = 2
 text = "Захват"
 
-[node name="SoulHealth" type="Label" parent="UI"]
+[node name="BattleController" type="Node" parent="."]
+script = ExtResource("2_5p8w8")
+
+[node name="SoulHealth" type="Label" parent="."]
 offset_left = 635.0
 offset_top = 5.0
 offset_right = 795.0
 offset_bottom = 28.0
 text = "Здоровье души: 2/2"
 
-[node name="BattleText" type="Label" parent="UI"]
+[node name="BattleText" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -229.0
+offset_left = 347.0
 offset_top = 83.0
-offset_right = -121.0
+offset_right = 455.0
 offset_bottom = 106.0
 grow_horizontal = 2
 text = "Fisting is 300$"
 
-[node name="BattleController" type="Node" parent="."]
-script = ExtResource("2_5p8w8")
-
 [node name="CaptureZone" parent="." instance=ExtResource("4_aqiqb")]
+position = Vector2(-101, -1)
