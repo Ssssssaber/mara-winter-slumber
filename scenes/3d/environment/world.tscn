@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=14 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkss215w24hy0" path="res://assets/3d/environment/models/mara_houses.tres" id="1_x6wyf"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d36nxws7hx4rx" path="res://scenes/3d/environment/houses/small_home.tscn" id="9_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://dunld80hvsdff" path="res://scenes/3d/environment/houses/mill.tscn" id="10_bh3yo"]
 [ext_resource type="PackedScene" uid="uid://ctdntkn4t6i6u" path="res://scenes/3d/environment/houses/graveyard.tscn" id="11_jsy7v"]
+[ext_resource type="PackedScene" uid="uid://cmjp8iqyl8p8q" path="res://scenes/2d/environment/battle_scene.tscn" id="12_xabbn"]
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
 closed = true
@@ -149,3 +150,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.121905, 0, -30.32909)
 
 [node name="SmallHome" parent="." instance=ExtResource("9_jsy7v")]
 transform = Transform3D(0.96633565, 0, 0.25728458, 0, 1, 0, -0.25728458, 0, 0.96633565, 2.4347618, 0, -35.84855)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]

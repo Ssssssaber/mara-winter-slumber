@@ -124,8 +124,6 @@ func end_battle(victory: bool):
 				zone.queue_free()
 	
 	battle_text.text = "Победа! Душа захвачена." if victory else "Поражение!"
-	await get_tree().create_timer(3.0).timeout
-	get_tree().reload_current_scene()
 
 func _on_soul_damaged():
 	_update_health_ui()
