@@ -15,7 +15,7 @@ class_name CameraController
 
 var direction: Vector3 = Vector3.ZERO
 var rotating: bool = false  # Flag for when middle mouse is held
-
+var rolling: bool = false;
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
@@ -40,17 +40,14 @@ func _process(delta: float) -> void:
 		# Smoothly interpolate towards the desired position
 		global_transform.origin = global_transform.origin.lerp(desired_pos, follow_smoothness * delta)
 		
-		# No manual movement or rotation in following mode
 		return
 	
-	# Free movement mode (when target is null)
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.z = Input.get_axis("ui_up", "ui_down")
 	
 	var mouse_pos = get_viewport().get_mouse_position()
 	var viewport_rect = get_viewport().get_visible_rect()
 
-	# Check if mouse is inside the viewport
 	if viewport_rect.has_point(mouse_pos): 
 		if mouse_pos.x < border_threshold:
 			direction.x -= 1
@@ -76,11 +73,11 @@ func _input(event: InputEvent) -> void:
 		# In following mode, allow zoom (adjust zoom_factor to scale the post_offset magnitude) but disable other controls
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-				zoom_factor = max(zoom_factor - 0.1, 0.1)  # Prevent too small zoom (adjust step as needed)
+				zoom_factor = max(zoom_factor - 0.1, 0.1) # Prevent too small zoom (adjust step as needed)
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 				zoom_factor += 0.1
-		return  # Skip other inputs (no panning, orbiting, or WASD in following mode)
-	
+			return # Skip other inputs (no panning, orbiting, or WASD in following mode)
+
 	# Free movement mode inputs
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
@@ -95,7 +92,8 @@ func _input(event: InputEvent) -> void:
 			position.y -= zoom_speed
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			position.y += zoom_speed
-	
+
 	elif event is InputEventMouseMotion and rotating:
-		rotate_y(-event.relative.x * rotation_speed)
-		rotation.x = clamp(rotation.x, -PI/2, PI/2)
+		rotate_y(deg_to_rad(-event.relative.x * 0.1))  # Multiplied by 0.1 for sensitivity (adjust as needed)
+		var pitch_change = deg_to_rad(-event.relative.y * 0.1)
+		rotation.x = clamp(rotation.x + pitch_change, deg_to_rad(-90), deg_to_rad(90))  # Clamp to prevent flipping
