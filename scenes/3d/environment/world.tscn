@@ -43,11 +43,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.125, 0, 0)
 curve = SubResource("Curve3D_8rukn")
 
 [node name="PathFollower" parent="Paths/MainPath" instance=ExtResource("3_1im53")]
-transform = Transform3D(0.5747849, 0, 0.8183029, 0, 1, 0, -0.8183029, 0, 0.5747849, -16.219992, 0, -39.333084)
+transform = Transform3D(0.5747848, 0, 0.8183028, 0, 1, 0, -0.8183028, 0, 0.5747848, -16.219992, 0, -39.333084)
 progress = 47.7736
 
 [node name="PathFollower2" parent="Paths/MainPath" instance=ExtResource("3_1im53")]
-transform = Transform3D(-0.18070348, 0, -0.983536, 0, 1, 0, 0.983536, 0, -0.18070348, -38.19815, 0, 45.08873)
+transform = Transform3D(-0.18070346, 0, -0.9835359, 0, 1, 0, 0.9835359, 0, -0.18070346, -38.19815, 0, 45.08873)
 progress = 242.2106
 
 [node name="CameraParent" type="Node3D" parent="."]
