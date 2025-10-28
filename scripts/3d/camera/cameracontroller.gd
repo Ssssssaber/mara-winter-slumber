@@ -15,7 +15,12 @@ class_name CameraController
 
 var direction: Vector3 = Vector3.ZERO
 var rotating: bool = false  # Flag for when middle mouse is held
-var rolling: bool = false;
+var rolling: bool = false
+
+func set_target(node : Node3D) -> void:
+	target = node
+	print("camera target set", node.name)
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 

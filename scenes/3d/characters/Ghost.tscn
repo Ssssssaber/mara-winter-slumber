@@ -43,6 +43,7 @@ shape = SubResource("SphereShape3D_wtia4")
 
 [node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="." index="3"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
 billboard = 1
 shaded = true
 alpha_cut = 2
@@ -50,7 +51,6 @@ sprite_frames = SubResource("SpriteFrames_ggydj")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-visible = false
 material_override = ExtResource("3_ggydj")
 transparent = false
 double_sided = false

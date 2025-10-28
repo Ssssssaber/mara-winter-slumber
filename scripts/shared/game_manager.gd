@@ -4,6 +4,7 @@ extends Node
 @onready var BuildingGridMap : GridMap= get_parent().get_node_or_null("World/GridMaps/BuildingsGridMap")
 @onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
 @onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")
+@onready var CanvasControl : Node = get_parent().get_node("World/CanvasLayer/CanvasController")
 @onready var GhostScene = load("res://scenes/3d/characters/Ghost.tscn")
 
 signal OnGameManagerReady()
@@ -16,10 +17,13 @@ func GetCamera() -> Camera3D:
 	return Camera
 
 func SetCameraTarget(target : Node3D) -> void:
-	Camera.target = target 
+	Camera.set_target(target) 
 
 func GetMainPath() -> Path3D:
 	return MainPath
+
+func GetCanvasControl() -> Node:
+	return CanvasControl
 
 func GetFloorGridMap() -> GridMap:
 	return FloorGridMap
@@ -87,6 +91,9 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_mov
 	path_follower.inversed_movement = inversed_movement
 
 	path_follower.call_deferred("find_movement_system")
+
+	if entity.has_method("set_path_follower"):
+		entity.set_path_follower(path_follower)
 
 	print("Added entity '" + entity.name + "' to path at progress: ", initial_progress)
 	return path_follower

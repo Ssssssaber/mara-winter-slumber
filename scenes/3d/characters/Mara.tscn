@@ -1,22 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlw7boxson22m"]
+[gd_scene load_steps=13 format=3 uid="uid://dlw7boxson22m"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
-[ext_resource type="Texture2D" uid="uid://o0nxouyveoja" path="res://assets/3d/characters/mara/mara.png" id="2_obn03"]
 [ext_resource type="Script" uid="uid://gdvi04fooqf1" path="res://scripts/3d/characters/mara/mara_behaviour.gd" id="2_siey8"]
 [ext_resource type="Material" uid="uid://bd7q8l3hs6gto" path="res://assets/3d/characters/materials/mara_outline.tres" id="4_3ollr"]
 [ext_resource type="Texture2D" uid="uid://pk8cq2vy1x0j" path="res://assets/2d/temporary/cptzone.png" id="4_siey8"]
+[ext_resource type="Texture2D" uid="uid://cn7ueygkkm5vd" path="res://assets/3d/characters/mara/mara-sprite-sheet.png" id="5_ri85a"]
+[ext_resource type="Script" uid="uid://xm3002dswgbs" path="res://scripts/3d/characters/mara/mara_abilities_manager.gd" id="6_ri85a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_obn03"]
 radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q5ol"]
+atlas = ExtResource("5_ri85a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gd6l"]
+atlas = ExtResource("5_ri85a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gpgx"]
+atlas = ExtResource("5_ri85a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jwdt"]
+atlas = ExtResource("5_ri85a")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_obn03"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_obn03")
+"texture": SubResource("AtlasTexture_2q5ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gd6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gpgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jwdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gd6l")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -38,7 +67,12 @@ billboard = 1
 texture = ExtResource("4_siey8")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 material_override = ExtResource("4_3ollr")
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_obn03")
+animation = &"walk"
+frame_progress = 0.78186524
+
+[node name="AbilitiesManager" type="Node" parent="." index="5"]
+script = ExtResource("6_ri85a")

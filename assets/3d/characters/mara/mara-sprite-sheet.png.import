@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o0nxouyveoja"
-path.s3tc="res://.godot/imported/mara.png-385d7bf10eb94d7d140231b1f8744557.s3tc.ctex"
+uid="uid://cn7ueygkkm5vd"
+path.s3tc="res://.godot/imported/mara-sprite-sheet.png-40ed69eaae0ed3a64057021673194dd1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/3d/characters/mara/mara.png"
-dest_files=["res://.godot/imported/mara.png-385d7bf10eb94d7d140231b1f8744557.s3tc.ctex"]
+source_file="res://assets/3d/characters/mara/mara-sprite-sheet.png"
+dest_files=["res://.godot/imported/mara-sprite-sheet.png-40ed69eaae0ed3a64057021673194dd1.s3tc.ctex"]
 
 [params]
 
