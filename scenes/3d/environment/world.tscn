@@ -140,11 +140,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.652822, 0, -45.748768)
 [node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]
 visible = false
 
-[node name="CameraOnMaraButton" type="Button" parent="CanvasLayer"]
+[node name="CameraOnMaraButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("mara_reference")]
 offset_right = 140.0
 offset_bottom = 31.0
 text = "Camera On Mara"
 script = ExtResource("13_capxm")
+mara_reference = NodePath("../../Mara")
 
 [node name="IgnoreGhostsButton" type="Button" parent="CanvasLayer"]
 offset_left = 3.0
