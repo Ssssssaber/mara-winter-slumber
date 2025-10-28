@@ -18,6 +18,8 @@ var _ignore_negative_modifiers : bool = false
 
 signal movement_started(direction: Vector3)
 signal movement_stopped
+signal modifier_added(modifier_name : String)
+signal modifier_removed(modifier_name : String)
 
 func _ready() -> void:
 	if body == null:
@@ -43,17 +45,20 @@ func apply_speed_modifier(modifier_name : String, multiplier: float, duration: f
 	
 	if modifier_name == Constants.MARA_IGNORE_GHOSTS:
 		_ignore_negative_modifiers = true
+		remove_modifier(Constants.GHOST_MOVEMENT_MODIFIER)
 
 	speed_modifiers[modifier_name] = {
 		"multiplier": multiplier,
 		"duration": duration
 	}
+	modifier_added.emit(modifier_name)
 
 func remove_modifier(modifier_name : String) -> bool:
 
 	if modifier_name == Constants.MARA_IGNORE_GHOSTS:
 		_ignore_negative_modifiers = false
 
+	modifier_removed.emit(modifier_name)
 	return speed_modifiers.erase(modifier_name)
 
 func _calculate_effective_speed() -> float:
