@@ -74,7 +74,7 @@ material_override = ExtResource("4_3ollr")
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_obn03")
 animation = &"walk"
-frame_progress = 0.4843832
+frame_progress = 0.8390182
 
 [node name="AbilitiesManager" type="Node" parent="." index="5"]
 script = ExtResource("6_ri85a")
@@ -84,12 +84,18 @@ transform = Transform3D(0.24999996, 0, 0, 0, 0.24999996, 0, 0, 0, 0.24999996, 0.
 script = ExtResource("7_0gd6l")
 distance_scaling = false
 
-[node name="SpeedBuffSprite" type="Sprite3D" parent="Modifiers" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, 0, 0)
+[node name="IgnoreGhostsSprite" type="Sprite3D" parent="Modifiers" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.985, 0, 0)
+visible = false
+modulate = Color(0.32987848, 0.62127584, 0, 1)
+texture = ExtResource("4_siey8")
+
+[node name="SpeedBuffSprite" type="Sprite3D" parent="Modifiers" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.615, 0, 0)
 visible = false
 texture = ExtResource("4_siey8")
 
-[node name="IgnoreGhostsSprite" type="Sprite3D" parent="Modifiers" index="1"]
+[node name="GhostDebuffSprite" type="Sprite3D" parent="Modifiers" index="2"]
 transform = Transform3D(29.560005, 0, 0, 0, 29.560005, 0, 0, 0, 29.560005, -8, 0, 0)
 visible = false
 texture = ExtResource("7_2q5ol")
