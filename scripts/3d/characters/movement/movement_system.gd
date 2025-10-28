@@ -14,6 +14,8 @@ var effective_speed: float = base_speed
 # Speed modifiers: Array of dictionaries { "multiplier": float, "duration": float }
 var speed_modifiers: Dictionary = {}
 
+var _ignore_negative_modifiers : bool = false
+
 signal movement_started(direction: Vector3)
 signal movement_stopped
 
@@ -35,12 +37,23 @@ For example, a 1.5 multiplier increases speed by 50%, while 0.8 decreases it by 
 @param duration: Duration in seconds (-1 for permanent).
 """
 func apply_speed_modifier(modifier_name : String, multiplier: float, duration: float) -> void:
+	if _ignore_negative_modifiers:
+		if modifier_name == Constants.GHOST_MOVEMENT_MODIFIER:
+			return
+	
+	if modifier_name == Constants.MARA_IGNORE_GHOSTS:
+		_ignore_negative_modifiers = true
+
 	speed_modifiers[modifier_name] = {
 		"multiplier": multiplier,
 		"duration": duration
 	}
 
 func remove_modifier(modifier_name : String) -> bool:
+
+	if modifier_name == Constants.MARA_IGNORE_GHOSTS:
+		_ignore_negative_modifiers = false
+
 	return speed_modifiers.erase(modifier_name)
 
 func _calculate_effective_speed() -> float:
@@ -54,8 +67,8 @@ func _physics_process(delta: float) -> void:
 		if speed_modifiers[modifier_name]["duration"] > 0:
 			speed_modifiers[modifier_name]["duration"] -= delta
 		if speed_modifiers[modifier_name]["duration"] <= 0 and speed_modifiers[modifier_name]["duration"] != -1:
-			speed_modifiers.erase(modifier_name)
-	
+			remove_modifier(modifier_name)
+
 	effective_speed = _calculate_effective_speed()
 	
 	if current_direction != Vector3.ZERO:
