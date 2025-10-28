@@ -2,22 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_gp6pm"]
 [ext_resource type="Script" uid="uid://cpvkaqvunumpl" path="res://scripts/3d/characters/ghost/ghost_behaviour.gd" id="2_2ovv7"]
+[ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_70odj"]
 [ext_resource type="Material" uid="uid://c33bm40wj1nk0" path="res://assets/3d/characters/materials/sprite_outline.tres" id="3_ggydj"]
 [ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="4_70odj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtia4"]
 radius = 1.839
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ggydj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_70odj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_60gv5"]
 animations = [{
@@ -30,10 +20,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Ghost" instance=ExtResource("1_gp6pm")]
+[node name="Ghost" node_paths=PackedStringArray("_animated_sprite") instance=ExtResource("1_gp6pm")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("2_2ovv7")
+_animated_sprite = NodePath("RotatableNodes/AnimatedSprite3D")
 
 [node name="InteractionArea" type="Area3D" parent="." index="2"]
 collision_layer = 4
@@ -41,15 +32,10 @@ collision_layer = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0"]
 shape = SubResource("SphereShape3D_wtia4")
 
-[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="." index="3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-visible = false
-billboard = 1
-shaded = true
-alpha_cut = 2
-sprite_frames = SubResource("SpriteFrames_ggydj")
+[node name="RotatableNodes" type="Node3D" parent="." index="3"]
+script = ExtResource("3_70odj")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4"]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="RotatableNodes" index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 material_override = ExtResource("3_ggydj")
 transparent = false

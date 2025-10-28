@@ -2,8 +2,7 @@ extends Node
 
 class_name Sprite3DCharacterBody
 
-@onready var _animated_sprite : AnimatedSprite3D = get_node("AnimatedSprite3D")
-
+@export var _animated_sprite : AnimatedSprite3D
 func _init() -> void:
 	pass 
 

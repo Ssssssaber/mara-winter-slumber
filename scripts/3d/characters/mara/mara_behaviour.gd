@@ -3,7 +3,6 @@ extends Sprite3DCharacterBody
 class_name MaraBehaviour
 
 @onready var interaction_area : Area3D = get_node("InteractionArea")
-@onready var animated_sprite : AnimatedSprite3D = get_node("AnimatedSprite3D")
 
 var movement : Node3D
 var _path_follower : PathFollow3D
@@ -29,16 +28,8 @@ func set_path_follower(path_follower : PathFollow3D) -> void:
 	print("path follower set")
 	_path_follower = path_follower
 
-	if not animated_sprite:
-		animated_sprite = get_node("AnimatedSprite3D")
-	animated_sprite.play("walk")
+	_animated_sprite.play("walk")
 	set_process_input(true)
-
-# TODO: USE IT WHEN WALKING ON THE PATH
-func set_sprite_flip_h(value : bool) -> void:
-	if not animated_sprite:
-		animated_sprite = get_node("AnimatedSprite3D")
-	animated_sprite.flip_h = value
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("change_direction"):

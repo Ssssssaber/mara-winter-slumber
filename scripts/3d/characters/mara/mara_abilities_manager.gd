@@ -14,9 +14,9 @@ var _ghost_debuff_sprite : Sprite3D
 
 func init_with_canvas_controller(canvas_controller : Node) -> void:
 	_mara = get_parent()
-	_speed_buff_sprite = _mara.get_node("Modifiers/SpeedBuffSprite")
-	_ignore_ghosts_sprite = _mara.get_node("Modifiers/IgnoreGhostsSprite")
-	_ghost_debuff_sprite = _mara.get_node("Modifiers/GhostDebuffSprite")
+	_speed_buff_sprite = _mara.get_node("RotatableNodes/Modifiers/SpeedBuffSprite")
+	_ignore_ghosts_sprite = _mara.get_node("RotatableNodes/Modifiers/IgnoreGhostsSprite")
+	_ghost_debuff_sprite = _mara.get_node("RotatableNodes/Modifiers/GhostDebuffSprite")
 
 	_movement = _mara.get_node("MovementSystem")
 	

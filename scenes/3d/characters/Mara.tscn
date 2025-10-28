@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlw7boxson22m"]
+[gd_scene load_steps=16 format=3 uid="uid://dlw7boxson22m"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
 [ext_resource type="Script" uid="uid://gdvi04fooqf1" path="res://scripts/3d/characters/mara/mara_behaviour.gd" id="2_siey8"]
@@ -51,9 +51,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mara" instance=ExtResource("1_n58j3")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_0gd6l"]
+viewport_path = NodePath("RotatableNodes/HeroName/SubViewport")
+
+[node name="Mara" node_paths=PackedStringArray("_animated_sprite") instance=ExtResource("1_n58j3")]
 collision_mask = 4
 script = ExtResource("2_siey8")
+_animated_sprite = NodePath("RotatableNodes/AnimatedSprite3D")
 
 [node name="InteractionArea" type="Area3D" parent="." index="2"]
 collision_layer = 4
@@ -61,41 +65,54 @@ collision_layer = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0"]
 shape = SubResource("SphereShape3D_obn03")
 
-[node name="HeroIndicator" type="Sprite3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.355, 0)
+[node name="RotatableNodes" type="Node3D" parent="." index="3"]
+script = ExtResource("7_0gd6l")
+
+[node name="HeroIndicator" type="Sprite3D" parent="RotatableNodes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.340004, 0)
 visible = false
 modulate = Color(1, 1, 1, 0.78039217)
 billboard = 1
 texture = ExtResource("4_siey8")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="4"]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="RotatableNodes" index="1"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 material_override = ExtResource("4_3ollr")
-billboard = 1
 sprite_frames = SubResource("SpriteFrames_obn03")
 animation = &"walk"
-frame_progress = 0.8390182
+frame_progress = 0.67390555
 
-[node name="AbilitiesManager" type="Node" parent="." index="5"]
-script = ExtResource("6_ri85a")
+[node name="Modifiers" type="Node3D" parent="RotatableNodes" index="2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 3.96, 0)
 
-[node name="Modifiers" type="Node3D" parent="." index="6"]
-transform = Transform3D(0.24999996, 0, 0, 0, 0.24999996, 0, 0, 0, 0.24999996, 0.9999998, 4.019999, 0)
-script = ExtResource("7_0gd6l")
-distance_scaling = false
-
-[node name="IgnoreGhostsSprite" type="Sprite3D" parent="Modifiers" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.985, 0, 0)
+[node name="IgnoreGhostsSprite" type="Sprite3D" parent="RotatableNodes/Modifiers" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 visible = false
 modulate = Color(0.32987848, 0.62127584, 0, 1)
 texture = ExtResource("4_siey8")
 
-[node name="SpeedBuffSprite" type="Sprite3D" parent="Modifiers" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.615, 0, 0)
+[node name="SpeedBuffSprite" type="Sprite3D" parent="RotatableNodes/Modifiers" index="1"]
 visible = false
 texture = ExtResource("4_siey8")
 
-[node name="GhostDebuffSprite" type="Sprite3D" parent="Modifiers" index="2"]
-transform = Transform3D(29.560005, 0, 0, 0, 29.560005, 0, 0, 0, 29.560005, -8, 0, 0)
+[node name="GhostDebuffSprite" type="Sprite3D" parent="RotatableNodes/Modifiers" index="2"]
+transform = Transform3D(29.560005, 0, 0, 0, 29.560005, 0, 0, 0, 29.560005, -6, 0, 0)
 visible = false
 texture = ExtResource("7_2q5ol")
+
+[node name="HeroName" type="Sprite3D" parent="RotatableNodes" index="3"]
+transform = Transform3D(18.380003, 0, 0, 0, 18.380003, 0, 0, 0, 18.380003, 0.43, 5.295, 0)
+texture = SubResource("ViewportTexture_0gd6l")
+
+[node name="SubViewport" type="SubViewport" parent="RotatableNodes/HeroName" index="0"]
+transparent_bg = true
+size = Vector2i(87, 77)
+
+[node name="Label" type="Label" parent="RotatableNodes/HeroName/SubViewport" index="0"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Mara"
+
+[node name="AbilitiesManager" type="Node" parent="." index="4"]
+script = ExtResource("6_ri85a")
