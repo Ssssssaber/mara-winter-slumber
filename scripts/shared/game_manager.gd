@@ -7,8 +7,9 @@ extends Node
 @onready var CanvasControl : Node = get_parent().get_node("World/CanvasLayer/CanvasController")
 @onready var GhostScene = load("res://scenes/3d/characters/Ghost.tscn")
 
-signal OnGameManagerReady()
+var IsCameraInInnerArea : bool = false
 
+signal OnGameManagerReady()
 func _ready() -> void:
 	OnGameManagerReady.emit()
 	print("Game Manager initialized")
@@ -90,6 +91,7 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_mov
 	path_follower.progress_ratio = initial_progress
 	path_follower.inversed_movement = inversed_movement
 
+	path_follower.init(entity)
 	path_follower.call_deferred("find_movement_system")
 
 	if entity.has_method("set_path_follower"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=17 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkss215w24hy0" path="res://assets/3d/environment/models/mara_houses.tres" id="1_x6wyf"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -23,6 +23,8 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yqqrb"]
 
 [node name="World" type="Node3D"]
 
@@ -93,6 +95,16 @@ transform = Transform3D(0.99999845, -0.001336999, 0.0011218755, 0, 0.64278764, 0
 script = ExtResource("4_xqoag")
 post_offset = Vector3(-2.935, 4.6, 0)
 follow_offset = Vector3(-0.16, 8.625, 6.99)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="CameraParent/Camera3D"]
+transform = Transform3D(0.99999845, 0, -0.0017453283, -0.001336999, 0.6427877, -0.76604325, 0.0011218756, 0.76604444, 0.6427867, 0, 0, 0)
+collision_layer = 2147483648
+collision_mask = 1073741824
+mass = 0.001
+gravity_scale = -8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraParent/Camera3D/RigidBody3D"]
+shape = SubResource("SphereShape3D_yqqrb")
 
 [node name="Lights" type="Node3D" parent="."]
 
