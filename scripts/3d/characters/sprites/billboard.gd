@@ -1,4 +1,4 @@
-extends AnimatedSprite3D
+extends Node3D
 
 class_name Billbard
 
@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 		rotation.z = 0.0
 
 	if not distance_scaling:
-		scale = Vector3.ONE
+		# scale = Vector3.ONE
 		return
 
 	var distance = global_transform.origin.distance_to(camera.global_transform.origin)
