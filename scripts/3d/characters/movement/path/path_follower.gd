@@ -43,4 +43,4 @@ func _process(delta: float) -> void:
 	var dot_product = _direction_vector.dot(camera_forward)
 
 	# Flip if dot product indicates movement away from camera's view (adjust threshold as needed)
-	_entity.set_flip(dot_product < 0.2)
+	_entity.set_flip(dot_product < Constants.CAMERA_DOT_MIN_DOT_RODUCT)
