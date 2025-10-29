@@ -13,6 +13,9 @@ uniform float glowAngle: hint_range(0.0, 6.28) = 1.57;
 uniform float glowSharpness: hint_range(0.0, 5.0) = 1.0;
 uniform float alphaThreshold: hint_range(0.0, 1.0) =  0.2;
 
+// New uniform for tinting the sprite
+uniform vec4 modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
 void vertex() {
     if (enable_billboard) {
         vec3 world_origin = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
@@ -35,6 +38,10 @@ void fragment() {
 
     ALBEDO = col.rgb;
     ALPHA = col.a;
+
+    // Apply modulate tint to the sprite
+    ALBEDO *= modulate.rgb;
+    ALPHA *= modulate.a;
 
     if (enable_outline) {
         vec2 pixel_size = 1.0 / vec2(textureSize(sprite_texture, 0));

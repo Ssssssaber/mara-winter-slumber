@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=22 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cmjp8iqyl8p8q" path="res://scenes/2d/environment/battle_scene.tscn" id="12_xabbn"]
 [ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/characters/mara/camera_on_mara.gd" id="13_capxm"]
 [ext_resource type="Script" uid="uid://cj3opsgdinbl7" path="res://scripts/3d/ui/canvas_controller.gd" id="14_yqqrb"]
+[ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqqrb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,8 +29,14 @@ sky = SubResource("Sky_o1b50")
 tonemap_mode = 2
 glow_intensity = 4.57
 glow_strength = 1.49
+fog_enabled = true
+fog_mode = 1
 fog_light_color = Color(0.45876247, 0.54477376, 0.7561777, 1)
-fog_light_energy = 0.09
+fog_light_energy = 0.08
+fog_sun_scatter = 0.08
+fog_density = 0.7736
+fog_sky_affect = 0.731
+fog_height = -57.96
 volumetric_fog_density = 0.0075
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
@@ -42,6 +49,9 @@ _data = {
 point_count = 11
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yqqrb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o1b50"]
+radius = 6.75
 
 [node name="World" type="Node3D"]
 
@@ -150,6 +160,7 @@ sky_mode = 1
 
 [node name="Setup" type="Node" parent="Scripts" node_paths=PackedStringArray("mara", "ghost")]
 script = ExtResource("5_qnawv")
+mara_inverted = true
 ghost_inverted = true
 mara = NodePath("../../Mara")
 ghost = NodePath("../../Ghost")
@@ -196,11 +207,37 @@ text = "Change direction"
 [node name="CanvasController" type="Node" parent="CanvasLayer"]
 script = ExtResource("14_yqqrb")
 
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -66.23687)
+[node name="EventTriggerAreas" type="Node3D" parent="."]
+
+[node name="EvilGhostSpawnAreaTrigger" type="Area3D" parent="EventTriggerAreas" node_paths=PackedStringArray("spawn_point")]
+collision_layer = 4
+script = ExtResource("15_o1b50")
+spawn_point = NodePath("../../GridMaps/EnvironmentObjects/graveyard")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EventTriggerAreas/EvilGhostSpawnAreaTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.657345, 0, 40.470535)
+shape = SubResource("SphereShape3D_o1b50")
+
+[node name="Boundries" type="Node3D" parent="."]
+
+[node name="FogVolume" type="FogVolume" parent="Boundries"]
+transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -85.406075)
+visible = false
+
+[node name="FogVolume2" type="FogVolume" parent="Boundries"]
+transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, 91.81491)
+visible = false
+
+[node name="FogVolume4" type="FogVolume" parent="Boundries"]
+transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, 72.68984, 32.053413, -2.1985505)
+visible = false
+
+[node name="FogVolume5" type="FogVolume" parent="Boundries"]
+transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, -78.71888, 32.053413, -2.1985438)
 visible = false
 
 [connection signal="pressed" from="CanvasLayer/CameraOnMaraButton" to="CanvasLayer/CameraOnMaraButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpeedBuffButton" to="CanvasLayer/CanvasController" method="_on_speed_buff_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ChangeDirecitonButton" to="CanvasLayer/CanvasController" method="_on_change_direciton_button_pressed"]
+[connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]

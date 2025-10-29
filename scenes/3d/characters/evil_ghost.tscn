@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8peajqwx7ifx"]
+
+[ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/Ghost.tscn" id="1_lr8b5"]
+[ext_resource type="Material" uid="uid://u0d4p8dbex08" path="res://assets/3d/characters/materials/evil_ghost.tres" id="2_0wogg"]
+
+[node name="Ghost" instance=ExtResource("1_lr8b5")]
+slow_modifier = 0.3
+slow_duration = -5.0
+
+[node name="MovementSystem" parent="." index="1"]
+base_speed = 10.0
+
+[node name="AnimatedSprite3D" parent="RotatableNodes" index="0"]
+material_override = ExtResource("2_0wogg")
