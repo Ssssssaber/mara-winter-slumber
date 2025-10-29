@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://nuosp11ef5kg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbche"]
+emission_enabled = true
+emission = Color(0.9999998, 0.6580537, 0.14315152, 1)
+emission_energy_multiplier = 20000.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_72om6"]
+
+[node name="WindowWithLights" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lbche")
+mesh = SubResource("BoxMesh_72om6")

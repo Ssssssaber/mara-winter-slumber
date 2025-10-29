@@ -22,6 +22,10 @@ func start_timer(duration : float) -> void:
 	pie_timer_ui.value = 0
 	pie_timer_ui.visible = true
 
+func stop_timer() -> void:
+	timer.stop()
+	pie_timer_ui.visible = false
+
 func _process(_delta: float) -> void:
 	if timer.time_left > 0:
 		var progress = timer.time_left / timer.wait_time

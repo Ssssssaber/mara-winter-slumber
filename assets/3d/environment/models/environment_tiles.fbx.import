@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ctii4o0ifttow"
-path="res://.godot/imported/Homes.assets (3).fbx-16fabcecfad39d3ce9a191ffe10ce41d.scn"
+uid="uid://beu7nph3s5bfq"
+path="res://.godot/imported/environment_tiles.fbx-90c6ffc90ec198b36eb3922a4abec457.scn"
 
 [deps]
 
-source_file="res://assets/3d/environment/models/Homes.assets (3).fbx"
-dest_files=["res://.godot/imported/Homes.assets (3).fbx-16fabcecfad39d3ce9a191ffe10ce41d.scn"]
+source_file="res://assets/3d/environment/models/environment_tiles.fbx"
+dest_files=["res://.godot/imported/environment_tiles.fbx-90c6ffc90ec198b36eb3922a4abec457.scn"]
 
 [params]
 
