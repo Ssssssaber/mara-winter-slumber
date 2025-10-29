@@ -86,7 +86,7 @@ func _move_soul(delta):
 	var new_position = position + velocity * delta
 	
 	# Безопасное расстояние от границ
-	var safe_margin2: float = 60
+	var safe_margin2: float = 70
 	
 	# Рассчитываем границы с безопасной зоной
 	var left_bound = safe_margin2
@@ -187,7 +187,7 @@ func intimidate_from_point(fright_point_global: Vector2):
 	print("Направление ОТ точки: ", direction_away)
 	
 	# Если точка очень близко к душе, выбираем случайное направление
-	if to_fright_point.length() < 50:  # 50 пикселей - минимальное расстояние
+	if to_fright_point.length() < 20:  
 		print("Точка слишком близко, выбираем случайное направление")
 		var random_angle = randf() * 2 * PI
 		direction_away = Vector2(cos(random_angle), sin(random_angle))

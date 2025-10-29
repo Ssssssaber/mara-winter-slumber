@@ -60,14 +60,9 @@ func _start_intimidate_placement():
 	is_placing_intimidate = true
 	battle_text.text = "Кликните мышкой чтобы испугать душу в выбранном направлении"
 	
-	# Создаем точку для предпросмотра
+	# Создаем точку используя тот же подход, что и для зоны захвата
 	temp_intimidate_point = Sprite2D.new()
-	
-	# Создаем простую текстуру для точки
-	var image = Image.create(16, 16, false, Image.FORMAT_RGBA8)
-	image.fill(Color.PURPLE)
-	var texture = ImageTexture.create_from_image(image)
-	temp_intimidate_point.texture = texture
+	temp_intimidate_point.set_script(preload("res://scripts//2d//environment//intimidate_point.gd"))
 	
 	capture_zones_container.add_child(temp_intimidate_point)
 	
@@ -77,34 +72,25 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 	if not is_placing_intimidate or not temp_intimidate_point:
 		return
 	
-	# ПРОСТО ИСПОЛЬЗУЕМ ГЛОБАЛЬНЫЕ КООРДИНАТЫ!
-	var mouse_global_pos = mouse_event.global_position
+	# Используем текущую позицию точки
+	var final_global_pos = temp_intimidate_point.global_position
 	
-	print("=== ПРИМЕНЕНИЕ ИСПУГА ===")
-	print("Мышь (глобальная): ", mouse_global_pos)
-	print("Душа (глобальная): ", soul.global_position)
-	print("SoulArea (глобальная): ", soul_area.global_position)
+	# Деактивируем предпросмотр
+	if temp_intimidate_point.has_method("activate"):
+		temp_intimidate_point.activate()
 	
-	# Проверяем что позиция внутри SoulArea
-	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
-	if area_global_rect.has_point(mouse_global_pos):
-		# ПЕРЕДАЕМ ГЛОБАЛЬНЫЕ КООРДИНАТЫ напрямую!
-		soul.intimidate_from_point(mouse_global_pos)
-		
-		# Визуализируем точку испуга
-		temp_intimidate_point.global_position = mouse_global_pos
-		
-		battle_text.text = "Душа испугана! Она убегает от точки испуга."
-		
-		# Удаляем точку через короткое время
-		var timer = get_tree().create_timer(0.5)
-		await timer.timeout
-		_remove_intimidate_point()
-		
-		is_placing_intimidate = false
-		_start_cooldown()
-	else:
-		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
+	print("Точка испуга: ", final_global_pos)
+	print("Душа: ", soul.global_position)
+	
+	# Передаем координаты в душу
+	soul.intimidate_from_point(final_global_pos)
+	
+	battle_text.text = "Душа испугана!"
+	
+	await get_tree().create_timer(0.5).timeout
+	_remove_intimidate_point()
+	is_placing_intimidate = false
+	_start_cooldown()
 
 func _cancel_intimidate_placement():
 	if is_placing_intimidate and temp_intimidate_point:

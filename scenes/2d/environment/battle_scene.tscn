@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmjp8iqyl8p8q"]
+[gd_scene load_steps=11 format=3 uid="uid://cmjp8iqyl8p8q"]
 
 [ext_resource type="PackedScene" uid="uid://c4vcy61g6muyu" path="res://scenes/2d/characters/Soul.tscn" id="1_1niic"]
-[ext_resource type="Texture2D" uid="uid://cbcpohtvf1r8x" path="res://assets/2d/characters/IMG_0644.PNG" id="1_iod56"]
+[ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4vdcg"]
 [ext_resource type="Script" uid="uid://colt06nrwoodo" path="res://scripts/2d/characters/soul.gd" id="2_1niic"]
 [ext_resource type="Script" uid="uid://v254gqat2uch" path="res://scripts/2d/environment/BattleController.gd" id="2_5p8w8"]
 [ext_resource type="Texture2D" uid="uid://c27u0o5ylfjhe" path="res://assets/2d/environment/IMG_0636.PNG" id="3_5p8w8"]
 [ext_resource type="PackedScene" uid="uid://1ag12pvvb2uu" path="res://scenes/2d/environment/capture_zone.tscn" id="4_aqiqb"]
-[ext_resource type="Texture2D" uid="uid://dsuw35uij6oot" path="res://assets/2d/environment/IMG_0643.PNG" id="5_4vdcg"]
-[ext_resource type="Texture2D" uid="uid://t05e50fsf81w" path="res://assets/2d/environment/IMG_0642.PNG" id="6_q6iye"]
+[ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="5_q6iye"]
+[ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="6_3nml5"]
+
+[sub_resource type="SystemFont" id="SystemFont_4vdcg"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SystemFont" id="SystemFont_q6iye"]
+font_names = PackedStringArray("Monomakh Unicode")
+font_stretch = 200
 
 [node name="BattleScene" type="Node2D"]
 
@@ -17,9 +24,9 @@ offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(627, 330)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_iod56")
+position = Vector2(311.00003, 228)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_4vdcg")
 
 [node name="SoulArea" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(400, 300)
@@ -40,32 +47,32 @@ texture = ExtResource("3_5p8w8")
 script = ExtResource("2_1niic")
 
 [node name="IntimidateButton" type="Button" parent="."]
-offset_left = 929.0
-offset_top = 302.0
-offset_right = 1043.0
-offset_bottom = 347.0
+offset_left = 765.0
+offset_top = 272.0
+offset_right = 1064.043
+offset_bottom = 409.0
+theme_override_fonts/font = SubResource("SystemFont_4vdcg")
+theme_override_font_sizes/font_size = 35
 text = "Испуг
 "
-
-[node name="Sprite2D" type="Sprite2D" parent="IntimidateButton"]
-visible = false
-position = Vector2(-101, 90)
-scale = Vector2(0.23059897, 0.2407407)
-texture = ExtResource("5_4vdcg")
+icon = ExtResource("5_q6iye")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="CaptureButton" type="Button" parent="."]
-offset_left = 912.0
-offset_top = 241.0
-offset_right = 1049.0
-offset_bottom = 286.0
+offset_left = 702.0
+offset_top = 149.0
+offset_right = 1068.0
+offset_bottom = 335.0
+theme_override_fonts/font = SubResource("SystemFont_q6iye")
+theme_override_font_sizes/font_size = 35
 text = "Запечатывание
 "
-
-[node name="Sprite2D" type="Sprite2D" parent="CaptureButton"]
-visible = false
-position = Vector2(-115.99997, 161.99998)
-scale = Vector2(0.26197916, 0.2539352)
-texture = ExtResource("6_q6iye")
+icon = ExtResource("6_3nml5")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
