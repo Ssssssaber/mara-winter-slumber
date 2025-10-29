@@ -46,7 +46,6 @@ func _process(delta: float) -> void:
 			global_dir = global_dir.normalized()
 			desired_velocity += global_dir * movement_speed * delta
 	
-	
 	velocity = velocity.lerp(desired_velocity, follow_smoothness * delta)
 	move_and_slide()
 	direction = Vector3.ZERO
