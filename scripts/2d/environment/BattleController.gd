@@ -8,8 +8,9 @@ class_name BattleController
 @onready var capture_zones_container: Node2D = get_node("../CaptureZone")
 @onready var battle_text: Label = get_node("../BattleText")
 @onready var soul_health_label: Label = get_node("../SoulHealth")
-@onready var intimidate_btn: Button = get_node("../ActionButtons/IntimidateButton")
-@onready var capture_btn: Button = get_node("../ActionButtons/CaptureButton")
+@onready var intimidate_btn: Button = get_node("../IntimidateButton")
+@onready var capture_btn: Button = get_node("../CaptureButton")
+@onready var camera: Camera2D = get_node("../Camera2D")
 
 # Настройки зон захвата
 var capture_zone_scene: PackedScene
@@ -19,9 +20,11 @@ var zone_size: Vector2 = Vector2(100, 80)
 var battle_active: bool = true
 var cooldown: bool = false
 
-# Режим размещения зоны
+# Режимы размещения
 var is_placing_zone: bool = false
+var is_placing_intimidate: bool = false
 var temp_zone: Area2D = null
+var temp_intimidate_point: Sprite2D = null
 
 func _ready():
 	capture_zone_scene = preload("res://scenes/2d/environment/capture_zone.tscn")
@@ -36,16 +39,83 @@ func _input(event):
 	if is_placing_zone and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			_finalize_zone_placement(event)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			_cancel_zone_placement()
+	
+	elif is_placing_intimidate and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			_finalize_intimidate_placement(event)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			_cancel_intimidate_placement()
 
 func _on_intimidate_pressed():
-	if battle_active and not cooldown and is_instance_valid(soul):
-		soul.intimidate()
-		battle_text.text = "Вы запугали душу! Она меняет направление."
-		_start_cooldown()
+	if battle_active and not cooldown and not is_placing_intimidate and not is_placing_zone:
+		_start_intimidate_placement()
 
 func _on_capture_pressed():
-	if battle_active and not cooldown and not is_placing_zone:
+	if battle_active and not cooldown and not is_placing_zone and not is_placing_intimidate:
 		_start_zone_placement()
+
+func _start_intimidate_placement():
+	is_placing_intimidate = true
+	battle_text.text = "Кликните мышкой чтобы испугать душу в выбранном направлении"
+	
+	# Создаем точку для предпросмотра
+	temp_intimidate_point = Sprite2D.new()
+	
+	# Создаем простую текстуру для точки
+	var image = Image.create(16, 16, false, Image.FORMAT_RGBA8)
+	image.fill(Color.PURPLE)
+	var texture = ImageTexture.create_from_image(image)
+	temp_intimidate_point.texture = texture
+	
+	capture_zones_container.add_child(temp_intimidate_point)
+	
+	print("=== РЕЖИМ РАЗМЕЩЕНИЯ ИСПУГА ===")
+
+func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
+	if not is_placing_intimidate or not temp_intimidate_point:
+		return
+	
+	# ПРОСТО ИСПОЛЬЗУЕМ ГЛОБАЛЬНЫЕ КООРДИНАТЫ!
+	var mouse_global_pos = mouse_event.global_position
+	
+	print("=== ПРИМЕНЕНИЕ ИСПУГА ===")
+	print("Мышь (глобальная): ", mouse_global_pos)
+	print("Душа (глобальная): ", soul.global_position)
+	print("SoulArea (глобальная): ", soul_area.global_position)
+	
+	# Проверяем что позиция внутри SoulArea
+	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
+	if area_global_rect.has_point(mouse_global_pos):
+		# ПЕРЕДАЕМ ГЛОБАЛЬНЫЕ КООРДИНАТЫ напрямую!
+		soul.intimidate_from_point(mouse_global_pos)
+		
+		# Визуализируем точку испуга
+		temp_intimidate_point.global_position = mouse_global_pos
+		
+		battle_text.text = "Душа испугана! Она убегает от точки испуга."
+		
+		# Удаляем точку через короткое время
+		var timer = get_tree().create_timer(0.5)
+		await timer.timeout
+		_remove_intimidate_point()
+		
+		is_placing_intimidate = false
+		_start_cooldown()
+	else:
+		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
+
+func _cancel_intimidate_placement():
+	if is_placing_intimidate and temp_intimidate_point:
+		_remove_intimidate_point()
+		is_placing_intimidate = false
+		battle_text.text = "Размещение испуга отменено"
+
+func _remove_intimidate_point():
+	if temp_intimidate_point and is_instance_valid(temp_intimidate_point):
+		temp_intimidate_point.queue_free()
+		temp_intimidate_point = null
 
 func _start_zone_placement():
 	is_placing_zone = true
@@ -62,31 +132,32 @@ func _finalize_zone_placement(mouse_event: InputEventMouseButton):
 	if not is_placing_zone or not temp_zone:
 		return
 	
-	# Получаем позицию мыши в глобальных координатах
-	var mouse_global_pos = mouse_event.global_position
-	
-	# Преобразуем глобальную позицию мыши в локальную позицию внутри CaptureZones контейнера
-	var local_position = capture_zones_container.get_global_transform().affine_inverse() * mouse_global_pos
+	# Используем текущую глобальную позицию зоны предпросмотра
+	var final_global_pos = temp_zone.global_position
 	
 	# Проверяем что позиция внутри SoulArea
 	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
-	if area_global_rect.has_point(mouse_global_pos):
-		# Фиксируем позицию зоны (используем текущую позицию предпросмотра)
-		# чтобы избежать смещения из-за задержки между кадрами
-		temp_zone.position = temp_zone.position
-		temp_zone.activate()  # Запускаем таймер захвата
+	if area_global_rect.has_point(final_global_pos):
+		# Фиксируем позицию зоны (оставляем как есть)
+		temp_zone.activate()
 		
 		battle_text.text = "Зона захвата установлена! Сработает через 3 секунды."
-		print("Зона захвата установлена в позиции: ", temp_zone.position)
+		print("Зона захвата установлена в глобальной позиции: ", final_global_pos)
 		
 		# Выходим из режима размещения
 		is_placing_zone = false
 		temp_zone = null
 		
-		# Запускаем кд
 		_start_cooldown()
 	else:
 		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
+
+func _cancel_zone_placement():
+	if is_placing_zone and temp_zone:
+		temp_zone.queue_free()
+		temp_zone = null
+		is_placing_zone = false
+		battle_text.text = "Размещение зоны отменено"
 
 func _start_cooldown():
 	cooldown = true
@@ -108,14 +179,17 @@ func end_battle(victory: bool):
 	battle_active = false
 	cooldown = true
 	is_placing_zone = false
+	is_placing_intimidate = false
 	
 	intimidate_btn.disabled = true
 	capture_btn.disabled = true
 	
-	# Удаляем временную зону если она есть
+	# Удаляем временные объекты
 	if temp_zone and is_instance_valid(temp_zone):
 		temp_zone.queue_free()
 		temp_zone = null
+	
+	_remove_intimidate_point()
 	
 	# Очищаем все зоны захвата
 	if is_instance_valid(capture_zones_container):
@@ -125,5 +199,15 @@ func end_battle(victory: bool):
 	
 	battle_text.text = "Победа! Душа захвачена." if victory else "Поражение!"
 
+
 func _on_soul_damaged():
 	_update_health_ui()
+
+func _setup_camera():
+	# Настраиваем камеру на всю сцену
+	camera.position = Vector2(960, 540)  # Центр для разрешения 1920x1080
+	camera.zoom = Vector2(1, 1)
+	
+	# Или если хотим приблизить к области души:
+	# camera.position = soul_area.position + soul_area.size / 2
+	# camera.zoom = Vector2(0.8, 0.8)  # Немного отдалить
