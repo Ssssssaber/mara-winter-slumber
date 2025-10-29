@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=23 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddtglv1g3dd3x" path="res://scripts/3d/camera/cameracontroller.gd" id="4_xqoag"]
 [ext_resource type="Script" uid="uid://blpquasp367lp" path="res://scripts/3d/scenario/setup.gd" id="5_qnawv"]
 [ext_resource type="PackedScene" uid="uid://dlw7boxson22m" path="res://scenes/3d/characters/Mara.tscn" id="6_xqoag"]
+[ext_resource type="PackedScene" uid="uid://c7oonopiwkq0w" path="res://scenes/3d/environment/quests/special_tree.tscn" id="7_247o4"]
 [ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/Ghost.tscn" id="7_gh3kt"]
 [ext_resource type="PackedScene" uid="uid://ccy745j8xup0m" path="res://scenes/3d/environment/houses/wider_home_rotated.tscn" id="8_bh3yo"]
 [ext_resource type="PackedScene" uid="uid://d36nxws7hx4rx" path="res://scenes/3d/environment/houses/small_home.tscn" id="9_jsy7v"]
@@ -37,7 +38,13 @@ fog_sun_scatter = 0.08
 fog_density = 0.7736
 fog_sky_affect = 0.731
 fog_height = -57.96
-volumetric_fog_density = 0.0075
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0028
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 1.97
+volumetric_fog_length = 199.25
+volumetric_fog_ambient_inject = 0.8
+volumetric_fog_sky_affect = 0.646
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
 closed = true
@@ -105,6 +112,9 @@ transform = Transform3D(-0.9997406, 0, -0.022774547, 0, 1, 0, 0.022774547, 0, -0
 [node name="SmallHome4" parent="GridMaps/EnvironmentObjects" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.26025176, 0, 0.96554077, 0, 1, 0, -0.96554077, 0, -0.26025176, 16.89806, -0.8590965, -29.437958)
 
+[node name="SpecialTree" parent="GridMaps/EnvironmentObjects" instance=ExtResource("7_247o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1888771, 0, -39.517784)
+
 [node name="EnvironmentGridMap" type="GridMap" parent="GridMaps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
 mesh_library = ExtResource("1_yqqrb")
@@ -160,13 +170,12 @@ sky_mode = 1
 
 [node name="Setup" type="Node" parent="Scripts" node_paths=PackedStringArray("mara", "ghost")]
 script = ExtResource("5_qnawv")
-mara_inverted = true
 ghost_inverted = true
 mara = NodePath("../../Mara")
 ghost = NodePath("../../Ghost")
 
 [node name="Mara" parent="." instance=ExtResource("6_xqoag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.515625, 0, -1.0177422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.371609, 0, -40.814342)
 
 [node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.652822, 0, -45.748768)
@@ -221,20 +230,16 @@ shape = SubResource("SphereShape3D_o1b50")
 [node name="Boundries" type="Node3D" parent="."]
 
 [node name="FogVolume" type="FogVolume" parent="Boundries"]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -85.406075)
-visible = false
+transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -91.86062)
 
 [node name="FogVolume2" type="FogVolume" parent="Boundries"]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, 91.81491)
-visible = false
+transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, 88.526764)
 
 [node name="FogVolume4" type="FogVolume" parent="Boundries"]
-transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, 72.68984, 32.053413, -2.1985505)
-visible = false
+transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, 77.255066, 32.053413, -2.1985507)
 
 [node name="FogVolume5" type="FogVolume" parent="Boundries"]
 transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, -78.71888, 32.053413, -2.1985438)
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/CameraOnMaraButton" to="CanvasLayer/CameraOnMaraButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
