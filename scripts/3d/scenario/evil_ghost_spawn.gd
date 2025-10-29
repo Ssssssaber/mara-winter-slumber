@@ -16,7 +16,7 @@ func _spawn_evil_ghost() -> void:
 	else:
 		evil_ghost.global_transform.origin = spawn_point.global_transform.origin
 
-	GameManager.AddEntityToPathAutoProgress(evil_ghost)
+	GameManager.AddEntityToPathAutoProgress(evil_ghost, true)
 
 
 func _on_body_entered(_body: Node3D) -> void:
