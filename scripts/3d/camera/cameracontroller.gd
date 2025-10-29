@@ -1,4 +1,4 @@
-extends Camera3D
+extends CharacterBody3D
 
 class_name CameraController
 
@@ -16,6 +16,7 @@ class_name CameraController
 var direction: Vector3 = Vector3.ZERO
 var rotating: bool = false  # Flag for when middle mouse is held
 var rolling: bool = false
+var zooming_value : float = 0.0
 
 func set_target(node : Node3D) -> void:
 	target = node
@@ -25,52 +26,31 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if target != null:
-		# Following mode: Always look at the target
 		look_at(target.global_transform.origin)
-		
-		# Calculate the magnitude from the exported follow_offset vector (its length)
 		var magnitude = follow_offset.length()
-		
-		# Dynamic post_offset: Direction from world origin (Vector3.ZERO) to the target's position, normalized
 		var offset_direction = (target.global_transform.origin - Vector3.ZERO).normalized()
-		
-		# If the target is exactly at the origin, offset_direction will be Vector3.ZERO (no post_offset)
-		# Otherwise, scale by magnitude and zoom_factor for the full post_offset vector
 		var offset_vector = offset_direction * magnitude * zoom_factor
-		
-		# Desired position: Target's position + dynamic post_offset (in world space, away from origin)
 		var desired_pos = target.global_transform.origin + offset_vector + post_offset
-		
-		# Smoothly interpolate towards the desired position
 		global_transform.origin = global_transform.origin.lerp(desired_pos, follow_smoothness * delta)
-		
 		return
 	
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.z = Input.get_axis("ui_up", "ui_down")
-	
-	var mouse_pos = get_viewport().get_mouse_position()
-	var viewport_rect = get_viewport().get_visible_rect()
+	var desired_velocity : Vector3 = Vector3.ZERO
 
-	if viewport_rect.has_point(mouse_pos): 
-		if mouse_pos.x < border_threshold:
-			direction.x -= 1
-		if mouse_pos.x > viewport_rect.size.x - border_threshold:
-			direction.x += 1
-		if mouse_pos.y < border_threshold:
-			direction.z -= 1 
-		if mouse_pos.y > viewport_rect.size.y - border_threshold:
-			direction.z += 1
-	
 	if direction.length() > 0:
 		var local_dir = direction.normalized()
 		var global_dir = global_transform.basis * local_dir
 		global_dir.y = 0
 		if global_dir.length() > 0:
-			global_dir = global_dir.normalized() 
-			position += global_dir * movement_speed * delta
+			global_dir = global_dir.normalized()
+			desired_velocity += global_dir * movement_speed * delta
 	
+	
+	velocity = velocity.lerp(desired_velocity, follow_smoothness * delta)
+	move_and_slide()
 	direction = Vector3.ZERO
+	velocity = Vector3.ZERO
 
 func _input(event: InputEvent) -> void:
 	if target != null:
@@ -93,9 +73,9 @@ func _input(event: InputEvent) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			position.y -= zoom_speed
+			velocity.y -= zoom_speed 
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			position.y += zoom_speed
+			velocity.y += zoom_speed
 
 	elif event is InputEventMouseMotion and rotating:
 		rotate_y(deg_to_rad(-event.relative.x * 0.1))  # Multiplied by 0.1 for sensitivity (adjust as needed)

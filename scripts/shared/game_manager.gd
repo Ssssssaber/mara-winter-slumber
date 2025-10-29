@@ -1,6 +1,6 @@
 extends Node
 
-@onready var Camera : Camera3D = get_parent().get_node("World/CameraParent/Camera3D")
+@onready var Camera : Node3D = get_parent().get_node("World/CameraParent/CameraController")
 @onready var BuildingGridMap : GridMap= get_parent().get_node_or_null("World/GridMaps/BuildingsGridMap")
 @onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
 @onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")

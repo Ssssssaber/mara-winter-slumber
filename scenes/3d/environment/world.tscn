@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=24 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -59,6 +59,9 @@ point_count = 11
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o1b50"]
 radius = 6.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
+size = Vector3(214.6, 1, 222.035)
 
 [node name="World" type="Node3D"]
 
@@ -131,21 +134,20 @@ curve = SubResource("Curve3D_8rukn")
 [node name="CameraParent" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraParent"]
-transform = Transform3D(0.99999845, -0.001336999, 0.0011218755, 0, 0.64278764, 0.76604444, -0.0017453283, -0.76604325, 0.6427866, 53.949, 31.448, 17.698)
+[node name="CameraController" type="CharacterBody3D" parent="CameraParent"]
+transform = Transform3D(0.6427876, 0, 0.76604444, 0, 1, 0, -0.7660444, 0, 0.64278764, 53.949, 31.448, 17.698)
+collision_layer = 524288
+collision_mask = 8388608
 script = ExtResource("4_xqoag")
-post_offset = Vector3(-13.91, 37.25, 0)
-follow_offset = Vector3(-0.16, 8.625, 6.99)
+movement_speed = 3000.0
+zoom_speed = 1000.0
+follow_smoothness = 50.0
 
-[node name="RigidBody3D" type="RigidBody3D" parent="CameraParent/Camera3D"]
-transform = Transform3D(0.99999845, 0, -0.0017453283, -0.001336999, 0.6427877, -0.76604325, 0.0011218756, 0.76604444, 0.6427867, 0, 0, 0)
-collision_layer = 2147483648
-collision_mask = 1073741824
-mass = 0.001
-gravity_scale = -8.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraParent/Camera3D/RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraParent/CameraController"]
 shape = SubResource("SphereShape3D_yqqrb")
+
+[node name="Camera3D" type="Camera3D" parent="CameraParent/CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -229,17 +231,80 @@ shape = SubResource("SphereShape3D_o1b50")
 
 [node name="Boundries" type="Node3D" parent="."]
 
-[node name="FogVolume" type="FogVolume" parent="Boundries"]
+[node name="Fog" type="Node3D" parent="Boundries"]
+
+[node name="FogVolume" type="FogVolume" parent="Boundries/Fog"]
 transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -91.86062)
+size = Vector3(2.95, 2, 2)
 
-[node name="FogVolume2" type="FogVolume" parent="Boundries"]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, 88.526764)
+[node name="FogVolume3" type="FogVolume" parent="Boundries/Fog"]
+transform = Transform3D(62.213, 0, 0, 0, -1.3475784e-06, -8.451, 0, 30.829, -3.6940494e-07, 0, 68.27022, -6.7983465)
+size = Vector3(2.8, 5.65, 2)
 
-[node name="FogVolume4" type="FogVolume" parent="Boundries"]
+[node name="FogVolume2" type="FogVolume" parent="Boundries/Fog"]
+transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0.7492676, 31.927773, 88.526764)
+size = Vector3(2.95, 2, 2)
+
+[node name="FogVolume4" type="FogVolume" parent="Boundries/Fog"]
 transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, 77.255066, 32.053413, -2.1985507)
 
-[node name="FogVolume5" type="FogVolume" parent="Boundries"]
+[node name="FogVolume5" type="FogVolume" parent="Boundries/Fog"]
 transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, -78.71888, 32.053413, -2.1985438)
+
+[node name="ColliderBoundries" type="Node3D" parent="Boundries"]
+
+[node name="LowerBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/LowerBoundry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
+
+[node name="HigherBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52.82982, 0)
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/HigherBoundry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
+
+[node name="SideBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -48.991936, 46.83752, 0)
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
+
+[node name="SideBoundry2" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 67.56556, 46.83753, 0)
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
+
+[node name="SideBoundry3" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 2.4916326e-06, 46.837997, 57.001907)
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
+
+[node name="SideBoundry4" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -2.886548e-06, 46.838005, -66.03652)
+collision_layer = 8388608
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+shape = SubResource("BoxShape3D_247o4")
 
 [connection signal="pressed" from="CanvasLayer/CameraOnMaraButton" to="CanvasLayer/CameraOnMaraButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
