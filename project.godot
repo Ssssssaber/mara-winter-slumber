@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="mara-winter-slumber"
-run/main_scene="uid://npsgmyqx2xme"
+run/main_scene="uid://cmjp8iqyl8p8q"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
