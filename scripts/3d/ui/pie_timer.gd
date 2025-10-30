@@ -14,6 +14,9 @@ func _ready() -> void:
 	timer.timeout.connect(_on_PieTimer_timeout)
 	pie_timer_ui.visible = false
 
+	GameManager.pause_world_entities.connect(pause_timer)
+	GameManager.unpause_world_entities.connect(unpause_timer)
+
 	start_timer(rng.randf_range(min_time, max_time)) # Example: start a 5-second timer
 
 func start_timer(duration : float) -> void:
@@ -25,6 +28,12 @@ func start_timer(duration : float) -> void:
 func stop_timer() -> void:
 	timer.stop()
 	pie_timer_ui.visible = false
+
+func unpause_timer() -> void:
+	timer.paused = false
+
+func pause_timer() -> void:
+	timer.paused = true
 
 func _process(_delta: float) -> void:
 	if timer.time_left > 0:

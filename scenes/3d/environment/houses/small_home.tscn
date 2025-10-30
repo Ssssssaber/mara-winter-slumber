@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=4 uid="uid://d36nxws7hx4rx"]
+[gd_scene load_steps=21 format=4 uid="uid://d36nxws7hx4rx"]
 
 [ext_resource type="Script" uid="uid://dgunln4r8ojm4" path="res://scripts/3d/environment/houses/house_behavoiur.gd" id="1_v4gnb"]
 [ext_resource type="PackedScene" uid="uid://c124a2irr2bng" path="res://scenes/3d/ui/PieTimerWorld.tscn" id="2_dr7jm"]
 [ext_resource type="PackedScene" uid="uid://nuosp11ef5kg" path="res://scenes/3d/environment/houses/window_with_lights.tscn" id="3_dr7jm"]
+[ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="4_4ipl6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i8nuw"]
 radius = 14.428
@@ -407,3 +408,5 @@ visible = false
 transform = Transform3D(0.04953717, 2.8974662e-07, -0.9709656, -5.7798804e-08, 0.9722284, 3.4179072e-07, 0.97096574, 0, 0.049537234, 0, 0, 0)
 mesh = SubResource("ArrayMesh_dr7jm")
 skeleton = NodePath("")
+
+[node name="PauseManager" parent="." instance=ExtResource("4_4ipl6")]

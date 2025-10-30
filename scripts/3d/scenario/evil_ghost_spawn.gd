@@ -2,7 +2,7 @@ extends Node3D
 
 class_name EvilGhostSpawn
 
-@onready var evil_ghost_scene = load("res://scenes/3d/characters/evil_ghost.tscn")
+@onready var evil_ghost_scene = load("res://scenes/3d/characters/ghosts/evil_ghost.tscn")
 @export var spawn_point : Node3D
 var _spawned : bool = false
 

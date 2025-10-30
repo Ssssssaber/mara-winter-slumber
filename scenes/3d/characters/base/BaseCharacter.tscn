@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp1rsicixl8if"]
+[gd_scene load_steps=4 format=3 uid="uid://cp1rsicixl8if"]
 
 [ext_resource type="Script" uid="uid://b3xot43mefxax" path="res://scripts/3d/characters/movement/movement_system.gd" id="1_4wvuy"]
+[ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="2_l6jht"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fwara"]
 
@@ -12,3 +13,5 @@ shape = SubResource("SphereShape3D_fwara")
 
 [node name="MovementSystem" type="Node3D" parent="."]
 script = ExtResource("1_4wvuy")
+
+[node name="PauseManager" parent="." instance=ExtResource("2_l6jht")]

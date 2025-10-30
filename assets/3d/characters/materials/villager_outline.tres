@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dr5wv8oy7xnk1"]
+
+[ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="1_awnpd"]
+[ext_resource type="Texture2D" uid="uid://cqg3m8ka7ubo4" path="res://assets/3d/characters/villagers/female_villager.png" id="2_awnpd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_awnpd")
+shader_parameter/sprite_texture = ExtResource("2_awnpd")
+shader_parameter/enable_billboard = false
+shader_parameter/enable_outline = true
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/glowSize = 6.262000297445
+shader_parameter/glowDensity = 6
+shader_parameter/glowRadialCoverage = 4
+shader_parameter/glowAngle = 1.57
+shader_parameter/glowSharpness = 0.0
+shader_parameter/alphaThreshold = 0.166000007885
+shader_parameter/modulate = Color(1, 1, 1, 1)

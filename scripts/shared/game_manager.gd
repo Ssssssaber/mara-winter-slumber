@@ -5,9 +5,14 @@ extends Node
 @onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
 @onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")
 @onready var CanvasControl : Node = get_parent().get_node("World/CanvasLayer/CanvasController")
-@onready var GhostScene = load("res://scenes/3d/characters/Ghost.tscn")
+@onready var GhostScene = load("res://scenes/3d/characters/ghosts/Ghost.tscn")
+@onready var PauseManagerScene = load("res://scenes/3d/characters/base/pause_manager.tscn")
 
 var IsCameraInInnerArea : bool = false
+var IsGamePause : bool = false
+
+signal pause_world_entities()
+signal unpause_world_entities()
 
 signal OnGameManagerReady()
 func _ready() -> void:
@@ -90,6 +95,8 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_mov
 
 	path_follower.progress_ratio = initial_progress
 	path_follower.inversed_movement = inversed_movement
+
+	path_follower.add_child(PauseManagerScene.instantiate())
 
 	path_follower.init(entity)
 	path_follower.call_deferred("find_movement_system")

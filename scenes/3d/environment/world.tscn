@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=27 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
@@ -7,15 +7,18 @@
 [ext_resource type="Script" uid="uid://blpquasp367lp" path="res://scripts/3d/scenario/setup.gd" id="5_qnawv"]
 [ext_resource type="PackedScene" uid="uid://dlw7boxson22m" path="res://scenes/3d/characters/Mara.tscn" id="6_xqoag"]
 [ext_resource type="PackedScene" uid="uid://c7oonopiwkq0w" path="res://scenes/3d/environment/quests/special_tree.tscn" id="7_247o4"]
-[ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/Ghost.tscn" id="7_gh3kt"]
+[ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/ghosts/Ghost.tscn" id="7_gh3kt"]
 [ext_resource type="PackedScene" uid="uid://ccy745j8xup0m" path="res://scenes/3d/environment/houses/wider_home_rotated.tscn" id="8_bh3yo"]
 [ext_resource type="PackedScene" uid="uid://d36nxws7hx4rx" path="res://scenes/3d/environment/houses/small_home.tscn" id="9_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://dunld80hvsdff" path="res://scenes/3d/environment/houses/mill.tscn" id="10_bh3yo"]
+[ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="10_fmq43"]
 [ext_resource type="PackedScene" uid="uid://ctdntkn4t6i6u" path="res://scenes/3d/environment/houses/graveyard.tscn" id="11_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://cmjp8iqyl8p8q" path="res://scenes/2d/environment/battle_scene.tscn" id="12_xabbn"]
-[ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/characters/mara/camera_on_mara.gd" id="13_capxm"]
 [ext_resource type="Script" uid="uid://cj3opsgdinbl7" path="res://scripts/3d/ui/canvas_controller.gd" id="14_yqqrb"]
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
+[ext_resource type="PackedScene" uid="uid://dw8mg5s0gx6pl" path="res://scenes/3d/characters/villagers/female_villager.tscn" id="17_20vmd"]
+[ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/ui/camera_on_mara.gd" id="17_kx1j3"]
+[ext_resource type="Script" uid="uid://bps6uyabpmd82" path="res://scripts/3d/ui/pause_button.gd" id="18_kx1j3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqqrb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -39,12 +42,12 @@ fog_density = 0.7736
 fog_sky_affect = 0.731
 fog_height = -57.96
 volumetric_fog_density = 0.003
-volumetric_fog_emission_energy = 340.19
-volumetric_fog_gi_inject = 4.24
-volumetric_fog_anisotropy = 0.51
-volumetric_fog_length = 212.99
-volumetric_fog_detail_spread = 2.7991006
-volumetric_fog_ambient_inject = 1.21
+volumetric_fog_emission_energy = 327.96
+volumetric_fog_gi_inject = 2.8
+volumetric_fog_anisotropy = -0.85
+volumetric_fog_length = 194.65
+volumetric_fog_detail_spread = 1.3195081
+volumetric_fog_ambient_inject = 1.1
 
 [sub_resource type="Curve3D" id="Curve3D_8rukn"]
 closed = true
@@ -151,6 +154,8 @@ shape = SubResource("SphereShape3D_yqqrb")
 [node name="Camera3D" type="Camera3D" parent="CameraParent/CameraController"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
+[node name="PauseManager" parent="CameraParent/CameraController" instance=ExtResource("10_fmq43")]
+
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="MainLight" type="DirectionalLight3D" parent="Lights"]
@@ -219,7 +224,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
 shape = SubResource("BoxShape3D_247o4")
 
 [node name="FogVolume3" type="FogVolume" parent="Boundries/ColliderBoundries/HigherBoundry"]
-transform = Transform3D(62.213, 0, 0, 0, -1.3475784e-06, -8.451, 0, 30.829, -3.6940494e-07, 0, 27.180336, -6.7983465)
+transform = Transform3D(62.213, 0, 0, 0, -1.3475784e-06, -8.451, 0, 30.829, -3.6940494e-07, 0, -7.074497, -6.798348)
 size = Vector3(2.8, 5.65, 2)
 
 [node name="SideBoundry1" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
@@ -277,18 +282,21 @@ size = Vector3(2.95, 2, 2)
 [node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]
 visible = false
 
+[node name="CanvasController" type="Node" parent="CanvasLayer"]
+script = ExtResource("14_yqqrb")
+
 [node name="CameraOnMaraButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("mara_reference")]
 offset_right = 140.0
 offset_bottom = 31.0
 text = "Camera On Mara"
-script = ExtResource("13_capxm")
+script = ExtResource("17_kx1j3")
 mara_reference = NodePath("../../Mara")
 camera_on_mara = true
 
 [node name="IgnoreGhostsButton" type="Button" parent="CanvasLayer"]
 offset_left = 3.0
 offset_top = 70.0
-offset_right = 95.0
+offset_right = 116.0
 offset_bottom = 101.0
 text = "Ignore ghosts"
 
@@ -302,15 +310,24 @@ text = "Speed buff"
 [node name="ChangeDirecitonButton" type="Button" parent="CanvasLayer"]
 offset_left = 3.0
 offset_top = 104.0
-offset_right = 95.0
+offset_right = 143.0
 offset_bottom = 135.0
 text = "Change direction"
 
-[node name="CanvasController" type="Node" parent="CanvasLayer"]
-script = ExtResource("14_yqqrb")
+[node name="PauseButton" type="Button" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 138.0
+offset_right = 105.0
+offset_bottom = 169.0
+text = "Pause game"
+script = ExtResource("18_kx1j3")
+
+[node name="BaseCharacter" parent="." instance=ExtResource("17_20vmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.451, 0, -39.144)
 
 [connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/CameraOnMaraButton" to="CanvasLayer/CameraOnMaraButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpeedBuffButton" to="CanvasLayer/CanvasController" method="_on_speed_buff_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ChangeDirecitonButton" to="CanvasLayer/CanvasController" method="_on_change_direciton_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
