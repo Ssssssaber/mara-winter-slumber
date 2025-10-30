@@ -19,8 +19,22 @@ func _set_node_process(value : bool) -> void:
 	parent_node.set_process(value)
 	parent_node.set_physics_process(value)
 	parent_node.set_process_input(value)
-	
-	for child in parent_node.get_children():
+	var children = get_all_children(parent_node)
+
+	for child in children:
+		if child is AnimatedSprite3D:
+			var animated_sprite = child as AnimatedSprite3D
+			if animated_sprite.is_playing():
+				animated_sprite.pause()
+			else:
+				animated_sprite.play()
+
 		child.set_process(value)
 		child.set_physics_process(value)
 		child.set_process_input(value)
+
+func get_all_children(node: Node, children_list: Array = []) -> Array:
+	for child in node.get_children():
+		children_list.append(child)
+		get_all_children(child, children_list)
+	return children_list

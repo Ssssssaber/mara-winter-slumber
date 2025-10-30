@@ -41,6 +41,7 @@ fog_sun_scatter = 0.08
 fog_density = 0.7736
 fog_sky_affect = 0.731
 fog_height = -57.96
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.003
 volumetric_fog_emission_energy = 327.96
 volumetric_fog_gi_inject = 2.8
