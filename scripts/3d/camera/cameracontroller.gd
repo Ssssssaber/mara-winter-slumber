@@ -8,9 +8,11 @@ class_name CameraController
 @export var border_threshold: float = 50.0
 
 @export var post_offset: Vector3 = Vector3(0.0, 10.0, 0.0)
+@export var look_at_offset: Vector3 = Vector3.ZERO
 @export var target: Node3D  # The target node to follow (set to null for free movement)
 @export var follow_offset: Vector3 = Vector3(0, 5, 10)  # This now defines the *magnitude* of the post_offset (length of this vector). The direction will be dynamic.
 @export var follow_smoothness: float = 5.0  # Speed of lerping towards the target position (higher = faster)
+@export var movement_smoothness: float = 50.0
 @export var zoom_factor: float = 1.0  # Multiplier for the post_offset magnitude (adjusted by zoom in following mode)
 
 var direction: Vector3 = Vector3.ZERO
@@ -24,9 +26,10 @@ func set_target(node : Node3D) -> void:
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if target != null:
-		look_at(target.global_transform.origin)
+		look_at(target.global_transform.origin + look_at_offset)
+		
 		var magnitude = follow_offset.length()
 		var offset_direction = (target.global_transform.origin - Vector3.ZERO).normalized()
 		var offset_vector = offset_direction * magnitude * zoom_factor
@@ -46,7 +49,7 @@ func _process(delta: float) -> void:
 			global_dir = global_dir.normalized()
 			desired_velocity += global_dir * movement_speed * delta
 	
-	velocity = velocity.lerp(desired_velocity, follow_smoothness * delta)
+	velocity = velocity.lerp(desired_velocity, movement_smoothness * delta)
 	move_and_slide()
 	direction = Vector3.ZERO
 	velocity = Vector3.ZERO
@@ -57,8 +60,10 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 				zoom_factor = max(zoom_factor - 0.1, 0.1) # Prevent too small zoom (adjust step as needed)
+				post_offset.y += 5
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 				zoom_factor += 0.1
+				post_offset.y -= 5
 			return # Skip other inputs (no panning, orbiting, or WASD in following mode)
 
 	# Free movement mode inputs

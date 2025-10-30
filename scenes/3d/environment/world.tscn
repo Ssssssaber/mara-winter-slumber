@@ -38,7 +38,6 @@ fog_sun_scatter = 0.08
 fog_density = 0.7736
 fog_sky_affect = 0.731
 fog_height = -57.96
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.003
 volumetric_fog_emission_energy = 340.19
 volumetric_fog_gi_inject = 4.24
@@ -51,7 +50,7 @@ volumetric_fog_ambient_inject = 1.21
 closed = true
 bake_interval = 72.8
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.12, 0, -20.79, 0, 0, 0, 0, 0, 0, -9.27, 0, -35.34, 0, 0, 0, 0, 0, 0, -24.265, 0, -40.97, 0, 0, 0, 0, 0, 0, -64.655, 0, -44.215, 0, 0, 0, 0, 0, 0, -89.728, 0, -35.366737, 0, 0, 0, 0, 0, 0, -92.205, 0, 26.255, 0, 0, 0, 0, 0, 0, -76.32, 0, 40.49, 0, 0, 0, 0, 0, 0, -32.66, 0, 44.72, 0, 0, 0, 0, 0, 0, 0.28, 0, 31.885, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.31630874, 0, -17.764406, 0, 0, 0, 0, 0, 0, -4.5688415, 0, -30.28068, 0, 0, 0, 0, 0, 0, -17.879137, 0, -40.988842, 0, 0, 0, 0, 0, 0, -64.75043, 0, -44.65597, 0, 0, 0, 0, 0, 0, -89.728, 0, -35.366737, 0, 0, 0, 0, 0, 0, -92.205, 0, 26.255, 0, 0, 0, 0, 0, 0, -76.32, 0, 40.49, 0, 0, 0, 0, 0, 0, -32.66, 0, 44.72, 0, 0, 0, 0, 0, 0, -1.5065092, 0, 27.300068, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
@@ -142,7 +141,9 @@ collision_mask = 8388608
 script = ExtResource("4_xqoag")
 movement_speed = 3000.0
 zoom_speed = 1000.0
-follow_smoothness = 50.0
+post_offset = Vector3(-0.31, 39.82, 0)
+look_at_offset = Vector3(0, 14.46, 0)
+follow_offset = Vector3(0.475, 23.905, 10)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraParent/CameraController"]
 shape = SubResource("SphereShape3D_yqqrb")
@@ -198,24 +199,6 @@ shape = SubResource("SphereShape3D_o1b50")
 
 [node name="Fog" type="Node3D" parent="Boundries"]
 
-[node name="FogVolume" type="FogVolume" parent="Boundries/Fog"]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0, 32.053413, -91.86062)
-size = Vector3(2.95, 2, 2)
-
-[node name="FogVolume3" type="FogVolume" parent="Boundries/Fog"]
-transform = Transform3D(62.213, 0, 0, 0, -1.3475784e-06, -8.451, 0, 30.829, -3.6940494e-07, 0, 68.27022, -6.7983465)
-size = Vector3(2.8, 5.65, 2)
-
-[node name="FogVolume2" type="FogVolume" parent="Boundries/Fog"]
-transform = Transform3D(62.213, 0, 0, 0, 30.829, 0, 0, 0, 8.451, 0.7492676, 31.927773, 88.526764)
-size = Vector3(2.95, 2, 2)
-
-[node name="FogVolume4" type="FogVolume" parent="Boundries/Fog"]
-transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, 77.255066, 32.053413, -2.1985507)
-
-[node name="FogVolume5" type="FogVolume" parent="Boundries/Fog"]
-transform = Transform3D(-4.025086e-06, 0, 8.451, 0, 30.829, 0, -92.08324, 0, -3.6940494e-07, -78.71888, 32.053413, -2.1985438)
-
 [node name="ColliderBoundries" type="Node3D" parent="Boundries"]
 
 [node name="LowerBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
@@ -227,7 +210,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
 shape = SubResource("BoxShape3D_247o4")
 
 [node name="HigherBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.08988, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60.74662, 0)
 collision_layer = 8388608
 collision_mask = 524288
 
@@ -235,26 +218,37 @@ collision_mask = 524288
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
 shape = SubResource("BoxShape3D_247o4")
 
-[node name="SideBoundry" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -48.991936, 46.83752, 0)
+[node name="FogVolume3" type="FogVolume" parent="Boundries/ColliderBoundries/HigherBoundry"]
+transform = Transform3D(62.213, 0, 0, 0, -1.3475784e-06, -8.451, 0, 30.829, -3.6940494e-07, 0, 27.180336, -6.7983465)
+size = Vector3(2.8, 5.65, 2)
+
+[node name="SideBoundry1" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 67.56556, 46.837524, 0)
 collision_layer = 8388608
 collision_mask = 524288
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.796165, 0)
 shape = SubResource("BoxShape3D_247o4")
 
+[node name="FogVolume4" type="FogVolume" parent="Boundries/ColliderBoundries/SideBoundry1"]
+transform = Transform3D(1.759421e-13, 30.829, -3.6940494e-07, 4.025086e-06, -1.3475784e-06, -8.451, -92.08324, 0, -3.6940494e-07, -14.784116, -34.907585, -2.198552)
+
 [node name="SideBoundry2" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 67.56556, 46.83753, 0)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -2.886548e-06, 46.838005, -66.03652)
 collision_layer = 8388608
 collision_mask = 524288
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.9403057, 0)
 shape = SubResource("BoxShape3D_247o4")
 
+[node name="FogVolume" type="FogVolume" parent="Boundries/ColliderBoundries/SideBoundry2"]
+transform = Transform3D(1.1886947e-13, 30.829, 3.6940494e-07, 2.7194167e-06, -1.3475784e-06, 8.451, 62.213, 0, -3.6940494e-07, -14.784592, -30.846088, 4.234873e-06)
+size = Vector3(2.95, 2, 2)
+
 [node name="SideBoundry3" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 2.4916326e-06, 46.837997, 57.001907)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -61.162903, 46.83752, 0)
 collision_layer = 8388608
 collision_mask = 524288
 
@@ -262,14 +256,21 @@ collision_mask = 524288
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
 shape = SubResource("BoxShape3D_247o4")
 
+[node name="FogVolume5" type="FogVolume" parent="Boundries/ColliderBoundries/SideBoundry3"]
+transform = Transform3D(1.759421e-13, 30.829, -3.6940494e-07, 4.025086e-06, -1.3475784e-06, -8.451, -92.08324, 0, -3.6940494e-07, -14.784107, 29.726948, -2.1985438)
+
 [node name="SideBoundry4" type="StaticBody3D" parent="Boundries/ColliderBoundries"]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -2.886548e-06, 46.838005, -66.03652)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 3.1586235e-06, 46.837997, 72.26088)
 collision_layer = 8388608
 collision_mask = 524288
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundries/ColliderBoundries/SideBoundry4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.060743, 0)
 shape = SubResource("BoxShape3D_247o4")
+
+[node name="FogVolume2" type="FogVolume" parent="Boundries/ColliderBoundries/SideBoundry4"]
+transform = Transform3D(1.1886947e-13, 30.829, 3.6940494e-07, 2.7194167e-06, -1.3475784e-06, 8.451, 62.213, 0, -3.6940494e-07, -14.910225, 31.52486, 0.7492637)
+size = Vector3(2.95, 2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -282,6 +283,7 @@ offset_bottom = 31.0
 text = "Camera On Mara"
 script = ExtResource("13_capxm")
 mara_reference = NodePath("../../Mara")
+camera_on_mara = true
 
 [node name="IgnoreGhostsButton" type="Button" parent="CanvasLayer"]
 offset_left = 3.0
