@@ -16,3 +16,4 @@ shader_parameter/glowRadialCoverage = 4
 shader_parameter/glowAngle = 1.57
 shader_parameter/glowSharpness = 1.0
 shader_parameter/alphaThreshold = 0.2
+shader_parameter/modulate = Color(1, 1, 1, 1)

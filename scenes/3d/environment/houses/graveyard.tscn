@@ -255,102 +255,103 @@ shadow_mesh = SubResource("ArrayMesh_8a4a1")
 [node name="graveyard" type="Node3D"]
 
 [node name="Fences" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.999546, 1.4720578, -3.8907433)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.883493, 1.4720578, -3.8907433)
 
 [node name="fence_2" type="MeshInstance3D" parent="Fences"]
-transform = Transform3D(-88.79614, 45.99182, 1.4901161e-06, 1.4901161e-06, 0, 100, 45.99182, 88.796135, 0, -0.9474611, -0.41359317, 1.6685655)
+transform = Transform3D(-88.79614, 45.99182, 2.0103662e-06, 0, -4.3711393e-06, 100, 45.99182, 88.79614, 3.8814023e-06, -0.9474611, -0.41359317, 1.6685655)
 mesh = SubResource("ArrayMesh_1565g")
 skeleton = NodePath("")
 
 [node name="fence_3" type="MeshInstance3D" parent="Fences"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.5251446, -0.41359317, -0.50077534)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, 0.5251446, -0.41359317, -0.50077534)
 mesh = SubResource("ArrayMesh_ueydo")
 skeleton = NodePath("")
 
 [node name="fence_4" type="MeshInstance3D" parent="Fences"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, -2.4003878, -0.41359317, 3.895833)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, -2.4003878, -0.41359317, 3.895833)
 mesh = SubResource("ArrayMesh_jfw18")
 skeleton = NodePath("")
 
 [node name="fence_1" type="MeshInstance3D" parent="Fences"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.77016354, -0.41359317, -3.4783726)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, 0.77016354, -0.41359317, -3.4783726)
 mesh = SubResource("ArrayMesh_xfl3l")
 skeleton = NodePath("")
 
-[node name="Graves" type="Node3D" parent="."]
-
-[node name="Grave_1" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 3.9901192, 0, 0)
-mesh = SubResource("ArrayMesh_yv66k")
-skeleton = NodePath("")
-
-[node name="Grave_2" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 5.981945, 0, -4.7072196)
-mesh = SubResource("ArrayMesh_k5dgk")
-skeleton = NodePath("")
-
-[node name="Grave_3" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 3.7643738, 0, -8.799483)
-mesh = SubResource("ArrayMesh_l7qdi")
-skeleton = NodePath("")
-
-[node name="Grave_4" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -6.2802267, -4.7873965e-07, -4.015959)
-mesh = SubResource("ArrayMesh_yv66k")
-skeleton = NodePath("")
-
-[node name="Grave_5" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, -0.7662358, 7.950668e-07, -2.129981)
-mesh = SubResource("ArrayMesh_l7qdi")
-skeleton = NodePath("")
-
-[node name="Grave_6" type="MeshInstance3D" parent="Graves"]
-transform = Transform3D(99.99996, 8.881784e-16, 0.09424776, -0.094247766, -1.1920929e-05, 99.999954, 1.1235211e-08, -99.99999, -1.1920924e-05, -2.4252868, 0.005833894, -6.493184)
-mesh = SubResource("ArrayMesh_l7qdi")
-skeleton = NodePath("")
-
 [node name="Fences2" type="Node3D" parent="."]
-transform = Transform3D(-0.99955934, 0, -0.029683672, 0, 1, 0, 0.029683672, 0, -0.99955934, -8.834616, 1.4720578, -3.8907433)
+transform = Transform3D(-1.9991187, 0, -0.059367344, 0, 2, 0, 0.059367344, 0, -1.9991187, -10.672137, 1.4720578, -3.8361747)
 
 [node name="fence_2" type="MeshInstance3D" parent="Fences2"]
-transform = Transform3D(-88.79614, 45.99182, 1.4901161e-06, 1.4901161e-06, 0, 100, 45.99182, 88.796135, 0, -0.9474611, -0.41359317, 1.6685655)
+transform = Transform3D(-88.79614, 45.99182, 2.0103662e-06, 0, -4.3711393e-06, 100, 45.99182, 88.79614, 3.8814023e-06, -0.9474611, -0.41359317, 1.6685655)
 mesh = SubResource("ArrayMesh_1565g")
 skeleton = NodePath("")
 
 [node name="fence_3" type="MeshInstance3D" parent="Fences2"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.5251446, -0.41359317, -0.50077534)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, 0.5251446, -0.41359317, -0.50077534)
 mesh = SubResource("ArrayMesh_ueydo")
 skeleton = NodePath("")
 
 [node name="fence_4" type="MeshInstance3D" parent="Fences2"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, -2.4003878, -0.41359317, 3.895833)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, -2.4003878, -0.41359317, 3.895833)
 mesh = SubResource("ArrayMesh_jfw18")
 skeleton = NodePath("")
 
 [node name="fence_1" type="MeshInstance3D" parent="Fences2"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.77016354, -0.41359317, -3.4783726)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, 0.77016354, -0.41359317, -3.4783726)
 mesh = SubResource("ArrayMesh_xfl3l")
 skeleton = NodePath("")
 
 [node name="Fences3" type="Node3D" parent="."]
-transform = Transform3D(0.4202124, 0, 0.9074258, 0, 1, 0, -0.9074258, 0, 0.4202124, 4.3592362, 1.4720578, -13.04166)
+transform = Transform3D(-0.36759418, 0, 1.9659284, 0, 2, 0, -1.9659284, 0, -0.36759418, 2.3358188, 1.4720578, -18.527609)
 
 [node name="fence_2" type="MeshInstance3D" parent="Fences3"]
-transform = Transform3D(-88.79614, 45.99182, 1.4901161e-06, 1.4901161e-06, 0, 100, 45.99182, 88.796135, 0, -0.9474611, -0.41359317, 1.6685655)
+transform = Transform3D(-88.79614, 45.99182, 2.0103662e-06, 0, -4.3711393e-06, 100, 45.99182, 88.79614, 3.8814023e-06, -0.9474611, -0.41359317, 1.6685655)
 mesh = SubResource("ArrayMesh_1565g")
 skeleton = NodePath("")
 
 [node name="fence_3" type="MeshInstance3D" parent="Fences3"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.5251446, -0.41359317, -0.50077534)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, 0.5251446, -0.41359317, -0.50077534)
 mesh = SubResource("ArrayMesh_ueydo")
 skeleton = NodePath("")
 
 [node name="fence_4" type="MeshInstance3D" parent="Fences3"]
-transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, -2.4003878, -0.41359317, 3.895833)
+transform = Transform3D(-7.7698207, 99.6977, 4.3579244e-06, 0, -4.3711393e-06, 100, 99.6977, 7.7698207, 3.3962962e-07, -2.4003878, -0.41359317, 3.895833)
 mesh = SubResource("ArrayMesh_jfw18")
 skeleton = NodePath("")
 
 [node name="fence_1" type="MeshInstance3D" parent="Fences3"]
 transform = Transform3D(-7.769823, 99.6977, -6.258488e-05, 5.9604645e-06, 5.9604645e-05, 100, 99.6977, 7.769811, -2.3841858e-05, 0.77016354, -0.41359317, -3.4783726)
 mesh = SubResource("ArrayMesh_xfl3l")
+skeleton = NodePath("")
+
+[node name="Graves" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6613455, 0, -4.9371796)
+
+[node name="Grave_1" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, 3.9901192, 1.5358071e-07, 3.5135171)
+mesh = SubResource("ArrayMesh_yv66k")
+skeleton = NodePath("")
+
+[node name="Grave_2" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, 5.981945, 9.075298e-08, -2.6310337)
+mesh = SubResource("ArrayMesh_k5dgk")
+skeleton = NodePath("")
+
+[node name="Grave_3" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, 3.7643738, 5.1424955e-08, -7.6230173)
+mesh = SubResource("ArrayMesh_l7qdi")
+skeleton = NodePath("")
+
+[node name="Grave_4" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, -6.2802267, -2.5726968e-07, 1.0506835)
+mesh = SubResource("ArrayMesh_yv66k")
+skeleton = NodePath("")
+
+[node name="Grave_5" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, -0.7662358, 9.97311e-07, 2.4968266)
+mesh = SubResource("ArrayMesh_l7qdi")
+skeleton = NodePath("")
+
+[node name="Grave_6" type="MeshInstance3D" parent="Graves"]
+transform = Transform3D(199.99991, -1.1641532e-08, 0.19530372, -0.19530372, -2.4710758e-05, 199.99991, 1.1641532e-08, -200, -2.4710758e-05, -2.4252868, 0.0058341664, -4.2886944)
+mesh = SubResource("ArrayMesh_l7qdi")
 skeleton = NodePath("")

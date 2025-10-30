@@ -33,7 +33,6 @@ sky = SubResource("Sky_o1b50")
 tonemap_mode = 2
 glow_intensity = 4.57
 glow_strength = 1.49
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.45876247, 0.54477376, 0.7561777, 1)
 fog_light_energy = 0.08
@@ -41,7 +40,6 @@ fog_sun_scatter = 0.08
 fog_density = 0.7736
 fog_sky_affect = 0.731
 fog_height = -57.96
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.003
 volumetric_fog_emission_energy = 327.96
 volumetric_fog_gi_inject = 2.8
@@ -114,13 +112,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 0.67, 0, 0, 0, 1, 19.975388, 5.698704, 34.364132)
 
 [node name="graveyard" parent="GridMaps/EnvironmentObjects" instance=ExtResource("11_jsy7v")]
-transform = Transform3D(-0.9997406, 0, -0.022774547, 0, 1, 0, 0.022774547, 0, -0.9997406, -6.693021, -1.0489454, -38.457275)
+transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9986047, -1.1683218, -1.0489454, -52.87333)
 
 [node name="SmallHome4" parent="GridMaps/EnvironmentObjects" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.26025176, 0, 0.96554077, 0, 1, 0, -0.96554077, 0, -0.26025176, 16.89806, -0.8590965, -29.437958)
+transform = Transform3D(-0.060369164, 0, 0.9981761, 0, 1, 0, -0.9981761, 0, -0.060369164, 21.632515, -0.8590965, -28.977667)
 
 [node name="SpecialTree" parent="GridMaps/EnvironmentObjects" instance=ExtResource("7_247o4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1888771, 0, -39.517784)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.1192493, 0, -49.250816)
 
 [node name="EnvironmentGridMap" type="GridMap" parent="GridMaps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
