@@ -404,7 +404,7 @@ image = SubResource("Image_sbd08")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c1xo"]
 resource_name = "tree"
 cull_mode = 2
-albedo_color = Color(0.6075947, 0.42253402, 0.18095566, 1)
+albedo_color = Color(0.37457073, 0.25360724, 0.09279064, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fg1qt"]
 _surfaces = [{
