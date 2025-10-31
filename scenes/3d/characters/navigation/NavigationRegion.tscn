@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bppu7m2ibbfsf"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xgjqa"]
+
+[node name="NavigationRegion" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_xgjqa")
+
+[node name="NavigationArea" type="CSGBox3D" parent="."]

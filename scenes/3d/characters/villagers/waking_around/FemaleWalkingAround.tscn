@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbx31d1jss38a"]
+
+[ext_resource type="PackedScene" uid="uid://dw8mg5s0gx6pl" path="res://scenes/3d/characters/villagers/base/female_villager.tscn" id="1_innqb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m275m"]
+radius = 7.0
+
+[node name="FemaleWalkingAround" type="Node3D"]
+
+[node name="BaseCharacter" parent="." node_paths=PackedStringArray("walk_around_area") instance=ExtResource("1_innqb")]
+walk_around_area = NodePath("../Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_m275m")
