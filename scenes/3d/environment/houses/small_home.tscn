@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d36nxws7hx4rx"]
+[gd_scene load_steps=21 format=4 uid="uid://d36nxws7hx4rx"]
 
 [ext_resource type="Script" uid="uid://dgunln4r8ojm4" path="res://scripts/3d/environment/houses/house_behavoiur.gd" id="1_v4gnb"]
 [ext_resource type="PackedScene" uid="uid://c124a2irr2bng" path="res://scenes/3d/ui/PieTimerWorld.tscn" id="2_dr7jm"]
@@ -366,10 +366,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yeb5q")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ipl6"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
-
 [node name="SmallHome" type="Node3D"]
 script = ExtResource("1_v4gnb")
 
@@ -412,10 +408,5 @@ visible = false
 transform = Transform3D(0.04953717, 2.8974662e-07, -0.9709656, -5.7798804e-08, 0.9722284, 3.4179072e-07, 0.97096574, 0, 0.049537234, 0, 0, 0)
 mesh = SubResource("ArrayMesh_dr7jm")
 skeleton = NodePath("")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="HouseStates"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.9895197e-13, 0, -1.9895197e-13, 1, -0.00032836926, -0.0026074238, 0.05)
-material_override = SubResource("StandardMaterial3D_4ipl6")
-size = Vector3(0.221604, 0.25064453, 0.1)
 
 [node name="PauseManager" parent="." instance=ExtResource("4_4ipl6")]

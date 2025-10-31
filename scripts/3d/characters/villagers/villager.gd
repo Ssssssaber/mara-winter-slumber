@@ -5,15 +5,17 @@ extends CharacterBody3D
 @onready var navigation_agent : NavigationAgent3D = get_node("NavigationAgent3D")
 @onready var movement_system : MovementSystem = get_node("MovementSystem")
 @onready var walk_around_timer : Timer = get_node("WalkAroundTimer")
+@onready var interaction_area : Area3D = get_node("InteractionArea")
 
-var area_sphere : Node3D
+var walk_around_area_sphere : Node3D
 
 func _ready() -> void:
-	area_sphere = walk_around_area.get_node("CollisionShape3D")
+	walk_around_area_sphere = walk_around_area.get_node("CollisionShape3D")
 	walk_around_timer.timeout.connect(walk_around)
+	interaction_area.body_entered.connect(_on_interaction_area_body_entered)
 
 func walk_around() -> void:
-	var random_position := _random_point_on_circle(area_sphere.get_shape().radius, walk_around_area.global_transform.origin); 
+	var random_position := _random_point_on_circle(walk_around_area_sphere.get_shape().radius, walk_around_area.global_transform.origin); 
 	navigation_agent.set_target_position(random_position)
 
 # func _unhandled_input(event: InputEvent) -> void:
@@ -38,3 +40,15 @@ func _physics_process(_delta: float) -> void:
 		var direction = local_destination.normalized()
 		velocity = direction * movement_system.base_speed
 	move_and_slide()
+
+func _on_interaction_area_body_entered(body : Node3D) -> void:
+	print("VILLAGER GETS SCARED")
+	var direction_away = (global_position - body.global_position).normalized()
+	var flee_distance = 5.0
+	var new_position = global_position + direction_away * flee_distance
+	
+	movement_system.apply_speed_modifier("scared_buff", 2.0, 1.0)
+
+	navigation_agent.set_target_position(new_position)
+
+	walk_around_timer.start()
