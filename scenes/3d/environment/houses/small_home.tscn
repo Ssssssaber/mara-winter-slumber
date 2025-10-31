@@ -414,8 +414,8 @@ mesh = SubResource("ArrayMesh_dr7jm")
 skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="HouseStates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 1.9895197e-13, 0, -1.9895197e-13, 1, -0.00032836926, -0.0026074238, 0.05)
 material_override = SubResource("StandardMaterial3D_4ipl6")
-size = Vector3(0.185, 0.235, 0.1)
+size = Vector3(0.221604, 0.25064453, 0.1)
 
 [node name="PauseManager" parent="." instance=ExtResource("4_4ipl6")]

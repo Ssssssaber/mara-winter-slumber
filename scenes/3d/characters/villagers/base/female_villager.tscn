@@ -38,4 +38,5 @@ material_override = ExtResource("2_dsnd5")
 sprite_frames = SubResource("SpriteFrames_y3q3x")
 
 [node name="WalkAroundTimer" type="Timer" parent="." index="5"]
+wait_time = 3.0
 autostart = true
