@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4i5q1xmww22i"]
+[gd_scene load_steps=9 format=3 uid="uid://d4i5q1xmww22i"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_gp6pm"]
 [ext_resource type="Script" uid="uid://cpvkaqvunumpl" path="res://scripts/3d/characters/ghost/ghost_behaviour.gd" id="2_2ovv7"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_70odj"]
 [ext_resource type="Material" uid="uid://c33bm40wj1nk0" path="res://assets/3d/characters/materials/ghost_outline.tres" id="3_ggydj"]
 [ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="4_70odj"]
+[ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_pn7lr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtia4"]
 radius = 1.839
@@ -44,3 +45,5 @@ double_sided = false
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_60gv5")
 animation = &"new_animation"
+
+[node name="FlipH" parent="." index="5" instance=ExtResource("6_pn7lr")]

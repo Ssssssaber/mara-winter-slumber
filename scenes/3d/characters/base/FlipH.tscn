@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy8vwjbdwhldr"]
+
+[ext_resource type="Script" uid="uid://cop1ch2sx38pt" path="res://scripts/3d/characters/sprites/flip_h_for_camera.gd" id="1_ovepp"]
+
+[node name="FlipH" type="Node"]
+script = ExtResource("1_ovepp")

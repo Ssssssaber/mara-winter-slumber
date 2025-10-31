@@ -9,10 +9,12 @@ class_name PathFollower
 var _direction_vector : Vector3 = Vector3.ZERO
 var _camera : Camera3D
 var _entity : Node3D
+var _flipH : FlipHCamera
 
 func init(entity : Node3D) -> void:
 	_camera = GameManager.GetCamera()
 	_entity = entity
+	_flipH = _entity.get_node_or_null("FlipH")
 
 func find_movement_system():
 	for child in get_children():
@@ -35,12 +37,4 @@ func _process(delta: float) -> void:
 		_direction_vector = tangent_direction   # Forward for normal movement
 		progress += movement_system.effective_speed * delta
 
-	# Use camera's forward direction (where it's facing) instead of position vector
-	# In Godot, camera forward is -global_transform.basis.z (negative Z points forward for cameras)
-	var camera_forward = -_camera.global_transform.basis.z.normalized()
-
-	# Dot product: >0 means moving towards camera's view direction, <0 means away
-	var dot_product = _direction_vector.dot(camera_forward)
-
-	# Flip if dot product indicates movement away from camera's view (adjust threshold as needed)
-	_entity.set_flip(dot_product < Constants.CAMERA_DOT_MIN_DOT_RODUCT)
+	_flipH.SetDirection(_direction_vector)

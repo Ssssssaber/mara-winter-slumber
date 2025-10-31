@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlw7boxson22m"]
+[gd_scene load_steps=17 format=3 uid="uid://dlw7boxson22m"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
 [ext_resource type="Script" uid="uid://gdvi04fooqf1" path="res://scripts/3d/characters/mara/mara_behaviour.gd" id="2_siey8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://xm3002dswgbs" path="res://scripts/3d/characters/mara/mara_abilities_manager.gd" id="6_ri85a"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="7_0gd6l"]
 [ext_resource type="Texture2D" uid="uid://dqsce4q362yct" path="res://assets/2d/temporary/redsquare.png" id="7_2q5ol"]
+[ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="9_3gpgx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_obn03"]
 radius = 3.0
@@ -117,3 +118,5 @@ text = "Mara"
 
 [node name="AbilitiesManager" type="Node" parent="." index="4"]
 script = ExtResource("6_ri85a")
+
+[node name="FlipH" parent="." index="6" instance=ExtResource("9_3gpgx")]
