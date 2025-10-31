@@ -5,7 +5,7 @@
 
 [node name="Ghost" instance=ExtResource("1_lr8b5")]
 slow_modifier = 0.3
-slow_duration = -5.0
+slow_duration = 5.0
 
 [node name="MovementSystem" parent="." index="1"]
 base_speed = 10.0
