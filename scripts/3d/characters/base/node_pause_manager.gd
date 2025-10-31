@@ -12,20 +12,18 @@ func _on_dialog_started() -> void:
 func _on_dialog_ended() -> void:
 	_set_node_process(true)
 
-func _set_node_process(value : bool) -> void:
-
-	var parent_node = get_parent() 
-
+func _set_node_process(value: bool) -> void:
+	var parent_node = get_parent()
 	parent_node.set_process(value)
 	parent_node.set_physics_process(value)
 	parent_node.set_process_input(value)
-	var children = get_all_children(parent_node)
 
+	var children = get_all_children(parent_node)
 	for child in children:
 		if child is AnimatedSprite3D:
 			var animated_sprite = child as AnimatedSprite3D
-			if animated_sprite.is_playing():
-				animated_sprite.pause()
+			if not value:
+				animated_sprite.stop()
 			else:
 				animated_sprite.play()
 
