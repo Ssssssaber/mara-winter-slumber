@@ -17,5 +17,7 @@ func _apply_buff(body : Node3D):
 	var movement_system = body.get_node_or_null("MovementSystem")
 	if not movement_system:
 		return
-	
+	print(movement_system._calculate_effective_speed())
 	movement_system.apply_speed_modifier(Constants.SPECIAL_TREE_MOVEMENT_MODIFIER, speed_modifier, modifier_duration)
+	print(movement_system._calculate_effective_speed())
+	

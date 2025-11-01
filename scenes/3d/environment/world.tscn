@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=32 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
+[ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
 [ext_resource type="Script" uid="uid://ddtglv1g3dd3x" path="res://scripts/3d/camera/cameracontroller.gd" id="4_xqoag"]
@@ -68,6 +69,7 @@ _data = {
 point_count = 11
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_y02fm")
 
 [node name="Lights" type="Node3D" parent="."]
 

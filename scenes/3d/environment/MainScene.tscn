@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbkwhbax3twi2"]
 
-[ext_resource type="PackedScene" uid="uid://npsgmyqx2xme" path="res://scenes/3d/environment/world.tscn" id="1_y6ob0"]
+[ext_resource type="PackedScene" uid="uid://bc4k20vlh6tss" path="res://scenes/3d/ui/main_menu.tscn" id="1_y6ob0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1e0kk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,4 +38,4 @@ volumetric_fog_ambient_inject = 1.1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dvyyw")
 
-[node name="World" parent="." instance=ExtResource("1_y6ob0")]
+[node name="MainMenu" parent="." instance=ExtResource("1_y6ob0")]

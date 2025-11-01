@@ -7,14 +7,16 @@ var BuildingGridMap : GridMap
 var FloorGridMap : GridMap 
 var MainPath : Path3D 
 var CanvasControl : Node 
+var MainMenuRef : Node 
 
 var GhostScene = load("res://scenes/3d/characters/ghosts/Ghost.tscn")
 var PauseManagerScene = load("res://scenes/3d/characters/base/pause_manager.tscn")
-var WorldScenePath = "res://scenes/3d/environment/world.tscn"
+var WorldScene = load("res://scenes/3d/environment/world.tscn")
 
 var IsCameraInInnerArea : bool = false
 var IsGamePause : bool = false
-var _auto_initilize : bool = true
+var Initialized : bool = false
+var _auto_initilize : bool = false
 
 signal pause_world_entities()
 signal unpause_world_entities()
@@ -35,6 +37,7 @@ func Initialize() -> void:
 	MainPath = get_parent().get_node(WORLD_NODE_PATH + "Paths/MainPath")
 	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
 	
+	Initialized = true
 	OnGameManagerReady.emit()
 	pass
 
@@ -59,9 +62,14 @@ func load_scene_and_wait_for_ready(scene_path: String) -> Node:
 
 	return my_scene_instance
 
-func StartGame() -> void:
-	await load_scene_and_wait_for_ready(WorldScenePath)
-	Initialize()
+func StartGame(mainMenu : Node) -> void:
+	if (GameManager.Initialized):
+		return
+
+	MainMenuRef = mainMenu
+	MainMenuRef.visible = false
+	var world = WorldScene.instantiate()
+	get_tree().root.get_node("MainScene").add_child(world)
 
 func GetCamera() -> Camera3D:
 	return Camera
@@ -117,7 +125,6 @@ func AddEntityToPath(entity: Node3D, initial_progress: float = 0.0, inversed_mov
 		return null
 	
 	var path_follower = PathFollow3D.new()
-
 
 	MainPath.add_child(path_follower)
 

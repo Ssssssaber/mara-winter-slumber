@@ -118,5 +118,7 @@ text = "Mara"
 
 [node name="AbilitiesManager" type="Node" parent="." index="4"]
 script = ExtResource("6_ri85a")
+speed_buff_modifier = 3.0
+speed_buff_duration = 5.0
 
 [node name="FlipH" parent="." index="6" instance=ExtResource("9_3gpgx")]

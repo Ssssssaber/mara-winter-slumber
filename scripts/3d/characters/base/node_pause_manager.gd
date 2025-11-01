@@ -1,5 +1,7 @@
 extends Node
 
+class_name PauseManager
+
 func _ready() -> void:
 	GameManager.pause_world_entities.connect(_on_dialog_started)
 	GameManager.unpause_world_entities.connect(_on_dialog_ended)

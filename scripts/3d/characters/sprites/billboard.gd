@@ -1,7 +1,14 @@
 extends Node3D
 class_name Billboard
 
-@onready var camera: Camera3D = GameManager.GetCamera()
+var camera: Camera3D
+
+func _init() -> void:
+	GameManager.OnGameManagerReady.connect(func set_camera(): camera = GameManager.GetCamera())
+
+func _ready() -> void:
+	if (GameManager.Initialized):
+		camera = GameManager.GetCamera()
 
 func _process(_delta: float) -> void:
 	if camera == null:
