@@ -8,6 +8,8 @@ class_name HouseBehaviour
 @onready var ok_mesh : Node3D = get_node_or_null("HouseStates/Ok")
 @onready var abandoned_mesh : Node3D = get_node_or_null("HouseStates/Abandoned")
 
+var attached_entities : Array[Node3D] = []
+
 @export var is_abandoned : bool = false:
 	set(new_value):
 		is_abandoned = new_value
@@ -21,6 +23,9 @@ func _update_abandoned_state(abandoned : bool) -> void:
 
 	ok_mesh.visible = !abandoned
 	abandoned_mesh.visible = abandoned
+	if abandoned:
+		free_attached_entities()
+		_spawn_ghost_near_self()
 
 func _ready() -> void:
 	interaction_area.body_entered.connect(_on_area_3d_body_entered)
@@ -37,5 +42,13 @@ func _spawn_ghost_near_self() -> void:
 	GameManager.AddEntityToPath(ghost, near_house_progress, randi() % 2 == 0)
 
 func _on_pie_timer_timeout() -> void:
-	_spawn_ghost_near_self()
 	is_abandoned = true
+
+func add_attached_entity(entity: Node3D) -> void:
+	attached_entities.append(entity)
+
+func free_attached_entities() -> void:
+	for entity in attached_entities:
+		if is_instance_valid(entity):
+			entity.queue_free()
+	attached_entities.clear()

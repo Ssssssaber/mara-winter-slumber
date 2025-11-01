@@ -55,6 +55,7 @@ animations = [{
 radius = 15.0
 
 [node name="BaseCharacter" instance=ExtResource("1_uenaw")]
+collision_layer = 32768
 script = ExtResource("2_g164r")
 
 [node name="CollisionShape3D" parent="." index="0"]

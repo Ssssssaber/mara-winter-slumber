@@ -225,6 +225,10 @@ transform = Transform3D(-0.7189396, 0, -0.69507253, 0, 1, 0, 0.69507253, 0, -0.7
 
 [node name="SmallHome2" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.9441466, 0, -0.3295258, 0, 1, 0, 0.3295258, 0, -0.9441466, -31.861435, -0.8590965, -12.193072)
+is_abandoned = true
+
+[node name="FemaleWalkingAround3" parent="GridMaps/NavigationRegion3D/SmallHome2" instance=ExtResource("12_kx1j3")]
+transform = Transform3D(-0.9441467, 0, 0.32952583, 0, 1, 0, -0.32952583, 0, -0.9441467, 12.38887, 4.2940965, -11.520002)
 
 [node name="SmallHome3" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.92053884, 0, -0.3906509, 0, 1, 0, 0.3906509, 0, -0.92053884, 38.698605, -0.8590965, 50.870686)
@@ -233,10 +237,13 @@ transform = Transform3D(-0.92053884, 0, -0.3906509, 0, 1, 0, 0.3906509, 0, -0.92
 transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9986047, -1.1683218, 0.56486607, -52.87333)
 
 [node name="SmallHome4" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.060369164, 0, 0.9981761, 0, 1, 0, -0.9981761, 0, -0.060369164, 21.632515, -0.8590965, -28.977667)
+transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.632515, -0.8590965, -28.977667)
+
+[node name="FemaleWalkingAround" parent="GridMaps/NavigationRegion3D/SmallHome4" instance=ExtResource("12_kx1j3")]
+transform = Transform3D(-0.06036917, 0, -0.9981762, 0, 1, 0, 0.9981762, 0, -0.06036917, 5.2168465, 4.2940965, -19.757956)
 
 [node name="SpecialTree" parent="GridMaps/NavigationRegion3D" instance=ExtResource("7_247o4")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.1192493, 0, -49.250816)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.119, 0.685, -49.251)
 
 [node name="SmallHome5" parent="GridMaps/NavigationRegion3D" instance=ExtResource("8_20vmd")]
 transform = Transform3D(-0.6225146, 0, 0.7826082, 0, 1, 0, -0.7826082, 0, -0.6225146, -31.317, 0.185, 51.636)
@@ -246,6 +253,9 @@ transform = Transform3D(0.1391731, 0, 0.99026805, 0, 1, 0, -0.99026805, 0, 0.139
 
 [node name="BigHome" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_fmq43")]
 transform = Transform3D(-0.5075382, 0, -0.86162925, 0, 1, 0, 0.86162925, 0, -0.5075382, 61.944, 1.435, 13.852)
+
+[node name="FemaleWalkingAround2" parent="GridMaps/NavigationRegion3D/BigHome" instance=ExtResource("12_kx1j3")]
+transform = Transform3D(-0.5075382, 0, 0.86162925, 0, 1, 0, -0.86162925, 0, -0.5075382, 25.66, 2, -3.621)
 
 [node name="EventTriggerAreas" type="Node3D" parent="."]
 
@@ -259,15 +269,6 @@ shape = SubResource("SphereShape3D_o1b50")
 
 [node name="NonPathCharacters" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.451, 2, -39.144)
-
-[node name="FemaleWalkingAround" parent="NonPathCharacters" instance=ExtResource("12_kx1j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.855341, 0, 6.1517773)
-
-[node name="FemaleWalkingAround2" parent="NonPathCharacters" instance=ExtResource("12_kx1j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.816172, 0, 93.14328)
-
-[node name="FemaleWalkingAround3" parent="NonPathCharacters" instance=ExtResource("12_kx1j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.213203, 0, 41.90995)
 
 [node name="Paths" type="Node3D" parent="."]
 
