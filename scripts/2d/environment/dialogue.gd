@@ -22,7 +22,6 @@ var dialogue_playing: bool = false
 const BATTLE_SCENE_PATH = "res://scenes/2d/environment/battle_scene.tscn"
 
 func _ready():
-	DialogueManager.start_dialogue.connect(parse_json_start_dialogue)
 	print("=== ДИАЛОГ СИСТЕМА: _ready() запущен ===")
 	# Скрываем кнопки выбора сначала
 	choice_buttons_hide()

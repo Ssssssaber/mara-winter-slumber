@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://da000hxx7xfpa"]
+[gd_scene load_steps=10 format=3 uid="uid://da000hxx7xfpa"]
 
 [ext_resource type="Script" uid="uid://ce17bsgxtplec" path="res://scripts/2d/environment/dialogue.gd" id="1_fndms"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="2_fh283"]
 [ext_resource type="Texture2D" uid="uid://cmf4y7br72lli" path="res://assets/2d/environment/new/окно с фоном.PNG" id="3_xvyb3"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="4_7ysu2"]
 [ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="5_srfqe"]
-[ext_resource type="Script" uid="uid://bkqa3wk7ivqq1" path="res://scripts/shared/test_script.gd" id="6_srfqe"]
 
 [sub_resource type="SystemFont" id="SystemFont_fh283"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -89,6 +88,3 @@ icon = ExtResource("5_srfqe")
 flat = true
 icon_alignment = 1
 expand_icon = true
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource("6_srfqe")
