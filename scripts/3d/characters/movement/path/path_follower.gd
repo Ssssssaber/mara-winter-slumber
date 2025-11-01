@@ -22,6 +22,10 @@ func find_movement_system():
 		if ms and ms is MovementSystem:
 			movement_system = ms
 			set_process(true)
+			_flipH.set_process(true)
+			var billboard = _entity.get_node_or_null("RotatableNodes")
+			if billboard and billboard is Billboard:
+				billboard.set_process(true)
 			return
 	push_error("MovementSystem not found under any child of PathFollower!")
 
