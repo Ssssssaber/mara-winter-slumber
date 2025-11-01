@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/shared/game_manager.gd"
 Constants="*res://scripts/shared/constants.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 ui_left={
