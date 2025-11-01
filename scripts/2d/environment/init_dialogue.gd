@@ -5,6 +5,7 @@ extends Node
 
 func _ready() -> void:
 	DialogueManager.start_dialogue.connect(init_dialogue_scene)
+	DialogueManager.battle_started_without_dialogue.connect(init_battle_scene)
 	
 func init_dialogue_scene(json_path):
 	var current_scene = dialogue_scene.instantiate()

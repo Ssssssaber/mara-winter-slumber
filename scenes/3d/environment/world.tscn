@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://npsgmyqx2xme"]
 
-[ext_resource type="Shader" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
-[ext_resource type="Script" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
+[ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
+[ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
 [ext_resource type="Script" uid="uid://ddtglv1g3dd3x" path="res://scripts/3d/camera/cameracontroller.gd" id="4_xqoag"]
@@ -9,13 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://dlw7boxson22m" path="res://scenes/3d/characters/Mara.tscn" id="6_xqoag"]
 [ext_resource type="PackedScene" uid="uid://c7oonopiwkq0w" path="res://scenes/3d/environment/quests/special_tree.tscn" id="7_247o4"]
 [ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/ghosts/Ghost.tscn" id="7_gh3kt"]
-[ext_resource type="PackedScene" uid="uid://cy8b4jlfe8lo6" path="res://scenes/3d/environment/houses/low_home.tscn" id="8_20vmd"]
-[ext_resource type="PackedScene" uid="uid://lktjuw0of1m1" path="res://scenes/3d/environment/houses/big_home.tscn" id="9_fmq43"]
-[ext_resource type="PackedScene" uid="uid://d36nxws7hx4rx" path="res://scenes/3d/environment/houses/mid_home.tscn" id="9_jsy7v"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/low_home.tscn" id="8_20vmd"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/big_home.tscn" id="9_fmq43"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/mid_home.tscn" id="9_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="10_fmq43"]
 [ext_resource type="PackedScene" uid="uid://ctdntkn4t6i6u" path="res://scenes/3d/environment/houses/graveyard.tscn" id="11_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://cbx31d1jss38a" path="res://scenes/3d/characters/villagers/waking_around/FemaleWalkingAround.tscn" id="12_kx1j3"]
-[ext_resource type="Script" path="res://scripts/3d/scenario/tree_event_area_trigger.gd" id="13_q75kv"]
+[ext_resource type="Script" uid="uid://cydnd53pmehkk" path="res://scripts/3d/scenario/tree_event_area_trigger.gd" id="13_q75kv"]
 [ext_resource type="Script" uid="uid://cj3opsgdinbl7" path="res://scripts/3d/ui/canvas_controller.gd" id="14_yqqrb"]
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 [ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/ui/camera_on_mara.gd" id="17_kx1j3"]
@@ -192,12 +192,14 @@ transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9
 
 [node name="SmallHome4" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.632515, -0.8590965, -28.977667)
+json_dialogue_path = ""
 
 [node name="FemaleWalkingAround" parent="GridMaps/NavigationRegion3D/SmallHome4" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.06036917, 0, -0.9981762, 0, 1, 0, 0.9981762, 0, -0.06036917, 5.2168465, 4.2940965, -19.757956)
 
 [node name="SmallHome5" parent="GridMaps/NavigationRegion3D" instance=ExtResource("8_20vmd")]
 transform = Transform3D(-0.6225146, 0, 0.7826082, 0, 1, 0, -0.7826082, 0, -0.6225146, -31.317, 0.185, 51.636)
+json_dialogue_path = ""
 
 [node name="SmallHome6" parent="GridMaps/NavigationRegion3D" instance=ExtResource("8_20vmd")]
 transform = Transform3D(0.1391731, 0, 0.99026805, 0, 1, 0, -0.99026805, 0, 0.1391731, -49.287, 0, 40.001)

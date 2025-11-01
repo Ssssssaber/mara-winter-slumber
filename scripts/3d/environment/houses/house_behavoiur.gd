@@ -2,6 +2,8 @@ extends Node3D
 
 class_name HouseBehaviour
 
+@export var json_dialogue_path : String = Constants.TEST_DIALOG_PATH
+
 @onready var pie_timer : Node3D = get_node("PieTimerWorld")
 @onready var interaction_area : Area3D = get_node("Area3D")
 
@@ -40,6 +42,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	pie_timer.stop_timer()
 
 	GameManager.pause_world_entities.emit()
+	if json_dialogue_path == "":
+		DialogueManager.StartBattleWithoutDialogue()
+		return
+
 	DialogueManager.StartDialogue(Constants.TEST_DIALOG_PATH)
 
 func _spawn_ghost_near_self() -> void:
