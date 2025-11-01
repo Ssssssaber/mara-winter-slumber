@@ -19,6 +19,9 @@ func _ready() -> void:
 	walk_around_area_sphere = walk_around_area.get_node("CollisionShape3D")
 	walk_around_timer.timeout.connect(walk_around)
 	interaction_area.body_entered.connect(_on_interaction_area_body_entered)
+	
+	GameManager.pause_world_entities.connect(pause_timer)
+	GameManager.unpause_world_entities.connect(unpause_timer)
 
 func walk_around() -> void:
 	var random_position := _random_point_on_circle(walk_around_area_sphere.get_shape().radius, walk_around_area.global_transform.origin); 
@@ -33,6 +36,11 @@ func _random_point_on_circle(radius : float, center_position : Vector3 = Vector3
 
 	return center_position + Vector3(x, 0.0, y)
 		
+func unpause_timer() -> void:
+	walk_around_timer.paused = false
+
+func pause_timer() -> void:
+	walk_around_timer.paused = true
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector3.ZERO
