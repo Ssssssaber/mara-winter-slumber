@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ycl31k74gncn"
-path.s3tc="res://.godot/imported/female_villager.png-c3ee4840135fdccc55a411ab076b460d.s3tc.ctex"
+uid="uid://cqg3m8ka7ubo4"
+path.s3tc="res://.godot/imported/female_villager_sprite.png-04ac52aa953047a57d807e8c0b228b99.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/3d/characters/villagers/female_villager.png"
-dest_files=["res://.godot/imported/female_villager.png-c3ee4840135fdccc55a411ab076b460d.s3tc.ctex"]
+source_file="res://assets/3d/characters/villagers/female_villager_sprite.png"
+dest_files=["res://.godot/imported/female_villager_sprite.png-04ac52aa953047a57d807e8c0b228b99.s3tc.ctex"]
 
 [params]
 

@@ -7,6 +7,7 @@ class_name MovementSystem
 @export var friction: float = 15.0 # How quickly to stop
 
 @onready var body: CharacterBody3D = get_parent() as CharacterBody3D
+@onready var animated_sprite : AnimatedSprite3D = get_parent().get_node("RotatableNodes/AnimatedSprite3D")
 
 var current_direction: Vector3 = Vector3.ZERO
 var effective_speed: float = base_speed
@@ -65,6 +66,7 @@ func _calculate_effective_speed() -> float:
 	var total_multiplier = 1.0
 	for modifier_name in speed_modifiers:
 		total_multiplier *= speed_modifiers[modifier_name]["multiplier"]
+	animated_sprite.speed_scale = total_multiplier
 	return base_speed * total_multiplier
 
 func _physics_process(delta: float) -> void:
