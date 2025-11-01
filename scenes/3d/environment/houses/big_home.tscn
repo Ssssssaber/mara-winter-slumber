@@ -1,0 +1,147 @@
+[gd_scene load_steps=8 format=3 uid="uid://lktjuw0of1m1"]
+
+[ext_resource type="Script" uid="uid://dgunln4r8ojm4" path="res://scripts/3d/environment/houses/house_behavoiur.gd" id="1_elo0m"]
+[ext_resource type="PackedScene" uid="uid://c124a2irr2bng" path="res://scenes/3d/ui/PieTimerWorld.tscn" id="2_ak0hh"]
+[ext_resource type="ArrayMesh" uid="uid://dx83ehb8m868s" path="res://assets/3d/environment/meshes/high_house.tres" id="3_qmsum"]
+[ext_resource type="PackedScene" uid="uid://nuosp11ef5kg" path="res://scenes/3d/environment/houses/window_with_lights.tscn" id="4_0nm5i"]
+[ext_resource type="ArrayMesh" uid="uid://dci60kosq8fdn" path="res://assets/3d/environment/meshes/high_house_abandoned.tres" id="5_nuh8h"]
+[ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="6_8w7op"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_elo0m"]
+radius = 25.0
+
+[node name="BigHome" type="Node3D"]
+script = ExtResource("1_elo0m")
+
+[node name="PieTimerWorld" parent="." instance=ExtResource("2_ak0hh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.78535, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_elo0m")
+
+[node name="HouseStates" type="Node3D" parent="."]
+transform = Transform3D(102.8565, 0, 0, 0, -1.226145e-05, 102.85649, 0, -102.85649, -1.226145e-05, 0, 0, 0)
+
+[node name="Ok" type="Node3D" parent="HouseStates"]
+
+[node name="Hous_inhabited" type="MeshInstance3D" parent="HouseStates/Ok"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.4210855e-14, 0, -1.4210855e-14, 1, 0, 0, 0)
+mesh = ExtResource("3_qmsum")
+skeleton = NodePath("")
+
+[node name="WindowWithLights" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, 0.10198837, -0.005122353, 0.036478452)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights5" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, -0.013745754, -0.08678856, 0.0340709)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights6" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, -0.08378104, -0.08678856, 0.034070898)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights7" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, -0.08378104, -0.08678856, 0.08061008)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights8" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, -0.017596543, -0.08678856, 0.08061008)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights2" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(7.034452e-18, -8.403178e-10, -0.018643865, -0.003681638, -8.403178e-10, 0, -1.609295e-10, 0.01922423, -8.149492e-10, 0.10198837, -0.007139167, 0.080210365)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights3" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(0.003681638, 0, 0, 0, 0.01922423, 0, 0, 0, 0.018643865, 0.15677926, 0.045898877, 0.08065413)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WindowWithLights4" parent="HouseStates/Ok" instance=ExtResource("4_0nm5i")]
+transform = Transform3D(0.003681638, 0, 0, 0, 0.01922423, 0, 0, 0, 0.018643865, 0.15677926, 0.045898877, 0.033711106)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HouseStates/Ok/WindowWithLights4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606758, 0, 0)
+light_energy = 9.519
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 9.222
+light_size = 1.0
+light_specular = 0.945
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="Abandoned" type="Node3D" parent="HouseStates"]
+visible = false
+
+[node name="Hous_uninhabited" type="MeshInstance3D" parent="HouseStates/Abandoned"]
+transform = Transform3D(0.9722286, 0, 0, 0, 0.9722284, 0, 0, 0, 0.97222847, 0, 0, 0)
+mesh = ExtResource("5_nuh8h")
+skeleton = NodePath("")
+
+[node name="PauseManager" parent="." instance=ExtResource("6_8w7op")]

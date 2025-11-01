@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="4_4ipl6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i8nuw"]
-radius = 14.428
+radius = 20.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg8vy"]
 resource_name = "Material.003"
@@ -366,7 +366,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yeb5q")
 
-[node name="SmallHome" type="Node3D"]
+[node name="MidHome" type="Node3D"]
 script = ExtResource("1_v4gnb")
 
 [node name="PieTimerWorld" parent="." instance=ExtResource("2_dr7jm")]
