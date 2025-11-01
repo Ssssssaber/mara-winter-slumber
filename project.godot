@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/shared/game_manager.gd"
 Constants="*res://scripts/shared/constants.gd"
+DialogueManager="*res://scripts/shared/dialogue_manager.gd"
 
 [input]
 

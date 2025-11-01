@@ -184,6 +184,8 @@ func end_battle(victory: bool):
 				zone.queue_free()
 	
 	battle_text.text = "Победа! Душа захвачена." if victory else "Поражение!"
+	DialogueManager.EndDialogue()
+	get_parent().queue_free()
 
 
 func _on_soul_damaged():

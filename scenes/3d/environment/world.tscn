@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://npsgmyqx2xme"]
 
-[ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
-[ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
+[ext_resource type="Shader" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
+[ext_resource type="Script" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
 [ext_resource type="MeshLibrary" uid="uid://b31hhnku3u4ca" path="res://assets/3d/environment/models/mara_tiles.tres" id="2_qnawv"]
 [ext_resource type="Script" uid="uid://ddtglv1g3dd3x" path="res://scripts/3d/camera/cameracontroller.gd" id="4_xqoag"]
@@ -9,18 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://dlw7boxson22m" path="res://scenes/3d/characters/Mara.tscn" id="6_xqoag"]
 [ext_resource type="PackedScene" uid="uid://c7oonopiwkq0w" path="res://scenes/3d/environment/quests/special_tree.tscn" id="7_247o4"]
 [ext_resource type="PackedScene" uid="uid://d4i5q1xmww22i" path="res://scenes/3d/characters/ghosts/Ghost.tscn" id="7_gh3kt"]
-[ext_resource type="PackedScene" uid="uid://cy8b4jlfe8lo6" path="res://scenes/3d/environment/houses/low_home.tscn" id="8_20vmd"]
-[ext_resource type="PackedScene" uid="uid://lktjuw0of1m1" path="res://scenes/3d/environment/houses/big_home.tscn" id="9_fmq43"]
-[ext_resource type="PackedScene" uid="uid://d36nxws7hx4rx" path="res://scenes/3d/environment/houses/mid_home.tscn" id="9_jsy7v"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/low_home.tscn" id="8_20vmd"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/big_home.tscn" id="9_fmq43"]
+[ext_resource type="PackedScene" path="res://scenes/3d/environment/houses/mid_home.tscn" id="9_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://chrv01hk211f2" path="res://scenes/3d/characters/base/pause_manager.tscn" id="10_fmq43"]
 [ext_resource type="PackedScene" uid="uid://ctdntkn4t6i6u" path="res://scenes/3d/environment/houses/graveyard.tscn" id="11_jsy7v"]
 [ext_resource type="PackedScene" uid="uid://cbx31d1jss38a" path="res://scenes/3d/characters/villagers/waking_around/FemaleWalkingAround.tscn" id="12_kx1j3"]
-[ext_resource type="PackedScene" uid="uid://cmjp8iqyl8p8q" path="res://scenes/2d/environment/battle_scene.tscn" id="12_xabbn"]
-[ext_resource type="Script" uid="uid://cydnd53pmehkk" path="res://scripts/3d/scenario/tree_event_area_trigger.gd" id="13_q75kv"]
+[ext_resource type="Script" path="res://scripts/3d/scenario/tree_event_area_trigger.gd" id="13_q75kv"]
 [ext_resource type="Script" uid="uid://cj3opsgdinbl7" path="res://scripts/3d/ui/canvas_controller.gd" id="14_yqqrb"]
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 [ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/ui/camera_on_mara.gd" id="17_kx1j3"]
 [ext_resource type="Script" uid="uid://bps6uyabpmd82" path="res://scripts/3d/ui/pause_button.gd" id="18_kx1j3"]
+[ext_resource type="PackedScene" path="res://scenes/2d/environment/test_dialogue.tscn" id="22_uhr6o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
 size = Vector3(214.6, 1, 222.035)
@@ -261,9 +261,6 @@ ghost = NodePath("../../Ghost")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BattleScene" parent="CanvasLayer" instance=ExtResource("12_xabbn")]
-visible = false
-
 [node name="CanvasController" type="Node" parent="CanvasLayer"]
 script = ExtResource("14_yqqrb")
 
@@ -303,6 +300,8 @@ offset_right = 105.0
 offset_bottom = 169.0
 text = "Pause game"
 script = ExtResource("18_kx1j3")
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
 [connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EventTriggerAreas/TreeEventAreaTrigger" to="EventTriggerAreas/TreeEventAreaTrigger" method="_on_body_entered"]

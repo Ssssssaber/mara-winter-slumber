@@ -1,3 +1,90 @@
-[gd_scene load_steps=0 format=3 uid="uid://da000hxx7xfpa"]
+[gd_scene load_steps=10 format=3 uid="uid://da000hxx7xfpa"]
 
-[node name="DialogueScene" type="Node2D"]
+[ext_resource type="Script" uid="uid://ce17bsgxtplec" path="res://scripts/2d/environment/dialogue.gd" id="1_fndms"]
+[ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="2_fh283"]
+[ext_resource type="Texture2D" uid="uid://cmf4y7br72lli" path="res://assets/2d/environment/new/окно с фоном.PNG" id="3_xvyb3"]
+[ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="4_7ysu2"]
+[ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="5_srfqe"]
+
+[sub_resource type="SystemFont" id="SystemFont_fh283"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SystemFont" id="SystemFont_002kp"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SystemFont" id="SystemFont_j5je7"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SystemFont" id="SystemFont_nkvew"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[node name="DialogueScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 217.0
+offset_bottom = 217.0
+script = ExtResource("1_fndms")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(523, 77)
+zoom = Vector2(1.1, 1.1)
+
+[node name="CharacterName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 634.0
+offset_top = -99.0
+offset_right = 756.0
+offset_bottom = -70.0
+theme_override_fonts/font = SubResource("SystemFont_fh283")
+theme_override_font_sizes/font_size = 28
+text = "Заглушка"
+
+[node name="Mara" type="Sprite2D" parent="."]
+position = Vector2(200.99998, -45)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("2_fh283")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(30, 0)
+
+[node name="Dialogue" type="Sprite2D" parent="."]
+position = Vector2(523.055, 225)
+scale = Vector2(0.24927859, 0.21)
+texture = ExtResource("3_xvyb3")
+
+[node name="DialogueText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 165.0
+offset_right = 866.0
+offset_bottom = 296.0
+theme_override_fonts/normal_font = SubResource("SystemFont_002kp")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Тест"
+
+[node name="AcceptButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 506.0
+offset_top = -14.0
+offset_right = 656.0
+offset_bottom = 51.0
+theme_override_fonts/font = SubResource("SystemFont_j5je7")
+text = "Принять"
+icon = ExtResource("4_7ysu2")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="DeclineButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 26.0
+offset_right = 656.0
+offset_bottom = 93.0
+theme_override_fonts/font = SubResource("SystemFont_nkvew")
+text = "Отклонить"
+icon = ExtResource("5_srfqe")
+flat = true
+icon_alignment = 1
+expand_icon = true
