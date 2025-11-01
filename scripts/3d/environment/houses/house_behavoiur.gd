@@ -33,8 +33,14 @@ func _ready() -> void:
 	# _spawn_ghost_near_self()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	if pie_timer.get_running():
+		return
+
 	print("House entered by: ", body.name)
 	pie_timer.stop_timer()
+
+	GameManager.pause_world_entities.emit()
+	DialogueManager.StartDialogue(Constants.TEST_DIALOG_PATH)
 
 func _spawn_ghost_near_self() -> void:
 	var ghost = GameManager.SpawnGhost()

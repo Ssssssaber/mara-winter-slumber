@@ -5,7 +5,7 @@ extends Node
 
 func _ready() -> void:
 	DialogueManager.start_dialogue.connect(init_dialogue_scene)
-    
+	
 func init_dialogue_scene(json_path):
 	var current_scene = dialogue_scene.instantiate()
 	get_parent().add_child(current_scene)

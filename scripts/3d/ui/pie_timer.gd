@@ -25,6 +25,9 @@ func start_timer(duration : float) -> void:
 	pie_timer_ui.value = 0
 	pie_timer_ui.visible = true
 
+func get_running() -> bool:
+	return timer.is_stopped() or timer.paused
+
 func stop_timer() -> void:
 	timer.stop()
 	pie_timer_ui.visible = false

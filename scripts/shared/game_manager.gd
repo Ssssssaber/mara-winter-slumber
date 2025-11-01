@@ -38,9 +38,11 @@ func Initialize() -> void:
 	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
 	
 	Initialized = true
+
+	DialogueManager.dialogue_ended.connect(func unfreeze(): unpause_world_entities.emit())
+
 	OnGameManagerReady.emit()
 	pass
-
 
 func are_all_nodes_ready(node: Node) -> bool:
 	if not node.is_inside_tree():
