@@ -223,6 +223,12 @@ func _flip_all_elements():
 	if collision:
 		# Для CollisionPolygon2D нужно инвертировать scale по X
 		collision.scale.x = abs(collision.scale.x) * (1 if is_facing_right else -1)
+		if not is_facing_right:
+			collision.position = Vector2(-19,0) # Костыль
+		else:
+			collision.position = Vector2(0,0) # Костыль два
+		
+		print(collision.scale.x)
 	
 	# Обновляем позицию HP-бара
 	_update_health_bar_position()
