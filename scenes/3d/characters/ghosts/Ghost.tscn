@@ -47,3 +47,7 @@ sprite_frames = SubResource("SpriteFrames_60gv5")
 animation = &"new_animation"
 
 [node name="FlipH" parent="." index="5" instance=ExtResource("6_pn7lr")]
+
+[node name="VanishTimer" type="Timer" parent="." index="6"]
+wait_time = 30.0
+autostart = true
