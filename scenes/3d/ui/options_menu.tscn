@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx76l70hi3djs"]
+
+[ext_resource type="PackedScene" uid="uid://mma4wensmdvx" path="res://scenes/3d/ui/base/base_label.tscn" id="1_f27u1"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BaseLabel" parent="." instance=ExtResource("1_f27u1")]
+layout_mode = 0

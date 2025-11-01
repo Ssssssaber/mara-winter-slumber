@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbkwhbax3twi2"]
+
+[ext_resource type="PackedScene" uid="uid://npsgmyqx2xme" path="res://scenes/3d/environment/world.tscn" id="1_y6ob0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1e0kk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_o1b50"]
+sky_material = SubResource("ProceduralSkyMaterial_1e0kk")
+
+[sub_resource type="Environment" id="Environment_dvyyw"]
+background_mode = 2
+sky = SubResource("Sky_o1b50")
+tonemap_mode = 2
+glow_intensity = 4.57
+glow_strength = 1.49
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.45876247, 0.54477376, 0.7561777, 1)
+fog_light_energy = 0.69
+fog_sun_scatter = 0.05
+fog_density = 0.7766
+fog_aerial_perspective = 0.145
+fog_height = -57.96
+fog_depth_curve = 0.6372799
+fog_depth_end = 248.8
+volumetric_fog_density = 0.003
+volumetric_fog_emission_energy = 327.96
+volumetric_fog_gi_inject = 2.8
+volumetric_fog_anisotropy = -0.85
+volumetric_fog_length = 194.65
+volumetric_fog_detail_spread = 1.3195081
+volumetric_fog_ambient_inject = 1.1
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dvyyw")
+
+[node name="World" parent="." instance=ExtResource("1_y6ob0")]

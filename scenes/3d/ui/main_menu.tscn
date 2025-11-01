@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc4k20vlh6tss"]
+
+[ext_resource type="Script" uid="uid://cnf6js31swr32" path="res://scripts/3d/ui/main_menu/ui_controller.gd" id="1_48svi"]
+[ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="1_yebgj"]
+[ext_resource type="PackedScene" uid="uid://mma4wensmdvx" path="res://scenes/3d/ui/base/base_label.tscn" id="2_1w25l"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIController" type="Node" parent="."]
+script = ExtResource("1_48svi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -376.0
+offset_right = 376.0
+offset_bottom = -14.0
+grow_vertical = 0
+
+[node name="StartGameButton" parent="VBoxContainer" instance=ExtResource("1_yebgj")]
+layout_mode = 2
+
+[node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("1_yebgj")]
+layout_mode = 2
+text = "Настройки"
+
+[node name="QuitGameButton" parent="VBoxContainer" instance=ExtResource("1_yebgj")]
+layout_mode = 2
+text = "Выйти из игры"
+
+[node name="BaseLabel" parent="." instance=ExtResource("2_1w25l")]
+layout_mode = 1
+offset_left = 72.0
+offset_top = 66.0
+offset_right = 320.0
+offset_bottom = 111.0
+
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="UIController" method="_on_start_game_button_pressed"]

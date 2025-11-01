@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=31 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
 [ext_resource type="MeshLibrary" uid="uid://b4x3odwua5y5a" path="res://assets/3d/environment/models/environment_tiles.tres" id="1_yqqrb"]
@@ -20,37 +20,6 @@
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 [ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/ui/camera_on_mara.gd" id="17_kx1j3"]
 [ext_resource type="Script" uid="uid://bps6uyabpmd82" path="res://scripts/3d/ui/pause_button.gd" id="18_kx1j3"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yqqrb"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_o1b50"]
-sky_material = SubResource("ProceduralSkyMaterial_yqqrb")
-
-[sub_resource type="Environment" id="Environment_247o4"]
-background_mode = 2
-sky = SubResource("Sky_o1b50")
-tonemap_mode = 2
-glow_intensity = 4.57
-glow_strength = 1.49
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.45876247, 0.54477376, 0.7561777, 1)
-fog_light_energy = 0.69
-fog_sun_scatter = 0.05
-fog_density = 0.7766
-fog_aerial_perspective = 0.145
-fog_height = -57.96
-fog_depth_curve = 0.6372799
-fog_depth_end = 248.8
-volumetric_fog_density = 0.003
-volumetric_fog_emission_energy = 327.96
-volumetric_fog_gi_inject = 2.8
-volumetric_fog_anisotropy = -0.85
-volumetric_fog_length = 194.65
-volumetric_fog_detail_spread = 1.3195081
-volumetric_fog_ambient_inject = 1.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
 size = Vector3(214.6, 1, 222.035)
@@ -118,9 +87,6 @@ sky_mode = 1
 transform = Transform3D(0.9950954, 0, 0.098920286, 0, 1, 0, -0.098920286, 0, 0.9950954, 0, 20, 0)
 light_color = Color(0.7058824, 0.78431374, 0.98039216, 1)
 sky_mode = 1
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_247o4")
 
 [node name="Boundries" type="Node3D" parent="."]
 

@@ -1,15 +1,20 @@
 extends Node
 
-@onready var Camera : Node3D = get_parent().get_node("World/CameraParent/CameraController")
-@onready var BuildingGridMap : GridMap= get_parent().get_node_or_null("World/GridMaps/BuildingsGridMap")
-@onready var FloorGridMap : GridMap = get_parent().get_node("World/GridMaps/FloorGridMap")
-@onready var MainPath : Path3D = get_parent().get_node("World/Paths/MainPath")
-@onready var CanvasControl : Node = get_parent().get_node("World/CanvasLayer/CanvasController")
-@onready var GhostScene = load("res://scenes/3d/characters/ghosts/Ghost.tscn")
-@onready var PauseManagerScene = load("res://scenes/3d/characters/base/pause_manager.tscn")
+const WORLD_NODE_PATH = "MainScene/World/"
+
+var Camera : Node3D 
+var BuildingGridMap : GridMap
+var FloorGridMap : GridMap 
+var MainPath : Path3D 
+var CanvasControl : Node 
+
+var GhostScene = load("res://scenes/3d/characters/ghosts/Ghost.tscn")
+var PauseManagerScene = load("res://scenes/3d/characters/base/pause_manager.tscn")
+var WorldScenePath = "res://scenes/3d/environment/world.tscn"
 
 var IsCameraInInnerArea : bool = false
 var IsGamePause : bool = false
+var _auto_initilize : bool = true
 
 signal pause_world_entities()
 signal unpause_world_entities()
@@ -18,9 +23,45 @@ signal special_tree_trigger_activate()
 signal evil_ghost_trigger_activate()
 
 signal OnGameManagerReady()
+
 func _ready() -> void:
+	if _auto_initilize:
+		Initialize()
+
+func Initialize() -> void:
+	Camera = get_parent().get_node(WORLD_NODE_PATH + "CameraParent/CameraController")
+	BuildingGridMap = get_parent().get_node_or_null(WORLD_NODE_PATH + "GridMaps/BuildingsGridMap")
+	FloorGridMap = get_parent().get_node(WORLD_NODE_PATH + "GridMaps/FloorGridMap")
+	MainPath = get_parent().get_node(WORLD_NODE_PATH + "Paths/MainPath")
+	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
+	
 	OnGameManagerReady.emit()
-	print("Game Manager initialized")
+	pass
+
+
+func are_all_nodes_ready(node: Node) -> bool:
+	if not node.is_inside_tree():
+		return false
+	for child in node.get_children():
+		if not child.is_inside_tree() or not are_all_nodes_ready(child):
+			return false
+	return true
+
+func load_scene_and_wait_for_ready(scene_path: String) -> Node:
+	var MyScene = load(scene_path)
+	var my_scene_instance = MyScene.instantiate()
+	add_child(my_scene_instance)
+
+	await get_tree().process_frame
+
+	while not are_all_nodes_ready(my_scene_instance):
+		await get_tree().process_frame
+
+	return my_scene_instance
+
+func StartGame() -> void:
+	await load_scene_and_wait_for_ready(WorldScenePath)
+	Initialize()
 
 func GetCamera() -> Camera3D:
 	return Camera
