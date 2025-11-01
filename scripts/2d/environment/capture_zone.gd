@@ -3,7 +3,7 @@ extends Area2D
 class_name CaptureZone
 
 # Настройки зоны
-var zone_size: Vector2 = Vector2(100, 80)
+var zone_size: Vector2 = Vector2(200, 160)
 var activation_time: float = 3.0
 var is_active: bool = false
 var has_triggered: bool = false
@@ -15,6 +15,7 @@ var is_preview: bool = false
 @onready var timer: Timer = $Timer
 
 var countdown_label: Label
+
 
 func _ready():
 	# Базовая настройка
@@ -65,8 +66,15 @@ func activate():
 	# Обновляем визуал на боевой режим
 	_update_visual()
 	_start_countdown()
+	_notify_soul_about_zone()
 	
 	print("Зона захвата активирована, таймер запущен. Позиция: ", global_position)
+
+func _notify_soul_about_zone():
+	var souls = get_tree().get_nodes_in_group("soul")
+	for soul in souls:
+		if soul.has_method("add_capture_zone"):
+			soul.add_capture_zone(self)
 
 func _setup_collision():
 	var shape = RectangleShape2D.new()
@@ -166,11 +174,19 @@ func _on_timer_timeout():
 		is_active = false
 		has_triggered = true
 		_update_visual()
+
+		_remove_zone_from_soul()
 		
 		# Удаляем через 1 секунду после срабатывания
 		await get_tree().create_timer(1.0).timeout
 		if is_inside_tree():
 			queue_free()
+
+func _remove_zone_from_soul():
+	var souls = get_tree().get_nodes_in_group("soul")
+	for soul in souls:
+		if soul.has_method("remove_capture_zone"):
+			soul.remove_capture_zone(self)
 
 func _capture_soul(soul: Node):
 	print("Попытка нанести урон душе...")

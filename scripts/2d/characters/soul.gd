@@ -21,6 +21,11 @@ var target_direction: Vector2 = Vector2(1, 0)
 var is_frightened: bool = false
 var fright_timer: float = 0.0
 var fright_duration: float = 1.5
+var fright_direction: Vector2 = Vector2.ZERO  # Направление испуга
+
+var active_capture_zones: Array = []  # Массив активных зон захвата
+var avoidance_strength: float = 2.0   # Сила избегания зон
+var detection_radius: float = 300.0   # Радиус обнаружения зон
 
 # Здоровье
 var max_health: int = 2
@@ -64,22 +69,81 @@ func _physics_process(delta):
 	if is_moving:
 		_update_movement(delta)
 		_update_sprite_direction()
+		_update_zone_avoidance()
 		_move_soul(delta)
+
+func _update_zone_avoidance():
+	# Если активен испуг - НЕ ИЗБЕГАЕМ ЗОНЫ
+	if is_frightened:
+		return
+	
+	var avoidance_direction = Vector2.ZERO
+	var zone_count = 0
+	
+	for zone in active_capture_zones:
+		if is_instance_valid(zone):
+			var zone_global_pos = zone.global_position
+			var distance_to_zone = global_position.distance_to(zone_global_pos)
+			
+			if distance_to_zone < detection_radius:
+				var direction_from_zone = (global_position - zone_global_pos).normalized()
+				var strength = 1.0 - (distance_to_zone / detection_radius)
+				avoidance_direction += direction_from_zone * strength
+				zone_count += 1
+	
+	if zone_count > 0:
+		avoidance_direction = avoidance_direction.normalized()
+		var new_direction = (current_direction + avoidance_direction * avoidance_strength).normalized()
+		current_direction = new_direction
+		target_direction = current_direction
+
+func add_capture_zone(zone: Area2D):
+	if not active_capture_zones.has(zone):
+		active_capture_zones.append(zone)
+		print("Добавлена зона захвата для избегания. Всего зон: ", active_capture_zones.size())
+
+# Функция для удаления зоны из списка активных
+func remove_capture_zone(zone: Area2D):
+	if active_capture_zones.has(zone):
+		active_capture_zones.erase(zone)
+		print("Удалена зона захвата. Осталось зон: ", active_capture_zones.size())
 
 func _update_movement(delta):
 	wander_timer += delta
 	
-	if not is_frightened:
+	# ОБНОВЛЕННАЯ ЛОГИКА С ПРИОРИТЕТАМИ
+	if is_frightened:
+		# ВЫСШИЙ ПРИОРИТЕТ: Испуг - используем заданное направление испуга
+		current_direction = fright_direction
+		target_direction = current_direction
+		fright_timer += delta
+		
+		# Завершаем испуг по таймеру
+		if fright_timer >= fright_duration:
+			is_frightened = false
+			print("Испуг закончился, возвращаемся к нормальному поведению")
+			
+	elif not active_capture_zones.is_empty():
+		# СРЕДНИЙ ПРИОРИТЕТ: Избегание зон
+		_update_zone_avoidance()
+		
+	else:
+		# НИЗШИЙ ПРИОРИТЕТ: Случайное блуждание
 		if wander_timer >= wander_interval:
 			_set_random_direction()
 			wander_timer = 0.0
 		
-		# Плавно поворачиваем к целевому направлению
 		current_direction = current_direction.move_toward(target_direction, smooth_turn_speed * delta)
 		current_direction = current_direction.normalized()
 
+
 func _move_soul(delta):
-	velocity = current_direction * movement_speed
+	# Разная скорость в зависимости от состояния
+	var current_speed = movement_speed
+	if is_frightened:
+		current_speed = 20.0  # Ускорение при испуге
+	
+	velocity = current_direction * current_speed
 	
 	var area_rect = soul_area.get_rect()
 	var soul_size = Vector2(80, 80)
@@ -99,28 +163,32 @@ func _move_soul(delta):
 	
 	if new_position.x < left_bound:
 		current_direction.x = abs(current_direction.x)
+		if is_frightened:
+			fright_direction.x = abs(fright_direction.x)  # Также обновляем направление испуга
 		new_position.x = left_bound
 		bounced = true
-		print("Отскок от левой границы (безопасная зона)")
 	elif new_position.x > right_bound:
 		current_direction.x = -abs(current_direction.x)
+		if is_frightened:
+			fright_direction.x = -abs(fright_direction.x)
 		new_position.x = right_bound
 		bounced = true
-		print("Отскок от правой границы (безопасная зона)")
 	
 	if new_position.y < top_bound:
 		current_direction.y = abs(current_direction.y)
+		if is_frightened:
+			fright_direction.y = abs(fright_direction.y)
 		new_position.y = top_bound
 		bounced = true
-		print("Отскок от верхней границы (безопасная зона)")
 	elif new_position.y > bottom_bound:
 		current_direction.y = -abs(current_direction.y)
+		if is_frightened:
+			fright_direction.y = -abs(fright_direction.y)
 		new_position.y = bottom_bound
 		bounced = true
-		print("Отскок от нижней границы (безопасная зона)")
 	
-	# Добавляем небольшую случайность при отскоке
-	if bounced:
+	# Добавляем небольшую случайность при отскоке (кроме режима испуга)
+	if bounced and not is_frightened:
 		current_direction = current_direction.rotated(randf_range(-0.2, 0.2))
 		current_direction = current_direction.normalized()
 		target_direction = current_direction
@@ -172,45 +240,32 @@ func _update_health_bar_position():
 		health_bar.position = Vector2(-health_bar_offset.x - health_bar.size.x - 10, health_bar_offset.y)
 
 func intimidate_from_point(fright_point_global: Vector2):
-	print("=== ИСПУГ ОТ ТОЧКИ ===")
-	print("Глобальная позиция точки испуга: ", fright_point_global)
-	print("Глобальная позиция души: ", global_position)
+	print("=== ИСПУГ ОТ ТОЧКИ (ВЫСШИЙ ПРИОРИТЕТ) ===")
 	
-	# Вектор от души к точке испуга в глобальных координатах
+	# Вектор от души к точке испуга
 	var to_fright_point = fright_point_global - global_position
-	print("Вектор к точке испуга (глобальный): ", to_fright_point)
-	print("Длина вектора: ", to_fright_point.length())
 	
 	# Двигаемся в ПРОТИВОПОЛОЖНУЮ сторону
 	var direction_away = -to_fright_point.normalized()
 	
-	print("Направление ОТ точки: ", direction_away)
-	
 	# Если точка очень близко к душе, выбираем случайное направление
-	if to_fright_point.length() < 20:  
+	if to_fright_point.length() < 50:
 		print("Точка слишком близко, выбираем случайное направление")
 		var random_angle = randf() * 2 * PI
 		direction_away = Vector2(cos(random_angle), sin(random_angle))
 	
-	# Устанавливаем новое направление
-	current_direction = direction_away.normalized()
+	# Устанавливаем направление испуга (ВЫСШИЙ ПРИОРИТЕТ)
+	fright_direction = direction_away.normalized()
+	current_direction = fright_direction
 	target_direction = current_direction
-	
-	print("Установлено направление движения: ", current_direction)
 	
 	# Активируем режим испуга
 	is_frightened = true
 	fright_timer = 0.0
 	movement_speed = 20.0
 	
-	# Возвращаем нормальную скорость через время
-	get_tree().create_timer(fright_duration).timeout.connect(
-		func(): 
-			if is_moving and is_instance_valid(self):
-				movement_speed = 15.0
-				is_frightened = false
-				print("Испуг закончился")
-	, CONNECT_ONE_SHOT)
+	print("Установлено направление испуга: ", fright_direction)
+	print("Приоритет: ВЫСШИЙ (игнорируем зоны захвата)")
 
 # Альтернативный вариант - испуг в противоположную сторону
 func intimidate_from_point_alternative(fright_point_global: Vector2):
@@ -241,9 +296,22 @@ func intimidate_from_point_alternative(fright_point_global: Vector2):
 
 # Простой испуг (старая механика)
 func intimidate():
-	current_direction = -current_direction
+	print("=== ПРОСТОЙ ИСПУГ (ВЫСШИЙ ПРИОРИТЕТ) ===")
+	fright_direction = -current_direction  # Просто разворачиваемся
+	current_direction = fright_direction
 	target_direction = current_direction
-	print("Простой испуг! Направление: ", current_direction)
+	
+	is_frightened = true
+	fright_timer = 0.0
+	movement_speed = 20.0
+	
+	# Возвращаем нормальную скорость через время
+	get_tree().create_timer(fright_duration).timeout.connect(
+		func(): 
+			if is_moving and is_instance_valid(self):
+				movement_speed = 15.0
+				is_frightened = false
+	, CONNECT_ONE_SHOT)
 
 func take_damage() -> bool:
 	if current_health > 0:
