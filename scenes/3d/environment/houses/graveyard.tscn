@@ -324,7 +324,7 @@ mesh = SubResource("ArrayMesh_xfl3l")
 skeleton = NodePath("")
 
 [node name="Graves" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6613455, 0, -4.9371796)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6613455, -2, -4.9371796)
 
 [node name="Grave_1" type="MeshInstance3D" parent="Graves"]
 transform = Transform3D(200, 0, 0, 0, -8.742278e-06, 200, 0, -200, -8.742278e-06, 3.9901192, 1.5358071e-07, 3.5135171)

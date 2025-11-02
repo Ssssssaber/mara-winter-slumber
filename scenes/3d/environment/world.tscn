@@ -191,7 +191,7 @@ transform = Transform3D(-0.9441467, 0, 0.32952583, 0, 1, 0, -0.32952583, 0, -0.9
 transform = Transform3D(-0.92053884, 0, -0.3906509, 0, 1, 0, 0.3906509, 0, -0.92053884, 38.698605, -0.8590965, 50.870686)
 
 [node name="graveyard" parent="GridMaps/NavigationRegion3D" instance=ExtResource("11_jsy7v")]
-transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9986047, -1.1683218, 0.56486607, -52.87333)
+transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9986047, -1.1683218, 2.0160298, -52.87333)
 
 [node name="SmallHome4" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.632515, -0.8590965, -28.977667)
@@ -271,49 +271,48 @@ evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTr
 [node name="CanvasController" type="Node" parent="CanvasLayer"]
 script = ExtResource("14_yqqrb")
 
-[node name="CameraOnMaraButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("mara_reference")]
-offset_right = 140.0
-offset_bottom = 31.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -615.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+
+[node name="CameraOnMaraButton" type="Button" parent="CanvasLayer/HBoxContainer" node_paths=PackedStringArray("mara_reference")]
+layout_mode = 2
 text = "Camera On Mara"
 script = ExtResource("17_kx1j3")
-mara_reference = NodePath("../../Mara")
+mara_reference = NodePath("../../../Mara")
 camera_on_mara = true
 
-[node name="IgnoreGhostsButton" type="Button" parent="CanvasLayer"]
-offset_left = 3.0
-offset_top = 70.0
-offset_right = 116.0
-offset_bottom = 101.0
+[node name="IgnoreGhostsButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "Ignore ghosts"
 
-[node name="SpeedBuffButton" type="Button" parent="CanvasLayer"]
-offset_left = 3.0
-offset_top = 35.0
-offset_right = 95.0
-offset_bottom = 66.0
+[node name="SpeedBuffButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "Speed buff"
 
-[node name="ChangeDirecitonButton" type="Button" parent="CanvasLayer"]
-offset_left = 3.0
-offset_top = 104.0
-offset_right = 143.0
-offset_bottom = 135.0
+[node name="ChangeDirecitonButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "Change direction"
 
-[node name="PauseButton" type="Button" parent="CanvasLayer"]
-offset_left = 3.0
-offset_top = 138.0
-offset_right = 105.0
-offset_bottom = 169.0
+[node name="PauseButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "Pause game"
 script = ExtResource("18_kx1j3")
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 
 [node name="Node2D" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
 [connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EventTriggerAreas/TreeEventAreaTrigger" to="EventTriggerAreas/TreeEventAreaTrigger" method="_on_body_entered"]
-[connection signal="pressed" from="CanvasLayer/CameraOnMaraButton" to="CanvasLayer/CameraOnMaraButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/SpeedBuffButton" to="CanvasLayer/CanvasController" method="_on_speed_buff_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ChangeDirecitonButton" to="CanvasLayer/CanvasController" method="_on_change_direciton_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/CameraOnMaraButton" to="CanvasLayer/HBoxContainer/CameraOnMaraButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/IgnoreGhostsButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/SpeedBuffButton" to="CanvasLayer/CanvasController" method="_on_speed_buff_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/ChangeDirecitonButton" to="CanvasLayer/CanvasController" method="_on_change_direciton_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/PauseButton" to="CanvasLayer/HBoxContainer/PauseButton" method="_on_pressed"]

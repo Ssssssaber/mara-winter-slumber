@@ -5,6 +5,7 @@ extends Node3D
 
 @export var start_color : Color = Color(0, 1, 0)
 @export var end_color : Color = Color(1, 0, 0)
+@export var _autostart : bool = false
 
 @export var min_time : float = 10.0
 @export var max_time : float = 40.0
@@ -17,7 +18,8 @@ func _ready() -> void:
 	GameManager.pause_world_entities.connect(pause_timer)
 	GameManager.unpause_world_entities.connect(unpause_timer)
 
-	start_timer(rng.randf_range(min_time, max_time)) # Example: start a 5-second timer
+	if _autostart:
+		start_timer(rng.randf_range(min_time, max_time)) # Example: start a 5-second timer
 
 func start_timer(duration : float) -> void:
 	timer.wait_time = duration

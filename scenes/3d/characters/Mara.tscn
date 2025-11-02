@@ -118,7 +118,14 @@ text = "Mara"
 
 [node name="AbilitiesManager" type="Node" parent="." index="4"]
 script = ExtResource("6_ri85a")
-speed_buff_modifier = 3.0
 speed_buff_duration = 5.0
+
+[node name="SpeedBuffCooldownTimer" type="Timer" parent="AbilitiesManager" index="0"]
+wait_time = 7.0
+one_shot = true
+
+[node name="IgnoreGhostsCooldownTimer" type="Timer" parent="AbilitiesManager" index="1"]
+wait_time = 8.0
+one_shot = true
 
 [node name="FlipH" parent="." index="6" instance=ExtResource("9_3gpgx")]
