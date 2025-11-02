@@ -25,8 +25,8 @@ bg_color = Color(0, 0, 0, 0.64705884)
 [node name="BaseAbilityButton" type="Button"]
 offset_left = 481.0
 offset_top = 152.0
-offset_right = 636.0
-offset_bottom = 284.0
+offset_right = 606.0
+offset_bottom = 277.0
 pivot_offset = Vector2(42.84, 17.935)
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -49,20 +49,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_kq7l3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dmjve")
-value = 1.44
 fill_mode = 2
 show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -27.0
-offset_right = 46.0
-offset_bottom = 30.395065
+offset_left = -43.0
+offset_top = -30.0
+offset_right = 45.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ug4v2")
-expand_mode = 5
+expand_mode = 2

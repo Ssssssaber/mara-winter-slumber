@@ -280,10 +280,10 @@ camera_on_mara = true
 [node name="InitDialogueNode" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 43.0
-offset_top = 500.0
-offset_right = 848.0
-offset_bottom = 608.0
+offset_left = 36.0
+offset_top = 504.0
+offset_right = 853.0
+offset_bottom = 610.0
 size_flags_horizontal = 0
 theme_override_constants/separation = 69
 
