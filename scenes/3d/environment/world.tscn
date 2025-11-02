@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=33 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
 [ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 [ext_resource type="Script" uid="uid://cj5fmhy0n0a7f" path="res://scripts/3d/ui/camera_on_mara.gd" id="17_kx1j3"]
 [ext_resource type="Script" uid="uid://bps6uyabpmd82" path="res://scripts/3d/ui/pause_button.gd" id="18_kx1j3"]
+[ext_resource type="Script" uid="uid://hremql1wbucc" path="res://scripts/3d/scenario/dialog_choices_handler.gd" id="18_uhr6o"]
 [ext_resource type="PackedScene" uid="uid://7autqshfxdf4" path="res://scenes/2d/environment/init_dialogue.tscn" id="22_uhr6o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
@@ -176,9 +177,11 @@ size = Vector3(119.815, 1, 150)
 
 [node name="SmallHome" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.7189396, 0, -0.69507253, 0, 1, 0, 0.69507253, 0, -0.7189396, -24.780178, -0.8590975, -29.798313)
+json_dialogue_path = "res://assets/2d/dialogues/wife.json"
 
 [node name="SmallHome2" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.9441466, 0, -0.3295258, 0, 1, 0, 0.3295258, 0, -0.9441466, -31.861435, -0.8590965, -12.193072)
+json_dialogue_path = "res://assets/2d/dialogues/children.json"
 is_abandoned = true
 
 [node name="FemaleWalkingAround3" parent="GridMaps/NavigationRegion3D/SmallHome2" instance=ExtResource("12_kx1j3")]
@@ -192,7 +195,7 @@ transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9
 
 [node name="SmallHome4" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.632515, -0.8590965, -28.977667)
-json_dialogue_path = ""
+json_dialogue_path = "res://assets/2d/dialogues/tree.json"
 
 [node name="FemaleWalkingAround" parent="GridMaps/NavigationRegion3D/SmallHome4" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.06036917, 0, -0.9981762, 0, 1, 0, 0.9981762, 0, -0.06036917, 5.2168465, 4.2940965, -19.757956)
@@ -218,20 +221,18 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.119, 0.685, -49.251)
 [node name="EventTriggerAreas" type="Node3D" parent="."]
 
 [node name="EvilGhostSpawnAreaTrigger" type="Area3D" parent="EventTriggerAreas" node_paths=PackedStringArray("spawn_point")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.765, 0, -5.824)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.849937, 0, -40.52699)
 collision_layer = 4
 script = ExtResource("15_o1b50")
-_activated = true
 spawn_point = NodePath("../../GridMaps/NavigationRegion3D/graveyard")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EventTriggerAreas/EvilGhostSpawnAreaTrigger"]
 shape = SubResource("SphereShape3D_o1b50")
 
 [node name="TreeEventAreaTrigger" type="Area3D" parent="EventTriggerAreas" node_paths=PackedStringArray("special_tree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.605, 0, -41.97)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.605, 0, -41.97)
 collision_layer = 4
 script = ExtResource("13_q75kv")
-_activated = true
 special_tree = NodePath("../../GridMaps/NavigationRegion3D/QuestEntities/SpecialTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EventTriggerAreas/TreeEventAreaTrigger"]
@@ -256,10 +257,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.443, 0, -45.749)
 
 [node name="Setup" type="Node" parent="Scripts" node_paths=PackedStringArray("mara", "ghost")]
 script = ExtResource("5_qnawv")
-mara_inverted = true
 ghost_inverted = true
 mara = NodePath("../../Mara")
 ghost = NodePath("../../Ghost")
+
+[node name="DialogChoicesHandler" type="Node" parent="Scripts" node_paths=PackedStringArray("tree_area_trigger", "evil_ghost_area_trigger")]
+script = ExtResource("18_uhr6o")
+tree_area_trigger = NodePath("../../EventTriggerAreas/TreeEventAreaTrigger")
+evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTrigger")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -46,7 +46,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		DialogueManager.StartBattleWithoutDialogue()
 		return
 
-	DialogueManager.StartDialogue(Constants.TEST_DIALOG_PATH)
+	DialogueManager.StartDialogue(json_dialogue_path)
 
 func _spawn_ghost_near_self() -> void:
 	var ghost = GameManager.SpawnGhost()

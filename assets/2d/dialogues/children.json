@@ -1,0 +1,31 @@
+{
+  "choice_dialogue": {
+	"character_sprite": "res://assets/2d/characters/new/man.png",
+	"character_name": "Мужик с детьми",
+	"dialogue_lines": [
+	  "Текст1",
+	  "Текст2",
+	  "Текст3",
+      "Сосал?"
+	],
+	"accept_response": {
+	  "answer": "Благодарность",
+	  "next": "agreed"
+	},
+	"decline_response": {
+	  "answer": "Fuck me",
+	  "next": "FIGHT"
+	}
+  },
+  "agreed": {
+	"illustration": "res://assets/2d/dialogues/tree.png",
+	"character_name": "Мужик",
+	"dialogue_lines": [
+	  "Текст1",
+	  "Текст2",
+	  "Текст3",
+	  "Текст4",
+      "FIN"
+	]
+  }
+}

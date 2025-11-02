@@ -1,8 +1,9 @@
 extends Node
 
 signal dialogue_started()
-signal dialogue_ended()
+signal dialogue_ended(ended_dialog_json_path : String)
 signal battle_started_without_dialogue()
+signal battle_ended()
 
 signal start_dialogue(dialogue_json_path : String)
 
@@ -14,7 +15,10 @@ func StartDialogue(dialogue_json_path : String) -> void:
 func StartBattleWithoutDialogue() -> void:
 	battle_started_without_dialogue.emit()
 
+func EndBattle() -> void:
+	battle_ended.emit()
+
 # 2d: ends dialogue on "FIN"
-func EndDialogue() -> void:
-	dialogue_ended.emit()
+func EndDialogue(ended_dialog_json_path : String) -> void:
+	dialogue_ended.emit(ended_dialog_json_path)
 	print("диалогу пизда")

@@ -10,6 +10,8 @@ extends Control
 @export var test_mode: bool = true
 @export var test_json_path: String = "res://assets/2d/dialogues/test_dialogue.json"
 
+var _current_dialog_path : String
+
 signal dialog_ended_with_battle()
 
 # Переменные для управления диалогом
@@ -38,6 +40,7 @@ func parse_json_start_dialogue(dialogue_json_path: String):
 	var file = FileAccess.open(dialogue_json_path, FileAccess.READ)
 	if file:
 		var json_text = file.get_as_text()
+		print(dialogue_json_path)
 		print("Содержимое JSON: ", json_text)
 		
 		# Используем JSON.parse_string вместо JSON.new().parse()
@@ -46,6 +49,7 @@ func parse_json_start_dialogue(dialogue_json_path: String):
 			dialogue_data = parse_result
 			print("JSON успешно распарсен: ", dialogue_data)
 			print("Ключи в словаре: ", dialogue_data.keys())
+			_current_dialog_path = dialogue_json_path
 			start_dialogue()
 		else:
 			push_error("Ошибка парсинга JSON")
@@ -187,7 +191,7 @@ func _input(event):
 				show_line(current_line)
 			elif current_dialogue != "choice_dialogue":
 				# Для не-choice диалогов закрываем сцену после последнего клика
-				DialogueManager.EndDialogue()
+				DialogueManager.EndDialogue(_current_dialog_path)
 				dialogue_playing = false
 				queue_free()
 

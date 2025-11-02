@@ -9,3 +9,6 @@ const INDEFINITE_DURATION : float = -1.0
 const CAMERA_DOT_MIN_DOT_RODUCT : float = 0.00001
 
 const TEST_DIALOG_PATH : String = "res://assets/2d/dialogues/test_dialogue.json"
+const TREE_DIALOG_PATH : String = "res://assets/2d/dialogues/tree.json"
+const WIFE_DIALOG_PATH : String = "res://assets/2d/dialogues/wife.json"
+const CHILDREN_DIALOG_PATH : String = "res://assets/2d/dialogues/children.json"
