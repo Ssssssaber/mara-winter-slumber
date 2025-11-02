@@ -14,11 +14,14 @@ class_name BattleController
 
 # Настройки зон захвата
 var capture_zone_scene: PackedScene
-var zone_size: Vector2 = Vector2(100, 80)
+var zone_size: Vector2 = Vector2(200, 160)
 
 # Состояние боя
 var battle_active: bool = true
-var cooldown: bool = false
+var intimidate_cooldown: bool = false
+var capture_cooldown: bool = false
+var intimidate_cooldown_time: float = 1.0    # 1 секунда для испуга
+var capture_cooldown_time: float = 3.0       # 3 секунды для захвата
 
 # Режимы размещения
 var is_placing_zone: bool = false
@@ -49,12 +52,24 @@ func _input(event):
 			_cancel_intimidate_placement()
 
 func _on_intimidate_pressed():
-	if battle_active and not cooldown and not is_placing_intimidate and not is_placing_zone:
+	# Проверяем кулдаун конкретно для испуга
+	if battle_active and not intimidate_cooldown and not is_placing_intimidate and not is_placing_zone:
 		_start_intimidate_placement()
+	else:
+		if intimidate_cooldown:
+			print("Испуг на кулдауне!")
+		elif is_placing_zone:
+			print("Сначала закончите размещение зоны!")
 
 func _on_capture_pressed():
-	if battle_active and not cooldown and not is_placing_zone and not is_placing_intimidate:
+	# Проверяем кулдаун конкретно для захвата
+	if battle_active and not capture_cooldown and not is_placing_zone and not is_placing_intimidate:
 		_start_zone_placement()
+	else:
+		if capture_cooldown:
+			print("Захват на кулдауне!")
+		elif is_placing_intimidate:
+			print("Сначала закончите размещение испуга!")
 
 func _start_intimidate_placement():
 	is_placing_intimidate = true
@@ -72,25 +87,45 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 	if not is_placing_intimidate or not temp_intimidate_point:
 		return
 	
-	# Используем текущую позицию точки
-	var final_global_pos = temp_intimidate_point.global_position
+	var mouse_global_pos = mouse_event.global_position
 	
-	# Деактивируем предпросмотр
-	if temp_intimidate_point.has_method("activate"):
-		temp_intimidate_point.activate()
+	print("=== ПРИМЕНЕНИЕ ИСПУГА ===")
 	
-	print("Точка испуга: ", final_global_pos)
-	print("Душа: ", soul.global_position)
+	# Проверяем что позиция внутри SoulArea
+	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
+	if area_global_rect.has_point(mouse_global_pos):
+		# Передаем глобальные координаты напрямую!
+		soul.intimidate_from_point(mouse_global_pos)
+		
+		# Визуализируем точку испуга
+		temp_intimidate_point.global_position = mouse_global_pos
+		
+		battle_text.text = "Душа испугана! Она убегает от точки испуга."
+		
+		# Удаляем точку через короткое время
+		var timer = get_tree().create_timer(0.5)
+		await timer.timeout
+		_remove_intimidate_point()
+		
+		is_placing_intimidate = false
+		_start_intimidate_cooldown()  # Запускаем кулдаун для ИСПУГА
+	else:
+		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
+
+func _start_intimidate_cooldown():
+	intimidate_cooldown = true
+	intimidate_btn.disabled = true
 	
-	# Передаем координаты в душу
-	soul.intimidate_from_point(final_global_pos)
+	print("Кулдаун испуга начался: ", intimidate_cooldown_time, "с")
 	
-	battle_text.text = "Душа испугана!"
+	# Таймер для ИСПУГА
+	var cooldown_timer = get_tree().create_timer(intimidate_cooldown_time)
+	await cooldown_timer.timeout
 	
-	await get_tree().create_timer(0.5).timeout
-	_remove_intimidate_point()
-	is_placing_intimidate = false
-	_start_cooldown()
+	if battle_active:
+		intimidate_cooldown = false
+		intimidate_btn.disabled = false
+		print("Кулдаун испуга закончился")
 
 func _cancel_intimidate_placement():
 	if is_placing_intimidate and temp_intimidate_point:
@@ -124,7 +159,7 @@ func _finalize_zone_placement(mouse_event: InputEventMouseButton):
 	# Проверяем что позиция внутри SoulArea
 	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
 	if area_global_rect.has_point(final_global_pos):
-		# Фиксируем позицию зоны (оставляем как есть)
+		# Фиксируем позицию зоны
 		temp_zone.activate()
 		
 		battle_text.text = "Зона захвата установлена! Сработает через 3 секунды."
@@ -134,9 +169,24 @@ func _finalize_zone_placement(mouse_event: InputEventMouseButton):
 		is_placing_zone = false
 		temp_zone = null
 		
-		_start_cooldown()
+		_start_capture_cooldown()  # Запускаем кулдаун для ЗАХВАТА
 	else:
 		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
+
+func _start_capture_cooldown():
+	capture_cooldown = true
+	capture_btn.disabled = true
+	
+	print("Кулдаун захвата начался: ", capture_cooldown_time, "с")
+	
+	# Таймер для ЗАХВАТА
+	var cooldown_timer = get_tree().create_timer(capture_cooldown_time)
+	await cooldown_timer.timeout
+	
+	if battle_active:
+		capture_cooldown = false
+		capture_btn.disabled = false
+		print("Кулдаун захвата закончился")
 
 func _cancel_zone_placement():
 	if is_placing_zone and temp_zone:
@@ -145,25 +195,14 @@ func _cancel_zone_placement():
 		is_placing_zone = false
 		battle_text.text = "Размещение зоны отменено"
 
-func _start_cooldown():
-	cooldown = true
-	intimidate_btn.disabled = true
-	capture_btn.disabled = true
-	
-	await get_tree().create_timer(1.0).timeout
-	
-	if battle_active:
-		cooldown = false
-		intimidate_btn.disabled = false
-		capture_btn.disabled = false
-
 func _update_health_ui():
 	if is_instance_valid(soul):
 		soul_health_label.text = "Здоровье души: %d/%d" % [soul.current_health, soul.max_health]
 
 func end_battle(victory: bool):
 	battle_active = false
-	cooldown = true
+	intimidate_cooldown = true
+	capture_cooldown = true
 	is_placing_zone = false
 	is_placing_intimidate = false
 	
