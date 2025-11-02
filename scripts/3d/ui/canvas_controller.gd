@@ -44,6 +44,7 @@ func _init() -> void:
 	DialogueManager.battle_started_without_dialogue.connect(hide_ui_json)
 	DialogueManager.dialogue_ended.connect(show_ui_json)
 	DialogueManager.battle_ended.connect(show_ui_json)
+	DialogueManager.battle_ended_out_of_time.connect(show_ui_json)
 
 func init() -> void:
 	change_direction_button.pressed.connect(_on_change_direciton_button_pressed)

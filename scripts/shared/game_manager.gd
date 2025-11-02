@@ -44,6 +44,7 @@ func Initialize() -> void:
 
 	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): unpause_world_entities.emit())
 	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
+	DialogueManager.battle_ended_out_of_time.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
 
 	OnGameManagerReady.emit()
 	pass

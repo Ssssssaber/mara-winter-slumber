@@ -55,7 +55,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _connect_to_dialog_manager() -> void:
 	DialogueManager.battle_ended_out_of_time.connect(_on_battle_out_of_time)
 	DialogueManager.battle_ended.connect(_disconnect_from_battle_out_of_time)
-	DialogueManager.battle_ended.connect(_disconnect_from_battle_out_of_time)
+	DialogueManager.dialogue_ended.connect(_disconnect_from_battle_out_of_time)
 
 func _disconnect_from_battle_out_of_time(_json_path : String) -> void:
 	DialogueManager.battle_ended_out_of_time.disconnect(_on_battle_out_of_time)

@@ -13,6 +13,7 @@ signal start_last_home()
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_handle_dialogue_end)
 	DialogueManager.battle_ended.connect(_handle_battle_end)
+	DialogueManager.battle_ended_out_of_time.connect(_handle_battle_end)
 	
 func _handle_dialogue_end(ended_dialog_json_path : String) -> void:
 	var dialogue_id = ended_dialog_json_path
@@ -29,7 +30,6 @@ func _handle_dialogue_end(ended_dialog_json_path : String) -> void:
 func _handle_battle_end(ended_dialog_json_path : String) -> void:
 	var dialogue_id = ended_dialog_json_path
 	if (dialogue_id == Constants.TREE_DIALOG_PATH):
-		special_tree_trigger_activate.emit()
 		start_last_home.emit()
 	if (dialogue_id == Constants.LAST_BATTLE_ID):
 		game_ui.visible = false

@@ -9,7 +9,6 @@ class_name BattleController
 @onready var battle_text: Label = get_node("../BattleText")
 @onready var intimidate_btn: Button = get_node("../IntimidateButton")
 @onready var capture_btn: Button = get_node("../CaptureButton")
-@onready var camera: Camera2D = get_node("../Camera2D")
 @onready var battle_timer: Timer = get_node("../Timer")
 @onready var timer_label: Label = get_node("../TimerLabel")
 
@@ -266,16 +265,6 @@ func end_battle(victory: bool):
 		DialogueManager.EndBattle(from_dialogue)
 	else:
 		print("Поражение!")
-		DialogueManager.EndBattle(from_dialogue)
+		DialogueManager.EndBattleOutOfTime(from_dialogue)
 	
 	get_parent().queue_free()
-
-
-func _setup_camera():
-	# Настраиваем камеру на всю сцену
-	camera.position = Vector2(960, 540)  # Центр для разрешения 1920x1080
-	camera.zoom = Vector2(1, 1)
-	
-	# Или если хотим приблизить к области души:
-	# camera.position = soul_area.position + soul_area.size / 2
-	# camera.zoom = Vector2(0.8, 0.8)  # Немного отдалить
