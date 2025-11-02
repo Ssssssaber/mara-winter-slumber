@@ -1,6 +1,6 @@
 extends Node
 
-signal one_line_dialogue_started(line : String)
+signal one_line_dialogue_started(lines : Array)
 signal one_line_dialogue_ended()
 
 signal battle_ended_out_of_time(ended_dialog_json_path : String)
@@ -30,8 +30,8 @@ func EndDialogue(ended_dialog_json_path : String) -> void:
 func EndBattleOutOfTime(ended_dialog_json_path : String) -> void:
 	battle_ended_out_of_time.emit(ended_dialog_json_path)
 
-func StartOneLineDialogue(line : String) -> void:
-	one_line_dialogue_started.emit(line)
+func StartOneLineDialogue(lines : Array) -> void:
+	one_line_dialogue_started.emit(lines)
 
-func EndOneLineDialogue(line : String) -> void:
-	one_line_dialogue_ended.emit(line)
+func EndOneLineDialogue() -> void:
+	one_line_dialogue_ended.emit()

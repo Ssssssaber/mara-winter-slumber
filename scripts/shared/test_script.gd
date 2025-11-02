@@ -7,4 +7,4 @@ func _unhandled_input(event):
 		return
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_F1:
-			DialogueManager.StartDialogue(Constants.TEST_DIALOG_PATH)
+			DialogueManager.StartOneLineDialogue(["f1", "f2", "f3"])

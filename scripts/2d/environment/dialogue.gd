@@ -223,26 +223,3 @@ func set_character_sprite(sprite_path: String):
 	else:
 		push_error("Не удалось загрузить спрайт: " + sprite_path)
 
-func load_test_dialogue():
-	print("Загрузка тестового диалога из: ", test_json_path)
-	
-	if not FileAccess.file_exists(test_json_path):
-		push_error("Файл не существует: " + test_json_path)
-		return
-	
-	var file = FileAccess.open(test_json_path, FileAccess.READ)
-	if file:
-		var json_text = file.get_as_text()
-		print("Содержимое JSON: ", json_text)
-		
-		# Используем JSON.parse_string вместо JSON.new().parse()
-		var parse_result = JSON.parse_string(json_text)
-		if parse_result != null:
-			dialogue_data = parse_result
-			print("JSON успешно распарсен: ", dialogue_data)
-			print("Ключи в словаре: ", dialogue_data.keys())
-			start_dialogue()
-		else:
-			push_error("Ошибка парсинга JSON")
-	else:
-		push_error("Не удалось открыть файл: " + test_json_path)
