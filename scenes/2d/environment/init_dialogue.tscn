@@ -7,6 +7,7 @@
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("1_7g01h")
+init_on_input = true
 
 [node name="Start" type="Node" parent="."]
 script = ExtResource("2_314ce")

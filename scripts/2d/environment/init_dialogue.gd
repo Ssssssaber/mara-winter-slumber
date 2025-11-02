@@ -2,11 +2,13 @@ extends Node
 
 @onready var dialogue_scene = load("res://scenes/2d/environment/dialogue_scene.tscn")
 @onready var battle_scene = load("res://scenes/2d/environment/battle_scene.tscn")
+@onready var monologue_scene = load("res://scenes/2d/environment/monologue_scene.tscn")
 
 
 func _ready() -> void:
 	DialogueManager.start_dialogue.connect(init_dialogue_scene)
 	DialogueManager.battle_started_without_dialogue.connect(init_battle_scene)
+	DialogueManager.one_line_dialogue_started.connect(init_monologue)
 	
 func init_dialogue_scene(json_path):
 	var current_scene = dialogue_scene.instantiate()
@@ -24,3 +26,12 @@ func init_battle_scene(current_dialogue : String):
 
 	else:
 		push_error("Battle scene not found at")
+
+func init_monologue(text : Array):
+	if text.is_empty():
+		push_error("Массив пустой")
+		return
+	var current_monologue_scene = monologue_scene.instantiate()
+	get_parent().add_child(current_monologue_scene)
+	current_monologue_scene.set_monologue_text(text)
+	current_monologue_scene.monologue_text.text = text[0]

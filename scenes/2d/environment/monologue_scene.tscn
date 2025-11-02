@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://hdaiva7uoitl"]
+
+[ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_gkls2"]
+[ext_resource type="Script" uid="uid://cu0oibpnv3a7m" path="res://scripts/2d/environment/monologue_scene.gd" id="1_ow6qs"]
+[ext_resource type="Texture2D" uid="uid://cmf4y7br72lli" path="res://assets/2d/environment/new/окно с фоном.PNG" id="2_ow6qs"]
+
+[sub_resource type="SystemFont" id="SystemFont_guhl1"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[node name="monologue_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ow6qs")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0000305
+offset_right = 1152.0
+offset_bottom = 649.0
+
+[node name="Mara" type="Sprite2D" parent="."]
+position = Vector2(270.99997, 207)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("1_gkls2")
+
+[node name="Monologue" type="Sprite2D" parent="."]
+position = Vector2(581.94495, 479.37)
+scale = Vector2(0.24927859, 0.21)
+texture = ExtResource("2_ow6qs")
+
+[node name="MonologueText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 215.88998
+offset_top = 419.37
+offset_right = 924.89
+offset_bottom = 550.37
+theme_override_fonts/normal_font = SubResource("SystemFont_guhl1")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "123"
