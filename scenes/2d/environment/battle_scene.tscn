@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmjp8iqyl8p8q"]
+[gd_scene load_steps=16 format=3 uid="uid://cmjp8iqyl8p8q"]
 
 [ext_resource type="PackedScene" uid="uid://c4vcy61g6muyu" path="res://scenes/2d/characters/Soul.tscn" id="1_1niic"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4vdcg"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://1ag12pvvb2uu" path="res://scenes/2d/environment/capture_zone.tscn" id="4_aqiqb"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="5_q6iye"]
 [ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="6_3nml5"]
+[ext_resource type="Texture2D" uid="uid://2x7ydvrut5vu" path="res://assets/2d/environment/new/плашка времени.PNG" id="9_3nml5"]
+[ext_resource type="Texture2D" uid="uid://bpox0op5jetf6" path="res://assets/2d/environment/new/иконка времени.PNG" id="9_q6iye"]
 
 [sub_resource type="SystemFont" id="SystemFont_4vdcg"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -15,6 +17,15 @@ font_names = PackedStringArray("Monomakh Unicode")
 [sub_resource type="SystemFont" id="SystemFont_q6iye"]
 font_names = PackedStringArray("Monomakh Unicode")
 font_stretch = 200
+
+[sub_resource type="SystemFont" id="SystemFont_80nik"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_80nik"]
+texture = ExtResource("9_3nml5")
+
+[sub_resource type="SystemFont" id="SystemFont_3nml5"]
+font_names = PackedStringArray("Monomakh Unicode")
 
 [node name="BattleScene" type="Node2D"]
 
@@ -80,14 +91,6 @@ metadata/_edit_use_anchors_ = true
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
 
-[node name="SoulHealth" type="Label" parent="."]
-visible = false
-offset_left = 635.0
-offset_top = 5.0
-offset_right = 795.0
-offset_bottom = 28.0
-text = "Здоровье души: 2/2"
-
 [node name="BattleText" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -97,8 +100,35 @@ offset_top = 74.0
 offset_right = 623.0
 offset_bottom = 97.0
 grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_80nik")
+theme_override_font_sizes/font_size = 22
 text = "Fisting is 300$"
 metadata/_edit_use_anchors_ = true
 
 [node name="CaptureZone" parent="." instance=ExtResource("4_aqiqb")]
 position = Vector2(-101, -1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 920.0
+offset_top = 53.0
+offset_right = 1024.7587
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_80nik")
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 941.0
+offset_top = 76.0
+offset_right = 1008.0
+offset_bottom = 110.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_3nml5")
+theme_override_font_sizes/font_size = 22
+text = "00:00"
+
+[node name="Sprite2D" type="Sprite2D" parent="TimerLabel"]
+position = Vector2(-36.5, 3)
+scale = Vector2(0.22480616, 0.22480622)
+texture = ExtResource("9_q6iye")

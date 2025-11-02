@@ -7,10 +7,14 @@ class_name BattleController
 @onready var soul: Soul = get_node("../SoulArea/Soul")
 @onready var capture_zones_container: Node2D = get_node("../CaptureZone")
 @onready var battle_text: Label = get_node("../BattleText")
-@onready var soul_health_label: Label = get_node("../SoulHealth")
 @onready var intimidate_btn: Button = get_node("../IntimidateButton")
 @onready var capture_btn: Button = get_node("../CaptureButton")
 @onready var camera: Camera2D = get_node("../Camera2D")
+@onready var battle_timer: Timer = get_node("../Timer")
+@onready var timer_label: Label = get_node("../TimerLabel")
+
+@export var battle_duration: int = 20
+var time_remaining: float = 0
 
 var from_dialogue : String = ""
 
@@ -22,8 +26,8 @@ var zone_size: Vector2 = Vector2(200, 160)
 var battle_active: bool = true
 var intimidate_cooldown: bool = false
 var capture_cooldown: bool = false
-var intimidate_cooldown_time: float = 1.0    # 1 секунда для испуга
-var capture_cooldown_time: float = 3.0       # 3 секунды для захвата
+var intimidate_cooldown_time: int = 1    # 1 секунда для испуга
+var capture_cooldown_time: int = 3       # 3 секунды для захвата
 
 # Режимы размещения
 var is_placing_zone: bool = false
@@ -36,9 +40,41 @@ func _ready():
 	
 	intimidate_btn.pressed.connect(_on_intimidate_pressed)
 	capture_btn.pressed.connect(_on_capture_pressed)
+
+	if battle_timer:
+		battle_timer.timeout.connect(_on_battle_timer_timeout)
 	
 	add_to_group("battle_controller")
-	_update_health_ui()
+	_start_battle_timer()
+
+func _start_battle_timer():
+	time_remaining = battle_duration
+	if battle_timer:
+		battle_timer.wait_time = battle_duration
+		battle_timer.start()
+	set_process(true)
+
+func _process(delta):
+	if battle_active and time_remaining > 0:
+		time_remaining -=delta
+		_update_timer_display()
+
+func _update_timer_display():
+	if timer_label:
+		var minutes = floor(time_remaining / 60)
+		var seconds = int(time_remaining) % 60
+		timer_label.text = "%02d:%02d" % [minutes, seconds]
+		
+		# Меняем цвет при малом времени
+		if time_remaining <= 10.0:
+			timer_label.add_theme_color_override("font_color", Color.RED)
+		else:
+			timer_label.add_theme_color_override("font_color", Color.WHITE)
+
+func _on_battle_timer_timeout():
+	if battle_active:
+		print("Время вышло! Битва завершена.")
+		end_battle(false)  # Поражение по таймеру
 
 func _input(event):
 	if is_placing_zone and event is InputEventMouseButton:
@@ -197,9 +233,6 @@ func _cancel_zone_placement():
 		is_placing_zone = false
 		battle_text.text = "Размещение зоны отменено"
 
-func _update_health_ui():
-	if is_instance_valid(soul):
-		soul_health_label.text = "Здоровье души: %d/%d" % [soul.current_health, soul.max_health]
 
 func end_battle(victory: bool):
 	battle_active = false
@@ -208,6 +241,10 @@ func end_battle(victory: bool):
 	is_placing_zone = false
 	is_placing_intimidate = false
 	
+	if battle_timer:
+		battle_timer.stop()
+	set_process(false)  # Останавливаем обновление таймера
+
 	intimidate_btn.disabled = true
 	capture_btn.disabled = true
 	
@@ -224,13 +261,15 @@ func end_battle(victory: bool):
 			if is_instance_valid(zone):
 				zone.queue_free()
 	
-	battle_text.text = "Победа! Душа захвачена." if victory else "Поражение!"
-	DialogueManager.EndBattle(from_dialogue)
+	if victory:
+		print("Победа! Душа захвачена.")
+		DialogueManager.EndBattle(from_dialogue)
+	else:
+		print("Поражение!")
+		DialogueManager.EndBattle(from_dialogue)
+	
 	get_parent().queue_free()
 
-
-func _on_soul_damaged():
-	_update_health_ui()
 
 func _setup_camera():
 	# Настраиваем камеру на всю сцену
