@@ -334,10 +334,11 @@ fourth_home = NodePath("../../GridMaps/NavigationRegion3D/FourthHome")
 spawn_point = NodePath("../../GridMaps/NavigationRegion3D/graveyard")
 special_tree = NodePath("../../GridMaps/NavigationRegion3D/QuestEntities/SpecialTree")
 
-[node name="DialogChoicesHandler" type="Node" parent="Scripts" node_paths=PackedStringArray("tree_area_trigger", "evil_ghost_area_trigger")]
+[node name="DialogChoicesHandler" type="Node" parent="Scripts" node_paths=PackedStringArray("tree_area_trigger", "evil_ghost_area_trigger", "game_ui")]
 script = ExtResource("18_uhr6o")
 tree_area_trigger = NodePath("../../EventTriggerAreas/TreeEventAreaTrigger")
 evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTrigger")
+game_ui = NodePath("../../CanvasLayer/MainGameUi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

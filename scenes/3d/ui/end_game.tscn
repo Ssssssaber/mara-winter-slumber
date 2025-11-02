@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://84v58koylf2e"]
+
+[ext_resource type="PackedScene" uid="uid://mma4wensmdvx" path="res://scenes/3d/ui/base/base_label.tscn" id="1_0ik1j"]
+[ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="2_0apnc"]
+[ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="2_xbq7t"]
+[ext_resource type="Texture2D" uid="uid://bay3422atf6w0" path="res://assets/2d/ui/image3.png" id="3_0apnc"]
+[ext_resource type="Script" uid="uid://c1ox5qigcr88x" path="res://scripts/3d/ui/quit_game_button.gd" id="4_0apnc"]
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = -20.0
+offset_right = -326.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" parent="Panel/UI" instance=ExtResource("1_0ik1j")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -291.0
+offset_right = 188.5
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TankYou" parent="Panel/UI" instance=ExtResource("1_0ik1j")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -199.0
+offset_right = 203.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Спасибо за игру!"
+
+[node name="TankYouText" type="Label" parent="Panel/UI"]
+layout_mode = 0
+offset_left = -132.0
+offset_top = -70.0
+offset_right = 168.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("2_0apnc")
+theme_override_font_sizes/font_size = 20
+text = "Мы попытались
+Надеемся, что вы посчитали интересным
+Надеемся, что закончим этот проект и дойдем до релиза на Steam"
+autowrap_mode = 2
+
+[node name="QuitGame" parent="Panel/UI" instance=ExtResource("2_xbq7t")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = 173.0
+offset_right = 132.5
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Выйти из игры"
+script = ExtResource("4_0apnc")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -551.9999
+offset_top = -740.9999
+offset_right = 984.0
+offset_bottom = 1307.0001
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("3_0apnc")
+
+[connection signal="pressed" from="Panel/UI/QuitGame" to="Panel/UI/QuitGame" method="_on_pressed"]
