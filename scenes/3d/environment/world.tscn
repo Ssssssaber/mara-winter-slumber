@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=37 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
 [ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
@@ -19,8 +19,11 @@
 [ext_resource type="Script" uid="uid://cj3opsgdinbl7" path="res://scripts/3d/ui/canvas_controller.gd" id="14_yqqrb"]
 [ext_resource type="Script" uid="uid://c0pjwgesdjde0" path="res://scripts/3d/scenario/evil_ghost_spawn.gd" id="15_o1b50"]
 [ext_resource type="Script" uid="uid://hremql1wbucc" path="res://scripts/3d/scenario/dialog_choices_handler.gd" id="18_uhr6o"]
+[ext_resource type="PackedScene" uid="uid://brx5ho6v0e54q" path="res://scenes/3d/ui/base_status_panel.tscn" id="22_1cjqj"]
+[ext_resource type="Texture2D" uid="uid://dn2lss2b21w26" path="res://assets/2d/environment/new/призрак.PNG" id="22_bj67e"]
 [ext_resource type="PackedScene" uid="uid://7autqshfxdf4" path="res://scenes/2d/environment/init_dialogue.tscn" id="22_uhr6o"]
 [ext_resource type="PackedScene" uid="uid://d3ecctp5ea0os" path="res://scenes/3d/ui/base_ability_button.tscn" id="23_bj67e"]
+[ext_resource type="Texture2D" uid="uid://is4xk55xsigk" path="res://assets/2d/environment/new/стрелка вверк.PNG" id="24_1cjqj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
 size = Vector3(214.6, 1, 222.035)
@@ -67,6 +70,14 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 11
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kq7l3"]
+texture = ExtResource("22_bj67e")
+modulate_color = Color(1, 0.2901961, 0.3019608, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dmjve"]
+texture = ExtResource("24_1cjqj")
+modulate_color = Color(0.4734375, 0.69639087, 1, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_y02fm")
@@ -267,7 +278,7 @@ evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTr
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CanvasController" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("ghost_ignore_button", "speed_buff_button", "change_direction_button", "camera_on_mara_button", "pause_button", "mara_reference")]
+[node name="CanvasController" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("ghost_ignore_button", "speed_buff_button", "change_direction_button", "camera_on_mara_button", "pause_button", "mara_reference", "ghost_debuf_panel", "ghost_ignore_panel", "speed_buff_panel")]
 script = ExtResource("14_yqqrb")
 ghost_ignore_button = NodePath("../ButtonsContainer/IgnoreGhostsAbilityButton")
 speed_buff_button = NodePath("../ButtonsContainer/SpeedAbilityButton")
@@ -276,14 +287,21 @@ camera_on_mara_button = NodePath("../ButtonsContainer/CameraOnMaraButton")
 pause_button = NodePath("../ButtonsContainer/PauseButton")
 mara_reference = NodePath("../../Mara")
 camera_on_mara = true
+ghost_debuf_panel = NodePath("../StatusContainer/GhostDebuff")
+ghost_ignore_panel = NodePath("../StatusContainer/GhostIgnore")
+speed_buff_panel = NodePath("../StatusContainer/SpeedBuff")
 
 [node name="InitDialogueNode" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 36.0
-offset_top = 504.0
-offset_right = 853.0
-offset_bottom = 610.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -133.0
+offset_right = 852.0
+offset_bottom = -27.0
+grow_vertical = 0
 size_flags_horizontal = 0
 theme_override_constants/separation = 69
 
@@ -311,6 +329,37 @@ text = "Фокус на
 layout_mode = 2
 text = "Остановить
 время"
+
+[node name="StatusContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 75)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -258.0
+offset_top = -94.0
+offset_right = -9.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="GhostDebuff" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kq7l3")
+
+[node name="SpeedBuff" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_dmjve")
+
+[node name="GhostIgnore" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+visible = false
+layout_mode = 2
 
 [connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EventTriggerAreas/TreeEventAreaTrigger" to="EventTriggerAreas/TreeEventAreaTrigger" method="_on_body_entered"]

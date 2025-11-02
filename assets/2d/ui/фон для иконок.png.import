@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://51hvl5hxnh3s"
-path="res://.godot/imported/рамка для иконок отдельно.png-31ecc2714095e9f6465b37ed3dca2c0a.ctex"
+uid="uid://0uhsab6s75hv"
+path="res://.godot/imported/фон для иконок.png-63b1b814bee34201b230030a674ff5ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/3d/ui/рамка для иконок отдельно.png"
-dest_files=["res://.godot/imported/рамка для иконок отдельно.png-31ecc2714095e9f6465b37ed3dca2c0a.ctex"]
+source_file="res://assets/2d/ui/фон для иконок.png"
+dest_files=["res://.godot/imported/фон для иконок.png-63b1b814bee34201b230030a674ff5ee.ctex"]
 
 [params]
 

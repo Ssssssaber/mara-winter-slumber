@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0uhsab6s75hv"
-path="res://.godot/imported/фон для иконок.png-cf100ec2cc646d2c7a02615d31a3f8e6.ctex"
+uid="uid://br4w5xp5n7pbn"
+path="res://.godot/imported/стрелка.PNG-e4b02b3c09ddae868d416f73b962fcc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/3d/ui/фон для иконок.png"
-dest_files=["res://.godot/imported/фон для иконок.png-cf100ec2cc646d2c7a02615d31a3f8e6.ctex"]
+source_file="res://assets/2d/environment/new/стрелка.PNG"
+dest_files=["res://.godot/imported/стрелка.PNG-e4b02b3c09ddae868d416f73b962fcc4.ctex"]
 
 [params]
 

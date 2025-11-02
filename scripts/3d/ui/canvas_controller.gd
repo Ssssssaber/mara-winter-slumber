@@ -2,16 +2,21 @@ extends Node
 
 class_name CanvasController
 
-# buttons
+@export_category("Buttons references")
 @export var ghost_ignore_button : Button
 @export var speed_buff_button : Button
 @export var change_direction_button : Button
 @export var camera_on_mara_button : Button
 @export var pause_button : Button
 
-# for camera_on_mara
+@export_category("Camera Button")
 @export var mara_reference : Node3D
 @export var camera_on_mara : bool = false
+
+@export_category("Camera Button")
+@export var ghost_debuf_panel : Panel
+@export var ghost_ignore_panel : Panel
+@export var speed_buff_panel : Panel
 
 # for handling signals externally
 signal change_direction()

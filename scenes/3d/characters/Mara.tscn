@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlw7boxson22m"]
+[gd_scene load_steps=18 format=3 uid="uid://dlw7boxson22m"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_n58j3"]
 [ext_resource type="Script" uid="uid://gdvi04fooqf1" path="res://scripts/3d/characters/mara/mara_behaviour.gd" id="2_siey8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://xm3002dswgbs" path="res://scripts/3d/characters/mara/mara_abilities_manager.gd" id="6_ri85a"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="7_0gd6l"]
 [ext_resource type="Texture2D" uid="uid://dqsce4q362yct" path="res://assets/2d/temporary/redsquare.png" id="7_2q5ol"]
+[ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="8_7jwdt"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="9_3gpgx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_obn03"]
@@ -102,19 +103,36 @@ visible = false
 texture = ExtResource("7_2q5ol")
 
 [node name="HeroName" type="Sprite3D" parent="RotatableNodes" index="3"]
-transform = Transform3D(18.380003, 0, 0, 0, 18.380003, 0, 0, 0, 18.380003, 0.43, 5.295, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.43, 5.835, 0)
 no_depth_test = true
 texture = SubResource("ViewportTexture_0gd6l")
 
 [node name="SubViewport" type="SubViewport" parent="RotatableNodes/HeroName" index="0"]
 transparent_bg = true
-size = Vector2i(87, 77)
+size = Vector2i(400, 400)
 
 [node name="Label" type="Label" parent="RotatableNodes/HeroName/SubViewport" index="0"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 32
-text = "Mara"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -50.5
+offset_right = 117.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -3
+theme_override_constants/shadow_offset_y = -3
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("8_7jwdt")
+theme_override_font_sizes/font_size = 100
+text = "Мара"
 
 [node name="AbilitiesManager" type="Node" parent="." index="4"]
 script = ExtResource("6_ri85a")

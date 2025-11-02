@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://brx5ho6v0e54q"]
+
+[ext_resource type="Texture2D" uid="uid://dn2lss2b21w26" path="res://assets/2d/environment/new/призрак.PNG" id="1_xv2ul"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1cjqj"]
+texture = ExtResource("1_xv2ul")
+modulate_color = Color(0.29000002, 1, 0.34916663, 1)
+
+[node name="BaseStatusPanel" type="Panel"]
+custom_minimum_size = Vector2(75, 75)
+offset_left = 50.0
+offset_top = 1.0
+offset_right = 100.0
+offset_bottom = 51.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_1cjqj")
