@@ -39,7 +39,16 @@ extends Node
 
 func _init() -> void:
 	GameManager.OnGameManagerReady.connect(setup)
-	
+
+func disable_all_trigger_areas() -> void:
+	first_home_area.set_deferred("monitorable", false)
+	ghost_ignore_area.set_deferred("monitorable", false)
+	second_home_timer_area.set_deferred("monitorable", false)
+	change_direction_area.set_deferred("monitorable", false)
+	speed_up_area.set_deferred("monitorable", false)
+	third_home_area.set_deferred("monitorable", false)
+	evil_ghost_area.set_deferred("monitorable", false)
+	tree_event_area.set_deferred("monitorable", false)
 
 func setup() -> void:
 	dialogue_choices_handler.evil_ghost_trigger_activate.connect(func act_tree(): evil_ghost_area.monitoring = true)
