@@ -18,23 +18,24 @@ font_stretch = 200
 
 [node name="BattleScene" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(311.00003, 228)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(236, 169.00002)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_4vdcg")
 
 [node name="SoulArea" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(400, 300)
-offset_left = 155.0
-offset_top = 389.0
-offset_right = 1087.0
-offset_bottom = 689.0
+offset_left = 101.0
+offset_top = 322.0
+offset_right = 1033.0
+offset_bottom = 622.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="SoulArea"]
 light_mask = 2
@@ -47,10 +48,10 @@ texture = ExtResource("3_5p8w8")
 script = ExtResource("2_1niic")
 
 [node name="IntimidateButton" type="Button" parent="."]
-offset_left = 765.0
-offset_top = 272.0
-offset_right = 1064.043
-offset_bottom = 409.0
+offset_left = 732.0
+offset_top = 204.0
+offset_right = 1031.043
+offset_bottom = 341.0
 theme_override_fonts/font = SubResource("SystemFont_4vdcg")
 theme_override_font_sizes/font_size = 35
 text = "Испуг
@@ -59,12 +60,13 @@ icon = ExtResource("5_q6iye")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_use_anchors_ = true
 
 [node name="CaptureButton" type="Button" parent="."]
-offset_left = 702.0
-offset_top = 149.0
-offset_right = 1068.0
-offset_bottom = 335.0
+offset_left = 669.0
+offset_top = 81.0
+offset_right = 1035.0
+offset_bottom = 267.0
 theme_override_fonts/font = SubResource("SystemFont_q6iye")
 theme_override_font_sizes/font_size = 35
 text = "Запечатывание
@@ -73,6 +75,7 @@ icon = ExtResource("6_3nml5")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_use_anchors_ = true
 
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
@@ -89,16 +92,13 @@ text = "Здоровье души: 2/2"
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 561.0
-offset_top = 72.0
-offset_right = 669.0
-offset_bottom = 95.0
+offset_left = 515.0
+offset_top = 74.0
+offset_right = 623.0
+offset_bottom = 97.0
 grow_horizontal = 2
 text = "Fisting is 300$"
+metadata/_edit_use_anchors_ = true
 
 [node name="CaptureZone" parent="." instance=ExtResource("4_aqiqb")]
 position = Vector2(-101, -1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
-zoom = Vector2(0.9, 0.9)
