@@ -146,3 +146,6 @@ wait_time = 8.0
 one_shot = true
 
 [node name="FlipH" parent="." index="6" instance=ExtResource("9_3gpgx")]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." index="7"]
+current = true

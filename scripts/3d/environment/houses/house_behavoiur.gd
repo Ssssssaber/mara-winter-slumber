@@ -27,12 +27,14 @@ func _update_abandoned_state(abandoned : bool) -> void:
 	abandoned_mesh.visible = abandoned
 	if abandoned:
 		free_attached_entities()
-		_spawn_ghost_near_self()
+		if (GameManager.Initialized):
+			_spawn_ghost_near_self()
 
 func _ready() -> void:
 	interaction_area.body_entered.connect(_on_area_3d_body_entered)
 	pie_timer.timer.timeout.connect(_on_pie_timer_timeout)
 	# _spawn_ghost_near_self()
+	_update_abandoned_state(is_abandoned)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if pie_timer.get_running():
@@ -42,11 +44,24 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	pie_timer.stop_timer()
 
 	GameManager.pause_world_entities.emit()
+	_connect_to_dialog_manager()
+
 	if json_dialogue_path == "" or json_dialogue_path == Constants.LAST_BATTLE_ID:
 		DialogueManager.StartBattleWithoutDialogue(json_dialogue_path)
 		return
 
 	DialogueManager.StartDialogue(json_dialogue_path)
+
+func _connect_to_dialog_manager() -> void:
+	DialogueManager.battle_ended_out_of_time.connect(_on_battle_out_of_time)
+	DialogueManager.battle_ended.connect(_disconnect_from_battle_out_of_time)
+	DialogueManager.battle_ended.connect(_disconnect_from_battle_out_of_time)
+
+func _disconnect_from_battle_out_of_time(_json_path : String) -> void:
+	DialogueManager.battle_ended_out_of_time.disconnect(_on_battle_out_of_time)
+
+func _on_battle_out_of_time(_json_path : String) -> void:
+	is_abandoned = true
 
 func _spawn_ghost_near_self() -> void:
 	var ghost = GameManager.SpawnGhost()
