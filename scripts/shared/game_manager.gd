@@ -21,9 +21,6 @@ var _auto_initilize : bool = false
 signal pause_world_entities()
 signal unpause_world_entities()
 
-signal special_tree_trigger_activate()
-signal evil_ghost_trigger_activate()
-
 signal OnGameManagerReady()
 
 func _ready() -> void:

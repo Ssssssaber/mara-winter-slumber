@@ -27,18 +27,19 @@ signal speed_buff_activated()
 signal ghost_ignore_activated()
 
 func hide_ui() -> void:
-	print("hide")
 	main_ui_parent.visible = false
 
+func show_ui_json(_json_path_dialogue : String) -> void:
+	main_ui_parent.visible = true
+
 func show_ui() -> void:
-	print("show")
 	main_ui_parent.visible = true
 
 func _init() -> void:
 	GameManager.OnGameManagerReady.connect(init)
 	DialogueManager.dialogue_started.connect(hide_ui)
 	DialogueManager.battle_started_without_dialogue.connect(hide_ui)
-	DialogueManager.dialogue_ended.connect(show_ui)
+	DialogueManager.dialogue_ended.connect(show_ui_json)
 	DialogueManager.battle_ended.connect(show_ui)
 
 func init() -> void:
