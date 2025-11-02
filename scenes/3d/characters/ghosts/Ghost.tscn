@@ -28,6 +28,9 @@ script = ExtResource("2_2ovv7")
 slow_duration = 3.0
 _animated_sprite = NodePath("RotatableNodes/AnimatedSprite3D")
 
+[node name="MovementSystem" parent="." index="1"]
+base_speed = 3.0
+
 [node name="InteractionArea" type="Area3D" parent="." index="2"]
 collision_layer = 4
 
