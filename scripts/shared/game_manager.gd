@@ -23,6 +23,12 @@ signal unpause_world_entities()
 
 signal OnGameManagerReady()
 
+func Pause() -> void:
+	pause_world_entities.emit()
+
+func Unpause() -> void:
+	unpause_world_entities.emit()
+
 func _ready() -> void:
 	if _auto_initilize:
 		Initialize()
@@ -37,7 +43,7 @@ func Initialize() -> void:
 	Initialized = true
 
 	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): unpause_world_entities.emit())
-	DialogueManager.battle_ended.connect(func unfreeze(): unpause_world_entities.emit())
+	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
 
 	OnGameManagerReady.emit()
 	pass

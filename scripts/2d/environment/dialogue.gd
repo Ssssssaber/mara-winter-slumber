@@ -12,7 +12,7 @@ extends Control
 
 var _current_dialog_path : String
 
-signal dialog_ended_with_battle()
+signal dialog_ended_with_battle(current_dialog_path : String)
 
 # Переменные для управления диалогом
 var dialogue_data: Dictionary
@@ -170,7 +170,7 @@ func handle_next_step(next_step: String):
 func start_battle():
 	waiting_for_battle_click = false
 
-	dialog_ended_with_battle.emit()
+	dialog_ended_with_battle.emit(_current_dialog_path)
 	queue_free()
 
 func _input(event):

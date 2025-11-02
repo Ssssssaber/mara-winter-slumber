@@ -28,6 +28,7 @@ extends Node
 @export var third_home : Node3D
 @export var third_home_until_death : float = 40
 @export var fourth_home : Node3D
+@export var fourth_home_until_death : float = 40
 
 @export_category("Evil ghost event")
 @onready var evil_ghost_scene = load("res://scenes/3d/characters/ghosts/evil_ghost.tscn")
@@ -52,6 +53,8 @@ func setup() -> void:
 	third_home_area.body_entered.connect(_on_third_home_area)
 	evil_ghost_area.body_entered.connect(_on_evil_ghost_area)
 	tree_event_area.body_entered.connect(_on_tree_event_area)
+
+	dialogue_choices_handler.start_last_home.connect(_on_start_last_home)
 
 	GameManager.AddEntityToPathAutoProgress(mara, mara_inverted)
 	GameManager.AddEntityToPathAutoProgress(ghost, ghost_inverted)
@@ -100,3 +103,7 @@ func _on_tree_event_area(_body : Node3D) -> void:
 	if special_tree:
 		special_tree.activated = true
 		special_tree.visible = true
+
+func _on_start_last_home() -> void:
+	print("Чую я, что это последняя душа на сегодня")
+	fourth_home.pie_timer.start_timer(fourth_home_until_death)

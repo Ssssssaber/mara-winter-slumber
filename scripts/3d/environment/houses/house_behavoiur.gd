@@ -42,8 +42,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	pie_timer.stop_timer()
 
 	GameManager.pause_world_entities.emit()
-	if json_dialogue_path == "":
-		DialogueManager.StartBattleWithoutDialogue()
+	if json_dialogue_path == "" or json_dialogue_path == Constants.LAST_BATTLE_ID:
+		DialogueManager.StartBattleWithoutDialogue(json_dialogue_path)
 		return
 
 	DialogueManager.StartDialogue(json_dialogue_path)

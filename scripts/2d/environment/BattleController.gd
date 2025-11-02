@@ -12,6 +12,8 @@ class_name BattleController
 @onready var capture_btn: Button = get_node("../CaptureButton")
 @onready var camera: Camera2D = get_node("../Camera2D")
 
+var from_dialogue : String = ""
+
 # Настройки зон захвата
 var capture_zone_scene: PackedScene
 var zone_size: Vector2 = Vector2(200, 160)
@@ -223,7 +225,7 @@ func end_battle(victory: bool):
 				zone.queue_free()
 	
 	battle_text.text = "Победа! Душа захвачена." if victory else "Поражение!"
-	DialogueManager.EndBattle()
+	DialogueManager.EndBattle(from_dialogue)
 	get_parent().queue_free()
 
 

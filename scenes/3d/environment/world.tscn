@@ -198,9 +198,9 @@ is_abandoned = true
 [node name="FemaleWalkingAround3" parent="GridMaps/NavigationRegion3D/SmallHome2" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.9441467, 0, 0.32952583, 0, 1, 0, -0.32952583, 0, -0.9441467, 12.38887, 4.2940965, -11.520002)
 
-[node name="SmallHome3" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
+[node name="FourthHome" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
 transform = Transform3D(-0.39373344, 0, 0.9192245, 0, 1, 0, -0.9192245, 0, -0.39373344, 16.301956, -0.8590965, 56.375473)
-json_dialogue_path = ""
+json_dialogue_path = "BATTLE_LAST"
 
 [node name="graveyard" parent="GridMaps/NavigationRegion3D" instance=ExtResource("11_jsy7v")]
 transform = Transform3D(-0.044543408, 0, 0.9990074, 0, 1, 0, -0.9990074, 0, -0.044543408, -58.19783, 2.0160298, 8.507843)
@@ -243,7 +243,7 @@ collision_layer = 4
 shape = SubResource("SphereShape3D_1cjqj")
 
 [node name="GhostIgnoreDialogueAreaTrigger" type="Area3D" parent="EventTriggerAreas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.86043, 0, -19.868649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.86043, 0, -15.464873)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EventTriggerAreas/GhostIgnoreDialogueAreaTrigger"]
@@ -307,11 +307,11 @@ curve = SubResource("Curve3D_8rukn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.372, 0, 16.27344)
 
 [node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.243557, 0, -41.15653)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.225809, 0, -41.15653)
 
 [node name="Scripts" type="Node" parent="."]
 
-[node name="Scenario" type="Node" parent="Scripts" node_paths=PackedStringArray("dialogue_choices_handler", "mara", "ghost", "first_home_area", "ghost_ignore_area", "second_home_timer_area", "change_direction_area", "speed_up_area", "third_home_area", "evil_ghost_area", "tree_event_area", "first_home", "second_home", "pre_third_home", "third_home", "spawn_point", "special_tree")]
+[node name="Scenario" type="Node" parent="Scripts" node_paths=PackedStringArray("dialogue_choices_handler", "mara", "ghost", "first_home_area", "ghost_ignore_area", "second_home_timer_area", "change_direction_area", "speed_up_area", "third_home_area", "evil_ghost_area", "tree_event_area", "first_home", "second_home", "pre_third_home", "third_home", "fourth_home", "spawn_point", "special_tree")]
 script = ExtResource("5_qnawv")
 dialogue_choices_handler = NodePath("../DialogChoicesHandler")
 mara = NodePath("../../Mara")
@@ -326,9 +326,11 @@ third_home_area = NodePath("../../EventTriggerAreas/ThirdHomeTimerStartAreaTrigg
 evil_ghost_area = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTrigger")
 tree_event_area = NodePath("../../EventTriggerAreas/TreeEventAreaTrigger")
 first_home = NodePath("../../GridMaps/NavigationRegion3D/FirstHome")
+first_home_until_death = 12.0
 second_home = NodePath("../../GridMaps/NavigationRegion3D/SecondHome")
 pre_third_home = NodePath("../../GridMaps/NavigationRegion3D/PreThirdHome")
 third_home = NodePath("../../GridMaps/NavigationRegion3D/ThirdHome")
+fourth_home = NodePath("../../GridMaps/NavigationRegion3D/FourthHome")
 spawn_point = NodePath("../../GridMaps/NavigationRegion3D/graveyard")
 special_tree = NodePath("../../GridMaps/NavigationRegion3D/QuestEntities/SpecialTree")
 

@@ -29,6 +29,9 @@ signal ghost_ignore_activated()
 func hide_ui() -> void:
 	main_ui_parent.visible = false
 
+func hide_ui_json(_json_path_dialogue : String) -> void:
+	main_ui_parent.visible = false
+
 func show_ui_json(_json_path_dialogue : String) -> void:
 	main_ui_parent.visible = true
 
@@ -38,9 +41,9 @@ func show_ui() -> void:
 func _init() -> void:
 	GameManager.OnGameManagerReady.connect(init)
 	DialogueManager.dialogue_started.connect(hide_ui)
-	DialogueManager.battle_started_without_dialogue.connect(hide_ui)
+	DialogueManager.battle_started_without_dialogue.connect(hide_ui_json)
 	DialogueManager.dialogue_ended.connect(show_ui_json)
-	DialogueManager.battle_ended.connect(show_ui)
+	DialogueManager.battle_ended.connect(show_ui_json)
 
 func init() -> void:
 	change_direction_button.pressed.connect(_on_change_direciton_button_pressed)
