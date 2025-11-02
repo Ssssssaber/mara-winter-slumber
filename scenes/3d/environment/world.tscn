@@ -53,8 +53,8 @@ data = PackedVector3Array(0, 75, 0, 0, 75, 0, 0, 74.6604, 9.5056, 0.9317, 74.660
 [sub_resource type="SphereShape3D" id="SphereShape3D_yqqrb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kx1j3"]
-vertices = PackedVector3Array(-41.9075, 2.8454752, -21, -33.9075, 2.8454752, -23, -37.9075, 2.8454752, -33, -27.907501, 2.8454752, -43, -17.907501, 2.8454752, -37, -13.907501, 2.8454752, -43, -13.907501, 2.8454752, -73, -57.9075, 2.8454752, -15, -43.9075, 2.8454752, -15, -57.9075, 2.8454752, -73, 14.092499, 2.8454752, -53, 8.092499, 2.8454752, -43, 12.092499, 2.8454752, -37, 30.092499, 2.8454752, -39, 14.092499, 2.8454752, -73, 58.0925, 2.8454752, -29, 58.0925, 2.8454752, -73, 34.0925, 2.8454752, -25, -3.9075012, 2.8454752, -69, -3.9075012, 2.8454752, -65, 2.0924988, 2.8454752, -67, -37.9075, 2.8454752, 35, -39.9075, 2.8454752, 47, -31.907501, 2.8454752, 39, 0.09249878, 2.8454752, -49, -1.9075012, 2.8454752, -43, -9.907501, 2.8454752, -47, -11.907501, 2.8454752, -31, -41.9075, 2.8454752, 31, -19.907501, 2.8454752, 47, 46.0925, 2.8454752, 41, 58.0925, 2.8454752, 39, 58.0925, 2.8454752, 33, 50.0925, 2.8454752, 29, 36.0925, 2.8454752, 39, -29.907501, 2.8454752, 63, -57.9075, 2.8454752, 73, 32.0925, 2.8454752, 73, -11.907501, 2.8454752, -25, -21.907501, 2.8454752, -3, 12.092499, 2.8454752, -19, -39.9075, 2.8454752, 59, 58.0925, 2.8454752, -3, 26.092499, 2.8454752, -19, 52.0925, 2.8454752, 17, 48.0925, 2.8454752, 11, 28.092499, 2.8454752, 43, -43.9075, 2.8454752, 49, -57.9075, 2.8454752, 49, -21.907501, 2.8454752, -17, 32.0925, 2.8454752, 61, 26.092499, 2.8454752, 49, -19.907501, 2.8454752, 55, -35.9075, 2.8454752, 1, -57.9075, 2.8454752, 31, -31.907501, 12.845475, -33, -17.907501, 12.845475, -23, -27.907501, 12.845475, -37, -31.907501, 12.845475, -37, -31.907501, 12.845475, -3, -27.907501, 12.845475, -3, -31.907501, 12.845475, -21, -35.9075, 12.845475, -21, 64.0925, 20.845474, 1, 58.0925, 20.845474, 9, 60.0925, 20.845474, 17, 68.0925, 20.845474, 17, 72.0925, 20.845474, 11, 70.0925, 20.845474, 1, 64.0925, 6.845475, 11, 66.0925, 6.845475, 17, 72.0925, 6.845475, 11, 66.0925, 6.845475, 7, 60.0925, 6.845475, 23, 62.0925, 6.845475, 27, 66.0925, 6.845475, 21, 64.0925, 6.845475, 17, 58.0925, 16.845474, 33, 64.0925, 16.845474, 33, 68.0925, 16.845474, 25, 60.0925, 16.845474, 19, 54.0925, 16.845474, 23, 40.0925, 2.8454752, 63, 50.0925, 2.8454752, 57, 58.0925, 2.8454752, 73, 38.0925, 12.845475, 57, 44.0925, 12.845475, 59, 38.0925, 12.845475, 43, 34.0925, 12.845475, 43, -29.907501, 8.845475, 47, -37.9075, 8.845475, 53, -37.9075, 8.845475, 57, -33.9075, 8.845475, 57, -25.907501, 8.845475, 51, -25.907501, 8.845475, 47)
-polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 0), PackedInt32Array(2, 0, 7), PackedInt32Array(2, 7, 3), PackedInt32Array(3, 7, 9), PackedInt32Array(3, 9, 6), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(10, 14, 13), PackedInt32Array(13, 14, 16), PackedInt32Array(13, 16, 15), PackedInt32Array(15, 17, 13), PackedInt32Array(20, 19, 18), PackedInt32Array(22, 21, 23), PackedInt32Array(25, 24, 11), PackedInt32Array(5, 26, 4), PackedInt32Array(4, 26, 27), PackedInt32Array(27, 26, 25), PackedInt32Array(29, 23, 28), PackedInt32Array(23, 21, 28), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 30), PackedInt32Array(33, 30, 34), PackedInt32Array(37, 36, 35), PackedInt32Array(11, 12, 25), PackedInt32Array(25, 12, 40), PackedInt32Array(25, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(36, 41, 35), PackedInt32Array(17, 15, 43), PackedInt32Array(43, 15, 42), PackedInt32Array(44, 33, 45), PackedInt32Array(45, 33, 34), PackedInt32Array(45, 34, 46), PackedInt32Array(47, 41, 48), PackedInt32Array(48, 41, 36), PackedInt32Array(38, 27, 25), PackedInt32Array(42, 45, 43), PackedInt32Array(43, 45, 40), PackedInt32Array(39, 49, 38), PackedInt32Array(50, 37, 51), PackedInt32Array(51, 37, 52), PackedInt32Array(52, 37, 35), PackedInt32Array(52, 29, 51), PackedInt32Array(51, 29, 46), PackedInt32Array(28, 39, 29), PackedInt32Array(29, 39, 40), PackedInt32Array(29, 40, 46), PackedInt32Array(46, 40, 45), PackedInt32Array(28, 53, 39), PackedInt32Array(8, 53, 7), PackedInt32Array(7, 53, 28), PackedInt32Array(7, 28, 54), PackedInt32Array(58, 57, 55), PackedInt32Array(55, 57, 56), PackedInt32Array(62, 61, 59), PackedInt32Array(59, 61, 60), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 64), PackedInt32Array(67, 64, 63), PackedInt32Array(67, 63, 68), PackedInt32Array(72, 71, 69), PackedInt32Array(69, 71, 70), PackedInt32Array(76, 75, 73), PackedInt32Array(73, 75, 74), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 80), PackedInt32Array(80, 77, 81), PackedInt32Array(37, 50, 82), PackedInt32Array(30, 31, 83), PackedInt32Array(83, 31, 84), PackedInt32Array(82, 83, 37), PackedInt32Array(37, 83, 84), PackedInt32Array(88, 87, 85), PackedInt32Array(85, 87, 86), PackedInt32Array(94, 93, 89), PackedInt32Array(89, 93, 92), PackedInt32Array(89, 92, 90), PackedInt32Array(90, 92, 91)]
+vertices = PackedVector3Array(-42.3151, 2.8454762, -19, -32.3151, 2.8454762, -23, -38.3151, 2.8454762, -31, -58.3151, 2.8454762, -5, -48.3151, 2.8454762, 1, -40.3151, 2.8454762, -5, -26.315102, 2.8454762, -43, -26.315102, 2.8454762, -73, -58.3151, 2.8454762, -73, -12.315102, 2.8454762, -29, 9.684898, 2.8454762, -29, 9.684898, 2.8454762, -35, 13.684898, 2.8454762, -37, 13.684898, 2.8454762, -73, 29.684898, 2.8454762, -39, 33.6849, 2.8454762, -25, 59.6849, 2.8454762, -27, 59.6849, 2.8454762, -73, -38.3151, 2.8454762, 35, -38.3151, 2.8454762, 45, -28.315102, 2.8454762, 39, -34.3151, 2.8454762, 1, -48.3151, 2.8454762, 21, -58.3151, 2.8454762, 23, -58.3151, 2.8454762, 33, -42.3151, 2.8454762, 31, -18.315102, 2.8454762, 51, 5.6848984, 2.8454762, 51, 15.684898, 2.8454762, 45, -22.315102, 2.8454762, -3, 15.684898, 2.8454762, -19, -22.315102, 2.8454762, -17, 29.684898, 2.8454762, 57, 33.6849, 2.8454762, 57, 33.6849, 2.8454762, 47, 23.684898, 2.8454762, 45, 25.684898, 2.8454762, -19, 59.6849, 2.8454762, 33, 39.6849, 2.8454762, 41, -58.3151, 2.8454762, 13, -58.3151, 2.8454762, 17, -52.3151, 2.8454762, 17, 51.6849, 18.845476, 53, 61.6849, 18.845476, 53, 53.6849, 18.845476, 49, 49.6849, 18.845476, 43, 55.6849, 18.845476, 43, 61.6849, 18.845476, 43, 65.6849, 18.845476, 41, 61.6849, 18.845476, 51, 67.6849, 18.845476, 51, 53.6849, 2.8454762, 41, 53.6849, 2.8454762, 45, 61.6849, 2.8454762, 43, 37.6849, 2.8454762, 65, 23.684898, 2.8454762, 65, 11.684898, 2.8454762, 69, 3.6848984, 2.8454762, 57, -30.315102, 2.8454762, 63, -58.3151, 2.8454762, 73, -44.3151, 2.8454762, 53, -42.3151, 2.8454762, 49, -58.3151, 2.8454762, 47, 59.6849, 2.8454762, 73, 59.6849, 2.8454762, 59, -36.3151, 2.8454762, 63, -32.3151, 8.845476, 57, -24.315102, 8.845476, 49, -30.315102, 8.845476, 47, -38.3151, 8.845476, 53, 61.6849, 4.845476, 51, 61.6849, 4.845476, 47, 55.6849, 4.845476, 47, 53.6849, 4.845476, 51, 43.6849, 4.845476, 53, 7.6848984, 12.845476, 57, 7.6848984, 12.845476, 61, 13.684898, 12.845476, 61, 25.684898, 12.845476, 55, 21.684898, 12.845476, 51)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 0), PackedInt32Array(2, 7, 6), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 8), PackedInt32Array(2, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 6), PackedInt32Array(12, 6, 7), PackedInt32Array(12, 7, 13), PackedInt32Array(14, 16, 15), PackedInt32Array(13, 14, 12), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 13), PackedInt32Array(20, 19, 18), PackedInt32Array(5, 21, 4), PackedInt32Array(4, 21, 22), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(18, 25, 20), PackedInt32Array(20, 25, 22), PackedInt32Array(20, 22, 21), PackedInt32Array(20, 21, 29), PackedInt32Array(9, 10, 30), PackedInt32Array(26, 20, 28), PackedInt32Array(28, 20, 29), PackedInt32Array(28, 29, 30), PackedInt32Array(30, 29, 9), PackedInt32Array(29, 31, 9), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(15, 16, 36), PackedInt32Array(36, 16, 37), PackedInt32Array(38, 34, 35), PackedInt32Array(35, 28, 38), PackedInt32Array(38, 28, 37), PackedInt32Array(37, 28, 36), PackedInt32Array(36, 28, 30), PackedInt32Array(41, 40, 39), PackedInt32Array(43, 42, 44), PackedInt32Array(46, 44, 45), PackedInt32Array(45, 44, 42), PackedInt32Array(47, 46, 48), PackedInt32Array(47, 48, 49), PackedInt32Array(49, 48, 50), PackedInt32Array(48, 46, 45), PackedInt32Array(53, 52, 51), PackedInt32Array(33, 54, 32), PackedInt32Array(32, 54, 55), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 59), PackedInt32Array(62, 61, 60), PackedInt32Array(27, 57, 26), PackedInt32Array(26, 57, 58), PackedInt32Array(54, 64, 63), PackedInt32Array(60, 65, 62), PackedInt32Array(62, 65, 59), PackedInt32Array(56, 63, 59), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 63), PackedInt32Array(59, 65, 58), PackedInt32Array(69, 68, 66), PackedInt32Array(66, 68, 67), PackedInt32Array(71, 70, 72), PackedInt32Array(72, 70, 73), PackedInt32Array(73, 70, 74), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 79), PackedInt32Array(77, 79, 78)]
 cell_size = 2.0
 cell_height = 2.0
 border_size = 1.0
@@ -186,26 +186,27 @@ navigation_mesh = SubResource("NavigationMesh_kx1j3")
 size = Vector3(119.815, 1, 150)
 
 [node name="SmallHome" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.7189396, 0, -0.69507253, 0, 1, 0, 0.69507253, 0, -0.7189396, -24.780178, -0.8590975, -29.798313)
-json_dialogue_path = "res://assets/2d/dialogues/wife.json"
+transform = Transform3D(-0.7189396, 0, -0.69507253, 0, 1, 0, 0.69507253, 0, -0.7189396, -24.78, 0, -29.798)
+json_dialogue_path = "res://assets/2d/dialogues/tree.json"
 
 [node name="SmallHome2" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.9441466, 0, -0.3295258, 0, 1, 0, 0.3295258, 0, -0.9441466, -31.861435, -0.8590965, -12.193072)
-json_dialogue_path = "res://assets/2d/dialogues/children.json"
+transform = Transform3D(-0.9441466, 0, -0.3295258, 0, 1, 0, 0.3295258, 0, -0.9441466, -31.861, 0, -12.193)
+json_dialogue_path = ""
 is_abandoned = true
 
 [node name="FemaleWalkingAround3" parent="GridMaps/NavigationRegion3D/SmallHome2" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.9441467, 0, 0.32952583, 0, 1, 0, -0.32952583, 0, -0.9441467, 12.38887, 4.2940965, -11.520002)
 
 [node name="SmallHome3" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.92053884, 0, -0.3906509, 0, 1, 0, 0.3906509, 0, -0.92053884, 38.698605, -0.8590965, 50.870686)
+transform = Transform3D(-0.39373344, 0, 0.9192245, 0, 1, 0, -0.9192245, 0, -0.39373344, 16.301956, -0.8590965, 56.375473)
+json_dialogue_path = ""
 
 [node name="graveyard" parent="GridMaps/NavigationRegion3D" instance=ExtResource("11_jsy7v")]
-transform = Transform3D(0.9986047, 0, 0.052806422, 0, 1, 0, -0.052806422, 0, 0.9986047, -1.1683218, 2.0160298, -52.87333)
+transform = Transform3D(-0.044543408, 0, 0.9990074, 0, 1, 0, -0.9990074, 0, -0.044543408, -58.19783, 2.0160298, 8.507843)
 
 [node name="SmallHome4" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_jsy7v")]
-transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.632515, -0.8590965, -28.977667)
-json_dialogue_path = "res://assets/2d/dialogues/tree.json"
+transform = Transform3D(-0.13917306, 0, 0.990268, 0, 1, 0, -0.990268, 0, -0.13917306, 21.633, 0, -28.978)
+json_dialogue_path = "res://assets/2d/dialogues/children.json"
 
 [node name="FemaleWalkingAround" parent="GridMaps/NavigationRegion3D/SmallHome4" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.06036917, 0, -0.9981762, 0, 1, 0, 0.9981762, 0, -0.06036917, 5.2168465, 4.2940965, -19.757956)
@@ -216,9 +217,11 @@ json_dialogue_path = ""
 
 [node name="SmallHome6" parent="GridMaps/NavigationRegion3D" instance=ExtResource("8_20vmd")]
 transform = Transform3D(0.1391731, 0, 0.99026805, 0, 1, 0, -0.99026805, 0, 0.1391731, -49.287, 0, 40.001)
+json_dialogue_path = ""
 
 [node name="BigHome" parent="GridMaps/NavigationRegion3D" instance=ExtResource("9_fmq43")]
-transform = Transform3D(-0.5075382, 0, -0.86162925, 0, 1, 0, 0.86162925, 0, -0.5075382, 61.944, 1.435, 13.852)
+transform = Transform3D(-0.98443264, 0, -0.17576209, 0, 1, 0, 0.17576209, 0, -0.98443264, 52.605, 0, 46.967)
+json_dialogue_path = "res://assets/2d/dialogues/wife.json"
 
 [node name="FemaleWalkingAround2" parent="GridMaps/NavigationRegion3D/BigHome" instance=ExtResource("12_kx1j3")]
 transform = Transform3D(-0.5075382, 0, 0.86162925, 0, 1, 0, -0.86162925, 0, -0.5075382, 25.66, 2, -3.621)
@@ -226,12 +229,12 @@ transform = Transform3D(-0.5075382, 0, 0.86162925, 0, 1, 0, -0.86162925, 0, -0.5
 [node name="QuestEntities" type="Node3D" parent="GridMaps/NavigationRegion3D"]
 
 [node name="SpecialTree" parent="GridMaps/NavigationRegion3D/QuestEntities" instance=ExtResource("7_247o4")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.119, 0.685, -49.251)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -53.255695, 0.685, 10.190346)
 
 [node name="EventTriggerAreas" type="Node3D" parent="."]
 
 [node name="EvilGhostSpawnAreaTrigger" type="Area3D" parent="EventTriggerAreas" node_paths=PackedStringArray("spawn_point")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.849937, 0, -40.52699)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.319656, 0, 39.442135)
 collision_layer = 4
 script = ExtResource("15_o1b50")
 spawn_point = NodePath("../../GridMaps/NavigationRegion3D/graveyard")
@@ -240,9 +243,10 @@ spawn_point = NodePath("../../GridMaps/NavigationRegion3D/graveyard")
 shape = SubResource("SphereShape3D_o1b50")
 
 [node name="TreeEventAreaTrigger" type="Area3D" parent="EventTriggerAreas" node_paths=PackedStringArray("special_tree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.605, 0, -41.97)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.236996, 0, 0.092422485)
 collision_layer = 4
 script = ExtResource("13_q75kv")
+_activated = true
 special_tree = NodePath("../../GridMaps/NavigationRegion3D/QuestEntities/SpecialTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EventTriggerAreas/TreeEventAreaTrigger"]
@@ -258,14 +262,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.125, 2, 0)
 curve = SubResource("Curve3D_8rukn")
 
 [node name="Mara" parent="." instance=ExtResource("6_xqoag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.372, 0, -23.164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.372, 0, 16.27344)
 
 [node name="Ghost" parent="." instance=ExtResource("7_gh3kt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.443, 0, -45.749)
 
 [node name="Scripts" type="Node" parent="."]
 
-[node name="Setup" type="Node" parent="Scripts" node_paths=PackedStringArray("mara", "ghost")]
+[node name="Scenario" type="Node" parent="Scripts" node_paths=PackedStringArray("mara", "ghost")]
 script = ExtResource("5_qnawv")
 ghost_inverted = true
 mara = NodePath("../../Mara")
@@ -278,86 +282,95 @@ evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTr
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CanvasController" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("ghost_ignore_button", "speed_buff_button", "change_direction_button", "camera_on_mara_button", "pause_button", "mara_reference", "ghost_debuf_panel", "ghost_ignore_panel", "speed_buff_panel")]
+[node name="CanvasController" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("main_ui_parent", "ghost_ignore_button", "speed_buff_button", "change_direction_button", "camera_on_mara_button", "pause_button", "mara_reference", "ghost_debuf_panel", "ghost_ignore_panel", "speed_buff_panel")]
 script = ExtResource("14_yqqrb")
-ghost_ignore_button = NodePath("../ButtonsContainer/IgnoreGhostsAbilityButton")
-speed_buff_button = NodePath("../ButtonsContainer/SpeedAbilityButton")
-change_direction_button = NodePath("../ButtonsContainer/ChangeDirctionButton")
-camera_on_mara_button = NodePath("../ButtonsContainer/CameraOnMaraButton")
-pause_button = NodePath("../ButtonsContainer/PauseButton")
+main_ui_parent = NodePath("../MainGameUi")
+ghost_ignore_button = NodePath("../MainGameUi/ButtonsContainer/IgnoreGhostsAbilityButton")
+speed_buff_button = NodePath("../MainGameUi/ButtonsContainer/SpeedAbilityButton")
+change_direction_button = NodePath("../MainGameUi/ButtonsContainer/ChangeDirctionButton")
+camera_on_mara_button = NodePath("../MainGameUi/ButtonsContainer/CameraOnMaraButton")
+pause_button = NodePath("../MainGameUi/ButtonsContainer/PauseButton")
 mara_reference = NodePath("../../Mara")
 camera_on_mara = true
-ghost_debuf_panel = NodePath("../StatusContainer/GhostDebuff")
-ghost_ignore_panel = NodePath("../StatusContainer/GhostIgnore")
-speed_buff_panel = NodePath("../StatusContainer/SpeedBuff")
+ghost_debuf_panel = NodePath("../MainGameUi/StatusContainer/GhostDebuff")
+ghost_ignore_panel = NodePath("../MainGameUi/StatusContainer/GhostIgnore")
+speed_buff_panel = NodePath("../MainGameUi/StatusContainer/SpeedBuff")
 
 [node name="InitDialogueNode" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="MainGameUi" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer/MainGameUi"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
-offset_top = -133.0
+offset_top = 475.0
 offset_right = 852.0
-offset_bottom = -27.0
+offset_bottom = 581.0
 grow_vertical = 0
 size_flags_horizontal = 0
 theme_override_constants/separation = 69
 
-[node name="SpeedAbilityButton" parent="CanvasLayer/ButtonsContainer" instance=ExtResource("23_bj67e")]
+[node name="SpeedAbilityButton" parent="CanvasLayer/MainGameUi/ButtonsContainer" instance=ExtResource("23_bj67e")]
 layout_mode = 2
 text = "Ускориться"
 
-[node name="IgnoreGhostsAbilityButton" parent="CanvasLayer/ButtonsContainer" instance=ExtResource("23_bj67e")]
+[node name="IgnoreGhostsAbilityButton" parent="CanvasLayer/MainGameUi/ButtonsContainer" instance=ExtResource("23_bj67e")]
 layout_mode = 2
 text = "Проходить
 сковзь
 призраков"
 
-[node name="ChangeDirctionButton" parent="CanvasLayer/ButtonsContainer" instance=ExtResource("23_bj67e")]
+[node name="ChangeDirctionButton" parent="CanvasLayer/MainGameUi/ButtonsContainer" instance=ExtResource("23_bj67e")]
 layout_mode = 2
 text = "Изменить
 направление"
 
-[node name="CameraOnMaraButton" parent="CanvasLayer/ButtonsContainer" instance=ExtResource("23_bj67e")]
+[node name="CameraOnMaraButton" parent="CanvasLayer/MainGameUi/ButtonsContainer" instance=ExtResource("23_bj67e")]
 layout_mode = 2
 text = "Фокус на
 Мару"
 
-[node name="PauseButton" parent="CanvasLayer/ButtonsContainer" instance=ExtResource("23_bj67e")]
+[node name="PauseButton" parent="CanvasLayer/MainGameUi/ButtonsContainer" instance=ExtResource("23_bj67e")]
 layout_mode = 2
 text = "Остановить
 время"
 
-[node name="StatusContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="StatusContainer" type="HBoxContainer" parent="CanvasLayer/MainGameUi"]
 custom_minimum_size = Vector2(100, 75)
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -258.0
-offset_top = -94.0
-offset_right = -9.0
-offset_bottom = -19.0
+offset_left = 854.0
+offset_top = 514.0
+offset_right = 1103.0
+offset_bottom = 589.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="GhostDebuff" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+[node name="GhostDebuff" parent="CanvasLayer/MainGameUi/StatusContainer" instance=ExtResource("22_1cjqj")]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kq7l3")
 
-[node name="SpeedBuff" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+[node name="SpeedBuff" parent="CanvasLayer/MainGameUi/StatusContainer" instance=ExtResource("22_1cjqj")]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_dmjve")
 
-[node name="GhostIgnore" parent="CanvasLayer/StatusContainer" instance=ExtResource("22_1cjqj")]
+[node name="GhostIgnore" parent="CanvasLayer/MainGameUi/StatusContainer" instance=ExtResource("22_1cjqj")]
 visible = false
 layout_mode = 2
 

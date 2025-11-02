@@ -9,6 +9,7 @@ class_name SpecialTree
 
 func _ready() -> void:
 	interaction_area.body_entered.connect(_apply_buff)
+	interaction_area.body_exited.connect(_apply_buff)
 
 func _apply_buff(body : Node3D):
 	if not activated:

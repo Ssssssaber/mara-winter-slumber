@@ -8,6 +8,7 @@ viewport_path = NodePath("ViewportTextureSprite/SubViewport")
 
 [node name="PieTimerWorld" type="Node3D"]
 script = ExtResource("1_wg5xy")
+_autostart = true
 
 [node name="ViewportTextureSprite" type="Sprite3D" parent="."]
 billboard = 1
