@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://npsgmyqx2xme"]
+[gd_scene load_steps=34 format=3 uid="uid://npsgmyqx2xme"]
 
 [ext_resource type="Shader" uid="uid://hp688sqa3vgn" path="res://assets/3d/shaders/fog_boundry.gdshader" id="1_kx1j3"]
 [ext_resource type="Script" uid="uid://cu8p516arsw16" path="res://scripts/3d/environment/world_init.gd" id="1_y02fm"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bps6uyabpmd82" path="res://scripts/3d/ui/pause_button.gd" id="18_kx1j3"]
 [ext_resource type="Script" uid="uid://hremql1wbucc" path="res://scripts/3d/scenario/dialog_choices_handler.gd" id="18_uhr6o"]
 [ext_resource type="PackedScene" uid="uid://7autqshfxdf4" path="res://scenes/2d/environment/init_dialogue.tscn" id="22_uhr6o"]
+[ext_resource type="PackedScene" uid="uid://d3ecctp5ea0os" path="res://scenes/3d/ui/base_ability_button.tscn" id="23_bj67e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_247o4"]
 size = Vector3(214.6, 1, 222.035)
@@ -268,8 +269,10 @@ evil_ghost_area_trigger = NodePath("../../EventTriggerAreas/EvilGhostSpawnAreaTr
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CanvasController" type="Node" parent="CanvasLayer"]
+[node name="CanvasController" type="Node" parent="CanvasLayer" node_paths=PackedStringArray("ghost_ignore_button", "speed_buff_button")]
 script = ExtResource("14_yqqrb")
+ghost_ignore_button = NodePath("../Control/IgnoreGhostsAbilityButton")
+speed_buff_button = NodePath("../Control/SpeedAbilityButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -304,10 +307,31 @@ layout_mode = 2
 text = "Pause game"
 script = ExtResource("18_kx1j3")
 
-[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
 [node name="Node2D" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 464.0
+offset_right = 85.0
+offset_bottom = 504.0
+
+[node name="SpeedAbilityButton" parent="CanvasLayer/Control" instance=ExtResource("23_bj67e")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 131.0
+offset_bottom = 131.0
+text = "Speed Buff"
+
+[node name="IgnoreGhostsAbilityButton" parent="CanvasLayer/Control" instance=ExtResource("23_bj67e")]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 0.0
+offset_right = 381.00018
+offset_bottom = 131.0
+text = "Ignore Ghosts"
 
 [connection signal="body_entered" from="EventTriggerAreas/EvilGhostSpawnAreaTrigger" to="EventTriggerAreas/EvilGhostSpawnAreaTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EventTriggerAreas/TreeEventAreaTrigger" to="EventTriggerAreas/TreeEventAreaTrigger" method="_on_body_entered"]
@@ -316,3 +340,5 @@ layout_mode = 2
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/SpeedBuffButton" to="CanvasLayer/CanvasController" method="_on_speed_buff_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/ChangeDirecitonButton" to="CanvasLayer/CanvasController" method="_on_change_direciton_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/PauseButton" to="CanvasLayer/HBoxContainer/PauseButton" method="_on_pressed"]
+[connection signal="ability_pressed" from="CanvasLayer/Control/SpeedAbilityButton" to="CanvasLayer/CanvasController" method="_on_speed_ability_button_ability_pressed"]
+[connection signal="ability_pressed" from="CanvasLayer/Control/IgnoreGhostsAbilityButton" to="CanvasLayer/CanvasController" method="_on_ignore_ghosts_ability_button_ability_pressed"]

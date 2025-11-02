@@ -31,7 +31,7 @@ func init_with_canvas_controller(canvas_controller : Node) -> void:
 	_canvas_controller.ghost_ignore_activated.connect(_on_ingnore_ghost_debuff_activated)
 
 	_speed_buff_cooldown_timer = get_node("SpeedBuffCooldownTimer")
-	_ignore_ghosts_cooldown_timer = get_node("SpeedBuffCooldownTimer")
+	_ignore_ghosts_cooldown_timer = get_node("IgnoreGhostsCooldownTimer")
 	
 func _on_modifier_added(modifier_name : String) -> void:
 	if modifier_name == Constants.MARA_SPEED_BUFF:
@@ -49,6 +49,20 @@ func _on_modifier_removed(modifier_name : String) -> void:
 	elif modifier_name == Constants.GHOST_MOVEMENT_MODIFIER:
 		_ghost_debuff_sprite.visible = false
 
+func _process(_delta: float) -> void:
+	if not _speed_buff_cooldown_timer.is_stopped():
+		_canvas_controller.speed_buff_button.set_current_progress(
+			_calclulate_left_progress(_speed_buff_cooldown_timer)
+		)
+	if not _ignore_ghosts_cooldown_timer.is_stopped():
+		_canvas_controller.ghost_ignore_button.set_current_progress(
+			_calclulate_left_progress(_ignore_ghosts_cooldown_timer)
+		)
+
+
+func _calclulate_left_progress(timer : Timer) -> float:
+	return (timer.time_left / timer.wait_time) * 100
+
 func _on_speed_buff_activated() -> void:
 	if not _speed_buff_cooldown_timer.is_stopped():
 		print("speed buff on cooldown: ", _speed_buff_cooldown_timer.time_left)
@@ -59,7 +73,7 @@ func _on_speed_buff_activated() -> void:
 	
 func _on_ingnore_ghost_debuff_activated() -> void:
 	if not _ignore_ghosts_cooldown_timer.is_stopped():
-		print("speed buff on cooldown: ", _ignore_ghosts_cooldown_timer.time_left)
+		print("ignore ghosts on cooldown: ", _ignore_ghosts_cooldown_timer.time_left)
 		return
 	_movement.apply_speed_modifier(Constants.MARA_IGNORE_GHOSTS, 1.0, ignore_ghosts_duration)	
 	_ignore_ghosts_cooldown_timer.start()
