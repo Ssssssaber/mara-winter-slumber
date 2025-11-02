@@ -58,4 +58,5 @@ func _input(event):
 			else:
 				# Все строки показаны - закрываем сцену
 				print("Закрываем монолог")
+				DialogueManager.EndOneLineDialogue()
 				queue_free()

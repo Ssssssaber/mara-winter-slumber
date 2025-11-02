@@ -45,6 +45,8 @@ func _init() -> void:
 	DialogueManager.dialogue_ended.connect(show_ui_json)
 	DialogueManager.battle_ended.connect(show_ui_json)
 	DialogueManager.battle_ended_out_of_time.connect(show_ui_json)
+	DialogueManager.one_line_dialogue_started.connect(func hide(_lies : Array): hide_ui())
+	DialogueManager.one_line_dialogue_ended.connect(func hide(): show_ui())
 
 func init() -> void:
 	change_direction_button.pressed.connect(_on_change_direciton_button_pressed)

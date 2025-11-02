@@ -69,37 +69,37 @@ func setup() -> void:
 	GameManager.AddEntityToPathAutoProgress(ghost, ghost_inverted)
 
 func _on_first_home_area(_body : Node3D) -> void:
-	print("Похоже, сегодня мне придется поработать")
+	DialogueManager.StartOneLineDialogue(["Похоже, сегодня мне придется поработать"])
 	first_home_area.set_deferred("monitoring", false)
 	first_home.pie_timer.start_timer(first_home_until_death)
 
 func _on_ghost_ignore_area(_body : Node3D) -> void:
 	ghost_ignore_area.set_deferred("monitoring", false)
-	print("нужно пройти сквозь приведение, чтобы успеть")
+	DialogueManager.StartOneLineDialogue(["Нужно пройти сквозь привидение, чтобы успеть"])
 
 func _on_second_home_timer_area(_body : Node3D) -> void:
 	second_home_timer_area.set_deferred("monitoring", false)
-	print("Похоже, что еще одной душе пора на упокой")
+	DialogueManager.StartOneLineDialogue(["Похоже, что еще одной душе пора на упокой"])
 	second_home.pie_timer.start_timer(second_home_until_death)
 	speed_up_area.monitoring = true
 
 func _on_change_direction_area(_body : Node3D) -> void:
 	change_direction_area.set_deferred("monitoring", false)
-	print("Чтобы дойти до того дома, нужно сменить направление движения")
+	DialogueManager.StartOneLineDialogue(["Чтобы дойти до того дома, нужно сменить направление движения"])
 
 func _on_speed_up_area(_body : Node3D) -> void:
 	speed_up_area.set_deferred("monitoring", false)
-	print("Надо ускориться, чтобы успеть")
+	DialogueManager.StartOneLineDialogue(["Надо ускориться, чтобы успеть"])
 
 func _on_third_home_area(_body : Node3D) -> void:
 	third_home_area.set_deferred("monitoring", false)
-	print("Еще одну душу нужно упокоить")
+	DialogueManager.StartOneLineDialogue(["Еще одну душу нужно упокоить"])
 	pre_third_home.pie_timer.start_timer(third_home_until_death)
 	third_home.pie_timer.start_timer(third_home_until_death)
 
 func _on_evil_ghost_area(_body : Node3D) -> void:
 	evil_ghost_area.set_deferred("monitoring", false)
-	print("Призрак преследует меня")
+	DialogueManager.StartOneLineDialogue(["Призрак преследует меня", "Нужно его избегать"])
 	var evil_ghost = evil_ghost_scene.instantiate()
 
 	get_tree().root.add_child(evil_ghost)
@@ -108,11 +108,11 @@ func _on_evil_ghost_area(_body : Node3D) -> void:
 
 func _on_tree_event_area(_body : Node3D) -> void:
 	tree_event_area.set_deferred("monitoring", false)
-	print("Похоже, дерево выросло")
+	DialogueManager.StartOneLineDialogue(["Похоже, дерево выросло"])
 	if special_tree:
 		special_tree.activated = true
 		special_tree.visible = true
 
 func _on_start_last_home() -> void:
-	print("Чую я, что это последняя душа на сегодня")
+	DialogueManager.StartOneLineDialogue(["Чую я, что это последняя душа на сегодня"])
 	fourth_home.pie_timer.start_timer(fourth_home_until_death)

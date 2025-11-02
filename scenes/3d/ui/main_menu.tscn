@@ -45,7 +45,6 @@ texture = ExtResource("2_4m7lw")
 script = ExtResource("1_48svi")
 
 [node name="MainMenuButtons" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

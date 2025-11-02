@@ -45,12 +45,14 @@ func Initialize() -> void:
 	Initialized = true
 
 	DialogueManager.dialogue_started.connect(play_enter_house)
+	DialogueManager.one_line_dialogue_started.connect(func freeze(_lines : Array): pause_world_entities.emit())
 	DialogueManager.dialogue_ended.connect(func play_enter(_json : String): play_exit_house())
 	DialogueManager.battle_ended.connect(func play_enter(_json : String): play_exit_house())
 
 	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): unpause_world_entities.emit())
 	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
 	DialogueManager.battle_ended_out_of_time.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
+	DialogueManager.one_line_dialogue_ended.connect(func unfreeze(): unpause_world_entities.emit())
 
 	GameManager.pause_world_entities.connect(stop_ghost_sound)
 

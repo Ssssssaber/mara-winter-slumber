@@ -58,6 +58,9 @@ func _connect_to_dialog_manager() -> void:
 	DialogueManager.dialogue_ended.connect(_disconnect_from_battle_out_of_time)
 
 func _disconnect_from_battle_out_of_time(_json_path : String) -> void:
+	if DialogueManager.battle_ended_out_of_time.is_connected(_on_battle_out_of_time):
+		return
+	
 	DialogueManager.battle_ended_out_of_time.disconnect(_on_battle_out_of_time)
 
 func _on_battle_out_of_time(_json_path : String) -> void:
