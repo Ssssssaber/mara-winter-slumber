@@ -37,8 +37,8 @@ func _physics_process(delta: float) -> void:
 		global_transform.origin = global_transform.origin.lerp(desired_pos, follow_smoothness * delta)
 		return
 	
-	direction.x = Input.get_axis("ui_left", "ui_right")
-	direction.z = Input.get_axis("ui_up", "ui_down")
+	direction.x = Input.get_axis("camera_left", "camera_right")
+	direction.z = Input.get_axis("camera_forward", "camera_backwards")
 	var desired_velocity : Vector3 = Vector3.ZERO
 
 	if direction.length() > 0:

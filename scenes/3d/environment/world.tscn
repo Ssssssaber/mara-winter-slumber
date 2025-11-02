@@ -277,7 +277,7 @@ pause_button = NodePath("../ButtonsContainer/PauseButton")
 mara_reference = NodePath("../../Mara")
 camera_on_mara = true
 
-[node name="Node2D" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
+[node name="InitDialogueNode" parent="CanvasLayer" instance=ExtResource("22_uhr6o")]
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 43.0
