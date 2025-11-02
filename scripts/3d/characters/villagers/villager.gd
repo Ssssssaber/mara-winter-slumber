@@ -4,6 +4,7 @@ class_name Villager
 
 @export var walk_around_area : Area3D
 @export	var flee_distance := 5.0
+@export var audio_manager : Node3D
 
 @onready var navigation_agent : NavigationAgent3D = get_node("NavigationAgent3D")
 @onready var movement_system : MovementSystem = get_node("MovementSystem")
@@ -57,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_interaction_area_body_entered(body : Node3D) -> void:
-	print("VILLAGER GETS SCARED")
+	audio_manager.scream()
 	var direction_away = (global_position - body.global_position).normalized()
 	var new_position = global_position + direction_away * flee_distance
 	_flipH.SetDirection(direction_away)
