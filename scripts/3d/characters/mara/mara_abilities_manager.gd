@@ -4,6 +4,7 @@ extends Node
 @export var speed_buff_duration : float = 3
 
 @export var ignore_ghosts_duration : float = 5
+@export var audio_manager : AudioStreamPlayer3D
 
 var _speed_buff_cooldown_timer : Timer
 var _ignore_ghosts_cooldown_timer : Timer
@@ -40,9 +41,13 @@ func _unpause_ability_timers() -> void:
 
 func _on_modifier_added(modifier_name : String) -> void:
 	_set_indicator_visible(modifier_name, true)
+	audio_manager.pitch_scale = _movement._calculate_effective_speed() / _movement.base_speed
+	print (modifier_name, "added", audio_manager.pitch_scale)
 
 func _on_modifier_removed(modifier_name : String) -> void:
 	_set_indicator_visible(modifier_name, false)
+	audio_manager.pitch_scale = _movement._calculate_effective_speed() / _movement.base_speed
+	print (modifier_name, "removed", audio_manager.pitch_scale)
 
 func _set_indicator_visible(modifier_name : String, value : bool) -> void:
 	if modifier_name == Constants.MARA_SPEED_BUFF:

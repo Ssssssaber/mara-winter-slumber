@@ -53,6 +53,7 @@ radius = 19.25
 
 [node name="SpecialTree" type="Node3D"]
 script = ExtResource("1_3f56f")
+activated = true
 
 [node name="TreeMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.4411967, -99.94078, -3.874302e-05, 2.9802322e-06, -4.7683716e-05, 100, -99.94078, -3.4411998, 0, 0, 0, 0)

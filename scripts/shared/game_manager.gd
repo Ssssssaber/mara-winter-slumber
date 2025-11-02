@@ -8,6 +8,7 @@ var FloorGridMap : GridMap
 var MainPath : Path3D 
 var CanvasControl : Node 
 var MainMenuRef : Node 
+var SoundManager : Node
 
 var GhostScene = load("res://scenes/3d/characters/ghosts/Ghost.tscn")
 var PauseManagerScene = load("res://scenes/3d/characters/base/pause_manager.tscn")
@@ -39,15 +40,35 @@ func Initialize() -> void:
 	FloorGridMap = get_parent().get_node(WORLD_NODE_PATH + "GridMaps/FloorGridMap")
 	MainPath = get_parent().get_node(WORLD_NODE_PATH + "Paths/MainPath")
 	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
+	SoundManager = get_parent().get_node(WORLD_NODE_PATH + "Scripts/SoundManager")
 	
 	Initialized = true
+
+	DialogueManager.dialogue_started.connect(play_enter_house)
+	DialogueManager.dialogue_ended.connect(func play_enter(_json : String): play_exit_house())
+	DialogueManager.battle_ended.connect(func play_enter(_json : String): play_exit_house())
 
 	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): unpause_world_entities.emit())
 	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
 	DialogueManager.battle_ended_out_of_time.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
 
+	GameManager.pause_world_entities.connect(stop_ghost_sound)
+
 	OnGameManagerReady.emit()
-	pass
+
+func play_enter_house() -> void:
+	SoundManager.enter_house_sound.play()
+
+func play_exit_house() -> void:
+	SoundManager.exit_house_sound.play()
+
+func stop_ghost_sound() -> void:
+	SoundManager.ghost_sound.stop()
+
+func play_ghost_sound() -> void:
+	if not SoundManager.ghost_sound.is_playing():
+		SoundManager.ghost_sound.play()
+	
 
 func are_all_nodes_ready(node: Node) -> bool:
 	if not node.is_inside_tree():

@@ -59,8 +59,9 @@ func remove_modifier(modifier_name : String) -> bool:
 	if modifier_name == Constants.MARA_IGNORE_GHOSTS:
 		_ignore_negative_modifiers = false
 
+	var modifier_deleted = speed_modifiers.erase(modifier_name)
 	modifier_removed.emit(modifier_name)
-	return speed_modifiers.erase(modifier_name)
+	return modifier_deleted
 
 func _calculate_effective_speed() -> float:
 	var total_multiplier = 1.0

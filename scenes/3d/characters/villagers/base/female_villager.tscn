@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dw8mg5s0gx6pl"]
+[gd_scene load_steps=15 format=3 uid="uid://dw8mg5s0gx6pl"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_uenaw"]
 [ext_resource type="Material" uid="uid://dr5wv8oy7xnk1" path="res://assets/3d/characters/materials/villager_outline.tres" id="2_dsnd5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ycl31k74gncn" path="res://assets/3d/characters/villagers/female_villager.png" id="5_2psbh"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_2psbh"]
 [ext_resource type="Script" uid="uid://bwd63wkrp36xh" path="res://scripts/3d/characters/villagers/villager_audio_manager.gd" id="7_6sdx0"]
-[ext_resource type="AudioStream" uid="uid://3804ukr4mui" path="res://assets/sounds/woman_screaming.mp3" id="8_dy14t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dsnd5"]
 radius = 1.214
@@ -95,7 +94,6 @@ audio_manager = NodePath("AudioStreamPlayer3D")
 scream_timer = NodePath("ScreamingTimer")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
-stream = ExtResource("8_dy14t")
 
 [node name="ScreamingTimer" type="Timer" parent="AudioManager" index="1"]
 wait_time = 3.0

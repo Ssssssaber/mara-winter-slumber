@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_pn7lr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtia4"]
-radius = 1.839
+radius = 5.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_60gv5"]
 animations = [{

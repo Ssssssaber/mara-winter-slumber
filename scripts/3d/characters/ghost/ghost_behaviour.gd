@@ -14,6 +14,9 @@ func _ready() -> void:
 	vanish_timer.timeout.connect(vanish)
 
 func _on_interaction_area_entered(body : Node3D) -> void:
+	if body.name == "Mara":
+		GameManager.play_ghost_sound()
+
 	var movement_system = body.get_node_or_null("MovementSystem")
 	if not movement_system:
 		return
@@ -21,6 +24,9 @@ func _on_interaction_area_entered(body : Node3D) -> void:
 	movement_system.apply_speed_modifier(Constants.GHOST_MOVEMENT_MODIFIER, slow_modifier, slow_duration)
 
 func _on_interaction_area_exited(body : Node3D) -> void:
+	if body.name == "Mara":
+		GameManager.stop_ghost_sound()
+
 	if slow_duration != Constants.INDEFINITE_DURATION:
 		return
 
@@ -29,6 +35,7 @@ func _on_interaction_area_exited(body : Node3D) -> void:
 		return
 	
 	movement_system.remove_modifier(Constants.GHOST_MOVEMENT_MODIFIER)
+
 
 func vanish() -> void:
 	var parent_node = get_parent()

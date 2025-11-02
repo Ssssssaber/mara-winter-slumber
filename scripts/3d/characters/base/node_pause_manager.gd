@@ -28,6 +28,12 @@ func _set_node_process(value: bool) -> void:
 				animated_sprite.stop()
 			else:
 				animated_sprite.play()
+		if child is AudioStreamPlayer3D:
+			var audio_stream = child as AudioStreamPlayer3D
+			if not value:
+				audio_stream.stop()
+			else:
+				audio_stream.play()
 
 		child.set_process(value)
 		child.set_physics_process(value)
