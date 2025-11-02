@@ -15,12 +15,10 @@ func _process(_delta: float) -> void:
 		_camera = GameManager.GetCamera()
 		return
 
-	# Use camera's forward direction (where it's facing) instead of position vector
-	# In Godot, camera forward is -global_transform.basis.z (negative Z points forward for cameras)
 	var camera_forward = -_camera.global_transform.basis.z.normalized()
 
-	# Dot product: >0 means moving towards camera's view direction, <0 means away
-	var dot_product = _direction_vector.dot(camera_forward)
+	# Cross product: direction_vector × camera_forward
+	var cross_product = _direction_vector.cross(camera_forward)
 
-	# Flip if dot product indicates movement away from camera's view (adjust threshold as needed)
-	sprite.flip_h = (dot_product < Constants.CAMERA_DOT_MIN_DOT_RODUCT)
+	# Use the Y-component of the cross product to determine left/right
+	sprite.flip_h = (cross_product.y > Constants.CAMERA_DOT_MIN_CROSS_RODUCT)
