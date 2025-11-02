@@ -33,6 +33,17 @@ func init_with_canvas_controller(canvas_controller : Node) -> void:
 	_speed_buff_cooldown_timer = get_node("SpeedBuffCooldownTimer")
 	_ignore_ghosts_cooldown_timer = get_node("IgnoreGhostsCooldownTimer")
 	
+	GameManager.pause_world_entities.connect(_pause_ability_timers)
+	GameManager.unpause_world_entities.connect(_unpause_ability_timers)
+
+func _pause_ability_timers() -> void:
+	_speed_buff_cooldown_timer.paused = true
+	_ignore_ghosts_cooldown_timer.paused = true
+
+func _unpause_ability_timers() -> void:
+	_speed_buff_cooldown_timer.paused = false
+	_ignore_ghosts_cooldown_timer.paused = false
+
 func _on_modifier_added(modifier_name : String) -> void:
 	if modifier_name == Constants.MARA_SPEED_BUFF:
 		_speed_buff_sprite.visible = true
