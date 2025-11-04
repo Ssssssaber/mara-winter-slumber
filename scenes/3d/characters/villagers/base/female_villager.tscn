@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dw8mg5s0gx6pl"]
+[gd_scene load_steps=22 format=3 uid="uid://dw8mg5s0gx6pl"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_uenaw"]
 [ext_resource type="Material" uid="uid://dr5wv8oy7xnk1" path="res://assets/3d/characters/materials/villager_outline.tres" id="2_dsnd5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://chonemsq5jlpc" path="res://assets/3d/characters/villagers/Sprite_babka.png" id="5_6sdx0"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_2psbh"]
 [ext_resource type="Script" uid="uid://bwd63wkrp36xh" path="res://scripts/3d/characters/villagers/villager_audio_manager.gd" id="7_6sdx0"]
+[ext_resource type="AudioStream" uid="uid://dtbfqhbmls3yl" path="res://assets/sounds/villager_walking.mp3" id="8_6sdx0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dsnd5"]
 radius = 1.214
@@ -102,10 +103,11 @@ animations = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_xdtvi"]
 radius = 15.0
 
-[node name="BaseCharacter" node_paths=PackedStringArray("audio_manager") instance=ExtResource("1_uenaw")]
+[node name="BaseCharacter" node_paths=PackedStringArray("audio_manager", "_movement") instance=ExtResource("1_uenaw")]
 collision_layer = 32768
 script = ExtResource("2_g164r")
 audio_manager = NodePath("AudioManager")
+_movement = NodePath("MovementSystem")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("SphereShape3D_dsnd5")
@@ -121,7 +123,7 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 material_override = ExtResource("2_dsnd5")
 sprite_frames = SubResource("SpriteFrames_eophk")
 animation = &"standing"
-frame_progress = 0.7942448
+frame_progress = 0.014466987
 
 [node name="WalkAroundTimer" type="Timer" parent="." index="5"]
 wait_time = 3.0
@@ -139,8 +141,14 @@ shape = SubResource("SphereShape3D_xdtvi")
 [node name="ScaredTimer" type="Timer" parent="." index="8"]
 wait_time = 10.0
 
-[node name="AudioManager" type="Node3D" parent="." index="9" node_paths=PackedStringArray("scream_audio")]
+[node name="AudioManager" type="Node3D" parent="." index="9" node_paths=PackedStringArray("scream_audio", "walking_audio")]
 script = ExtResource("7_6sdx0")
-scream_audio = NodePath("AudioStreamPlayer3D")
+scream_audio = NodePath("Scared")
+walking_audio = NodePath("Moving")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
+[node name="Scared" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
+
+[node name="Moving" type="AudioStreamPlayer3D" parent="AudioManager" index="1"]
+stream = ExtResource("8_6sdx0")
+volume_db = -16.842
+pitch_scale = 2.0

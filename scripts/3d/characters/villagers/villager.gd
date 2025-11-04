@@ -5,6 +5,7 @@ class_name Villager
 @export var walk_around_area : Area3D
 @export	var flee_distance := 5.0
 @export var audio_manager : Node3D
+@export var _movement : MovementSystem
 
 @onready var navigation_agent : NavigationAgent3D = get_node("NavigationAgent3D")
 @onready var movement_system : MovementSystem = get_node("MovementSystem")
@@ -59,17 +60,29 @@ func _physics_process(_delta: float) -> void:
 		_flipH.SetDirection(direction)
 		velocity = direction * movement_system.base_speed
 		animated_sprite.play("moving")
+		if not audio_manager.walking_audio.is_playing():
+			audio_manager.walking_audio.play()
 	else:
 		animated_sprite.play("standing")
+		audio_manager.walking_audio.stop()
 	move_and_slide()
+
+func _on_modifier_added(modifier_name : String) -> void:
+	audio_manager.walking_audio.pitch_scale = 2 *_movement._calculate_effective_speed() / _movement.base_speed
+
+func _on_modifier_removed(_modifier_name : String) -> void:
+	audio_manager.walking_audio.pitch_scale = 2 * _movement._calculate_effective_speed() / _movement.base_speed
 
 func _on_interaction_area_body_entered(body : Node3D) -> void:
 	is_scared = true
 	audio_manager.scream_audio.play()
 	animated_sprite.play("scared")  # Play the scared animation here
+	audio_manager.walking_audio.stop()
 	await get_tree().create_timer(1.0).timeout
 	is_scared = false
 
+	if not audio_manager.walking_audio.is_playing():
+			audio_manager.walking_audio.play()
 	var direction_away = (global_position - body.global_position).normalized()
 	var new_position = global_position + direction_away * flee_distance
 	_flipH.SetDirection(direction_away)

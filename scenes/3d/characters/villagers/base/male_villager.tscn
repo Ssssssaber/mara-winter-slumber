@@ -108,5 +108,5 @@ sprite_frames = SubResource("SpriteFrames_yicxm")
 animation = &"scared"
 frame_progress = 0.9578648
 
-[node name="AudioManager" parent="." index="9" node_paths=PackedStringArray("scream_audio")]
-scream_audio = NodePath("AudioStreamPlayer3D")
+[node name="AudioManager" parent="." index="9" node_paths=PackedStringArray("walking_audio")]
+walking_audio = NodePath("Moving")
