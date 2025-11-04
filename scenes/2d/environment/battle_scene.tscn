@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmjp8iqyl8p8q"]
+[gd_scene load_steps=21 format=3 uid="uid://cmjp8iqyl8p8q"]
 
 [ext_resource type="PackedScene" uid="uid://c4vcy61g6muyu" path="res://scenes/2d/characters/Soul.tscn" id="1_1niic"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4vdcg"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://v254gqat2uch" path="res://scripts/2d/environment/BattleController.gd" id="2_5p8w8"]
 [ext_resource type="Texture2D" uid="uid://c27u0o5ylfjhe" path="res://assets/2d/environment/IMG_0636.PNG" id="3_5p8w8"]
 [ext_resource type="PackedScene" uid="uid://1ag12pvvb2uu" path="res://scenes/2d/environment/capture_zone.tscn" id="4_aqiqb"]
-[ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="5_q6iye"]
-[ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="6_3nml5"]
 [ext_resource type="Texture2D" uid="uid://2x7ydvrut5vu" path="res://assets/2d/environment/new/плашка времени.PNG" id="9_3nml5"]
 [ext_resource type="Texture2D" uid="uid://bpox0op5jetf6" path="res://assets/2d/environment/new/иконка времени.PNG" id="9_q6iye"]
 [ext_resource type="Texture2D" uid="uid://c5khy3fox5v5p" path="res://assets/2d/environment/new/sickle/3.PNG" id="11_22rfm"]
@@ -15,15 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://b3r2xjl5svvta" path="res://assets/2d/environment/new/sickle/1.PNG" id="13_24hug"]
 [ext_resource type="Texture2D" uid="uid://de3bxijkwlpxq" path="res://assets/2d/environment/new/sickle/4.PNG" id="14_lcxhw"]
 [ext_resource type="Texture2D" uid="uid://bjsdel5to1ydj" path="res://assets/2d/environment/new/sickle/5.PNG" id="15_yk0ty"]
+[ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="16_22rfm"]
 [ext_resource type="Texture2D" uid="uid://dhygfu34rayy0" path="res://assets/2d/environment/new/sickle/6.PNG" id="16_foyse"]
 [ext_resource type="AudioStream" uid="uid://o130xbodbbgr" path="res://assets/sounds/scythe1.mp3" id="17_q1sws"]
-
-[sub_resource type="SystemFont" id="SystemFont_4vdcg"]
-font_names = PackedStringArray("Monomakh Unicode")
-
-[sub_resource type="SystemFont" id="SystemFont_q6iye"]
-font_names = PackedStringArray("Monomakh Unicode")
-font_stretch = 200
 
 [sub_resource type="SystemFont" id="SystemFont_80nik"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -92,52 +84,26 @@ texture = ExtResource("3_5p8w8")
 position = Vector2(-144, -286)
 script = ExtResource("2_1niic")
 
-[node name="IntimidateButton" type="Button" parent="."]
-offset_left = 732.0
-offset_top = 204.0
-offset_right = 1031.043
-offset_bottom = 341.0
-theme_override_fonts/font = SubResource("SystemFont_4vdcg")
-theme_override_font_sizes/font_size = 35
-text = "Испуг
-"
-icon = ExtResource("5_q6iye")
-flat = true
-icon_alignment = 1
-expand_icon = true
-metadata/_edit_use_anchors_ = true
-
-[node name="CaptureButton" type="Button" parent="."]
-offset_left = 669.0
-offset_top = 81.0
-offset_right = 1035.0
-offset_bottom = 267.0
-theme_override_fonts/font = SubResource("SystemFont_q6iye")
-theme_override_font_sizes/font_size = 35
-text = "Запечатывание
-"
-icon = ExtResource("6_3nml5")
-flat = true
-icon_alignment = 1
-expand_icon = true
-metadata/_edit_use_anchors_ = true
-
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
 
 [node name="BattleText" type="Label" parent="."]
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = 515.0
-offset_top = 74.0
-offset_right = 623.0
-offset_bottom = 97.0
+anchor_bottom = 0.5
+offset_left = 367.0
+offset_top = 68.0
+offset_right = 767.0
+offset_bottom = 143.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = SubResource("SystemFont_80nik")
 theme_override_font_sizes/font_size = 22
 text = "Раскулачивание стоит 300 деревянных"
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="CaptureZone" parent="." instance=ExtResource("4_aqiqb")]
 position = Vector2(-101, -1)
@@ -175,3 +141,17 @@ speed_scale = 2.4
 
 [node name="ScytheSwing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_q1sws")
+
+[node name="CaptureButton" parent="." instance=ExtResource("16_22rfm")]
+offset_left = 762.0
+offset_top = 156.0
+offset_right = 1027.0
+offset_bottom = 261.0
+text = "Запечатать"
+
+[node name="IntimidateButton" parent="." instance=ExtResource("16_22rfm")]
+offset_left = 763.0
+offset_top = 224.0
+offset_right = 1028.0
+offset_bottom = 329.0
+text = "Запугать"

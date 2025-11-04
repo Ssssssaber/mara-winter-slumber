@@ -92,6 +92,7 @@ func _input(event):
 			_cancel_intimidate_placement()
 
 func _on_intimidate_pressed():
+	GameManager.PlayButtonSound()
 	# Проверяем кулдаун конкретно для испуга
 	if battle_active and not intimidate_cooldown and not is_placing_intimidate and not is_placing_zone:
 		_start_intimidate_placement()
@@ -102,6 +103,7 @@ func _on_intimidate_pressed():
 			print("Сначала закончите размещение зоны!")
 
 func _on_capture_pressed():
+	GameManager.PlayButtonSound()
 	# Проверяем кулдаун конкретно для захвата
 	if battle_active and not capture_cooldown and not is_placing_zone and not is_placing_intimidate:
 		_start_zone_placement()

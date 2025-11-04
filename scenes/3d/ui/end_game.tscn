@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://cgyyor8v35h2b" path="res://scripts/3d/ui/end_game_manager.gd" id="1_rkuwn"]
 [ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="2_0apnc"]
 [ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="2_xbq7t"]
-[ext_resource type="Texture2D" uid="uid://bay3422atf6w0" path="res://assets/2d/ui/image3.png" id="3_0apnc"]
 [ext_resource type="Script" uid="uid://c1ox5qigcr88x" path="res://scripts/3d/ui/quit_game_button.gd" id="4_0apnc"]
+[ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="6_rkuwn"]
 
 [node name="EndGame" type="Control" node_paths=PackedStringArray("ending_label", "ending_text")]
 layout_mode = 3
@@ -77,6 +77,8 @@ offset_right = 168.0
 offset_bottom = 186.0
 theme_override_fonts/font = ExtResource("2_0apnc")
 theme_override_font_sizes/font_size = 20
+text = "Апыапап Апыапапывааыапапываап Апыапапываап Апыапапыв Апыапапываапапываап Апыываапапываап"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="EndingName" type="Label" parent="Panel/UI"]
@@ -115,13 +117,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -551.9999
-offset_top = -740.9999
-offset_right = 984.0
-offset_bottom = 1307.0001
+offset_left = -595.0
+offset_top = -615.0
+offset_right = 682.7783
+offset_bottom = 1088.7046
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.36, 0.36)
-texture = ExtResource("3_0apnc")
+texture = ExtResource("6_rkuwn")
+expand_mode = 1
 
 [connection signal="pressed" from="Panel/UI/QuitGame" to="Panel/UI/QuitGame" method="_on_pressed"]

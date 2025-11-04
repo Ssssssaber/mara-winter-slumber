@@ -159,6 +159,7 @@ func type_text(text: String):
 	is_typing = false
 
 func _on_accept_pressed():
+	GameManager.PlayButtonSound()
 	var choice_dialogue = dialogue_data["choice_dialogue"]
 	var accept_data = choice_dialogue.accept_response
 	
@@ -170,6 +171,7 @@ func _on_accept_pressed():
 	handle_next_step(accept_data.next)
 
 func _on_decline_pressed():
+	GameManager.PlayButtonSound()
 	var choice_dialogue = dialogue_data["choice_dialogue"]
 	var decline_data = choice_dialogue.decline_response
 	

@@ -1,6 +1,6 @@
 {
   "choice_dialogue": {
-	"character_sprite": "res://assets/2d/characters/new/man.png",
+	"character_sprite": "res://assets/2d/characters/new/man.PNG",
 	"character_name": "Крестьянин Иван",
 	"dialogue_lines": [
 	  "Тут так холодно... Госпожа Мара? Неужели мое время закончилось, но как же мой сын?",
