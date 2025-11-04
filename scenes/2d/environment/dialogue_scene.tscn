@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://da000hxx7xfpa"]
+[gd_scene load_steps=12 format=3 uid="uid://da000hxx7xfpa"]
 
 [ext_resource type="Script" uid="uid://ce17bsgxtplec" path="res://scripts/2d/environment/dialogue.gd" id="1_fndms"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="2_fh283"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="4_7ysu2"]
 [ext_resource type="FontFile" uid="uid://cs6nemlr3kod2" path="res://assets/2d/temporary/ofont.ru_Gabriela.ttf" id="4_srfqe"]
 [ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="5_srfqe"]
+[ext_resource type="Texture2D" uid="uid://b0qvsscewemdo" path="res://assets/2d/dialogues/wood.png" id="8_nkvew"]
 [ext_resource type="AudioStream" uid="uid://dxv3yba3l8c6g" path="res://assets/sounds/pageturn.mp3" id="8_y1w7f"]
 
 [sub_resource type="SystemFont" id="SystemFont_j5je7"]
@@ -38,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 560.0
-offset_top = -20.0
+offset_top = -13.0
 offset_right = 600.0
-offset_bottom = 20.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -51,10 +52,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -322.0
-offset_top = -343.0
-offset_right = 316.0
-offset_bottom = 153.0
+offset_left = -319.0
+offset_top = -183.5
+offset_right = 319.0
+offset_bottom = 183.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -67,16 +68,16 @@ texture = ExtResource("2_fh283")
 position = Vector2(140, 75)
 
 [node name="Dialogue" type="Sprite2D" parent="."]
-position = Vector2(566.24677, 287.18)
+position = Vector2(566.24677, 289.18)
 scale = Vector2(0.1823588, 0.16343495)
 texture = ExtResource("3_7ysu2")
 
 [node name="DialogueText" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 347.99997
-offset_top = 262.0
+offset_left = 348.0
+offset_top = 264.0
 offset_right = 838.0
-offset_bottom = 354.0
+offset_bottom = 356.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_srfqe")
 theme_override_font_sizes/normal_font_size = 18
@@ -116,9 +117,9 @@ expand_icon = true
 [node name="CharacterName" type="Label" parent="."]
 layout_mode = 0
 offset_left = 336.0
-offset_top = 199.0
+offset_top = 201.0
 offset_right = 525.875
-offset_bottom = 228.0
+offset_bottom = 230.0
 theme_override_fonts/font = SubResource("SystemFont_fh283")
 theme_override_font_sizes/font_size = 20
 text = "Знахарка Велеслава"
@@ -128,6 +129,32 @@ autowrap_mode = 3
 
 [node name="TextTurn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_y1w7f")
-volume_db = -4.952
+volume_db = -8.914
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(375.3994, -26.992085)
+rotation = 1.5707964
+scale = Vector2(0.10308666, 0.08853395)
+texture = ExtResource("8_nkvew")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(769.0114, -25.260479)
+rotation = 1.5707964
+scale = Vector2(0.1040511, 0.08323309)
+texture = ExtResource("8_nkvew")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(573.5, -185.90063)
+scale = Vector2(0.14375001, 0.08543199)
+texture = ExtResource("8_nkvew")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(566.5, 140.33899)
+scale = Vector2(0.12825, 0.086215794)
+texture = ExtResource("8_nkvew")

@@ -10,11 +10,10 @@ extends Control
 @onready var illustration_texture = $IllustrationContainer/IllustrationTexture  # TextureRect для картинки
 @onready var mara_sprite = $Mara
 @onready var text_turn = $TextTurn
-#@onready var 
-
-
-@export var test_mode: bool = true
-@export var test_json_path: String = "res://assets/2d/dialogues/test_dialogue.json"
+@onready var sprite1 = $Sprite2D
+@onready var sprite2 = $Sprite2D2
+@onready var sprite3 = $Sprite2D3
+@onready var sprite4 = $Sprite2D4
 
 var _current_dialog_path : String
 
@@ -67,8 +66,6 @@ func parse_json_start_dialogue(dialogue_json_path: String):
 			start_dialogue()
 		else:
 			push_error("Ошибка парсинга JSON")
-	else:
-		push_error("Не удалось открыть файл: " + test_json_path)
 
 func position_sprite_relative_to_text():
 	# Позиционируем спрайт относительно правого верхнего угла RichTextLabel
@@ -231,43 +228,76 @@ func _input(event):
 func set_character_sprite(sprite_path: String):
 	print("Загрузка спрайта: ", sprite_path)
 	
-	if not FileAccess.file_exists(sprite_path):
-		push_error("Спрайт не найден: " + sprite_path)
-		return
-	
-	var sprite_texture = load(sprite_path)
+	# Пробуем загрузить через ResourceLoader
+	var sprite_texture = ResourceLoader.load(sprite_path)
 	if sprite_texture:
 		character_sprite.texture = sprite_texture
 		character_sprite.scale = sprite_scale
-		
-		# Обновляем позицию относительно RichTextLabel
 		position_sprite_relative_to_text()
-		
 		print("Спрайт загружен и позиционирован относительно RichTextLabel")
 	else:
-		push_error("Не удалось загрузить спрайт: " + sprite_path)
+		# Пробуем альтернативный путь
+		var alternative_path = sprite_path.replace("res://", "")
+		sprite_texture = load(alternative_path)
+		if sprite_texture:
+			character_sprite.texture = sprite_texture
+			character_sprite.scale = sprite_scale
+			position_sprite_relative_to_text()
+			print("Спрайт загружен через альтернативный путь")
+		else:
+			push_error("Не удалось загрузить спрайт: " + sprite_path)
+			# Можно показать спрайт-заглушку
+			show_fallback_sprite()
 
 func set_illustration(illustration_path: String):
 	print("Загрузка иллюстрации: ", illustration_path)
 	
-	if not FileAccess.file_exists(illustration_path):
-		push_error("Иллюстрация не найдена: " + illustration_path)
-		return
-	
-	var illustration_texture_resource = load(illustration_path)
+	var illustration_texture_resource = ResourceLoader.load(illustration_path)
 	if illustration_texture_resource:
 		illustration_texture.texture = illustration_texture_resource
-		
-		# Масштабируем иллюстрацию чтобы она вписалась в экран
-		var screen_size = get_viewport().get_visible_rect().size
-		var texture_size = illustration_texture_resource.get_size()
-		
-		var scale_x = screen_size.x * 0.8 / texture_size.x  # 80% ширины экрана
-		var scale_y = screen_size.y * 0.8 / texture_size.y  # 80% высоты экрана
-		var scale = min(scale_x, scale_y, 1.0)  # Не увеличиваем больше оригинального размера
-		
-		illustration_texture.scale = Vector2(scale, scale)
-		
+		setup_illustration()
 		print("Иллюстрация загружена и отмасштабирована")
 	else:
-		push_error("Не удалось загрузить иллюстрацию: " + illustration_path)
+		# Пробуем альтернативный путь
+		var alternative_path = illustration_path.replace("res://", "")
+		illustration_texture_resource = load(alternative_path)
+		if illustration_texture_resource:
+			illustration_texture.texture = illustration_texture_resource
+			setup_illustration()
+			print("Иллюстрация загружена через альтернативный путь")
+		else:
+			push_error("Не удалось загрузить иллюстрацию: " + illustration_path)
+			# Можно показать заглушку
+			show_fallback_illustration()
+
+func setup_illustration():
+	# Масштабируем иллюстрацию чтобы она вписалась в экран
+	var screen_size = get_viewport().get_visible_rect().size
+	var texture_size = illustration_texture.texture.get_size()
+	
+	var scale_x = screen_size.x * 0.8  # 80% ширины экрана
+	var scale_y = screen_size.y * 0.8   # 80% высоты экрана
+	var scale = min(scale_x, scale_y, 1.0)
+	
+	print("Скейлы: ", scale_x, " ", scale_y, " ", scale)
+	illustration_texture.scale = Vector2(0.1, 0.1)
+	illustration_texture.position = Vector2(dialogue_text.position.x + 1150, dialogue_text.position.y + 890)
+	sprite1.show()
+	sprite2.show()
+	sprite3.show()
+	sprite4.show()
+
+func show_fallback_sprite():
+	# Создаем простой цветной спрайт как заглушку
+	var fallback_texture = ImageTexture.create_from_image(Image.create(100, 100, false, Image.FORMAT_RGBA8))
+	character_sprite.texture = fallback_texture
+	character_sprite.scale = sprite_scale
+	position_sprite_relative_to_text()
+	print("Показан спрайт-заглушка")
+
+func show_fallback_illustration():
+	# Создаем простую иллюстрацию-заглушку
+	var fallback_texture = ImageTexture.create_from_image(Image.create(200, 200, false, Image.FORMAT_RGBA8))
+	illustration_texture.texture = fallback_texture
+	setup_illustration()
+	print("Показана иллюстрация-заглушка")
