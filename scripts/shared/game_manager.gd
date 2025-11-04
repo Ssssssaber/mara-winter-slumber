@@ -2,6 +2,10 @@ extends Node
 
 const WORLD_NODE_PATH = "MainScene/World/"
 
+# @onready var world_environment : WorldEnvironment = get_node("MainScene/WorldEnvironment")
+var particles_enabled : bool = true
+
+var snow_particles : GPUParticles3D
 var Camera : Node3D 
 var BuildingGridMap : GridMap
 var FloorGridMap : GridMap 
@@ -41,7 +45,11 @@ func Initialize() -> void:
 	MainPath = get_parent().get_node(WORLD_NODE_PATH + "Paths/MainPath")
 	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
 	SoundManager = get_parent().get_node(WORLD_NODE_PATH + "Scripts/SoundManager")
+	# snow_particles = get_parent().get_node(WORLD_NODE_PATH + "SnowParticles")
 	
+	# if not particles_enabled:
+	# 	snow_particles.emitting = false
+
 	Initialized = true
 
 	DialogueManager.dialogue_started.connect(play_enter_house)

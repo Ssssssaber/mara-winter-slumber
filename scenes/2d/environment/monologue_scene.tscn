@@ -37,16 +37,19 @@ offset_right = 858.0
 offset_bottom = 572.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_iuue3")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "123"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="CharacterName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 415.0
-offset_top = 428.0
-offset_right = 491.0
-offset_bottom = 468.0
-theme_override_fonts/normal_font = SubResource("SystemFont_iuue3")
-theme_override_font_sizes/normal_font_size = 30
+offset_left = 361.0
+offset_top = 430.0
+offset_right = 550.875
+offset_bottom = 459.0
+theme_override_fonts/font = SubResource("SystemFont_iuue3")
+theme_override_font_sizes/font_size = 20
 text = "Мара"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://da000hxx7xfpa"]
+[gd_scene load_steps=11 format=3 uid="uid://da000hxx7xfpa"]
 
 [ext_resource type="Script" uid="uid://ce17bsgxtplec" path="res://scripts/2d/environment/dialogue.gd" id="1_fndms"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="2_fh283"]
+[ext_resource type="Texture2D" uid="uid://boym32fij3q1r" path="res://assets/2d/temporary/goool.png" id="2_j5je7"]
 [ext_resource type="Texture2D" uid="uid://8xlw32lm0mou" path="res://assets/2d/environment/new/диалоговое окно.png" id="3_7ysu2"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="4_7ysu2"]
 [ext_resource type="FontFile" uid="uid://cs6nemlr3kod2" path="res://assets/2d/temporary/ofont.ru_Gabriela.ttf" id="4_srfqe"]
@@ -29,6 +30,35 @@ offset_top = -218.0
 offset_right = 1153.0
 offset_bottom = 431.0
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 585.0
+offset_top = -20.0
+offset_right = 625.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -343.0
+offset_right = 315.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j5je7")
+
 [node name="Mara" type="Sprite2D" parent="."]
 position = Vector2(104.99996, 191)
 scale = Vector2(0.12, 0.12)
@@ -50,7 +80,7 @@ offset_right = 838.0
 offset_bottom = 354.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_srfqe")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "Тест"
 
@@ -86,13 +116,13 @@ expand_icon = true
 
 [node name="CharacterName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 380.99997
-offset_top = 203.0
-offset_right = 489.99997
-offset_bottom = 232.0
+offset_left = 336.0
+offset_top = 199.0
+offset_right = 525.875
+offset_bottom = 228.0
 theme_override_fonts/font = SubResource("SystemFont_fh283")
-theme_override_font_sizes/font_size = 25
-text = "Заглушка"
+theme_override_font_sizes/font_size = 20
+text = "Знахарка Велеслава"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
