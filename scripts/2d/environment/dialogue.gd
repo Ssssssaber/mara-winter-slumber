@@ -6,6 +6,12 @@ extends Control
 @onready var dialogue_text = $DialogueText
 @onready var accept_button = $AcceptButton
 @onready var decline_button = $DeclineButton
+@onready var illustration_container = $IllustrationContainer  # Новый узел для иллюстрации
+@onready var illustration_texture = $IllustrationContainer/IllustrationTexture  # TextureRect для картинки
+@onready var mara_sprite = $Mara
+@onready var text_turn = $TextTurn
+#@onready var 
+
 
 @export var test_mode: bool = true
 @export var test_json_path: String = "res://assets/2d/dialogues/test_dialogue.json"
@@ -25,7 +31,7 @@ var dialogue_playing: bool = false
 
 # Настройки позиционирования спрайта
 @export var sprite_offset: Vector2 = Vector2(-100, -100)  # Смещение относительно RichTextLabel
-@export var sprite_scale: Vector2 = Vector2(0.11, 0.11)  # Масштаб спрайта
+@export var sprite_scale: Vector2 = Vector2(0.155, 0.155)  # Масштаб спрайта
 
 
 func _ready():
@@ -39,6 +45,7 @@ func _ready():
 	
 	# Позиционируем спрайт относительно RichTextLabel
 	position_sprite_relative_to_text()
+	illustration_container.hide()
 
 func parse_json_start_dialogue(dialogue_json_path: String):
 	if dialogue_playing:
@@ -69,11 +76,11 @@ func position_sprite_relative_to_text():
 	var text_size = dialogue_text.size
 	
 	character_sprite.global_position = Vector2(
-		text_global_pos.x + text_size.x + sprite_offset.x + 300,  # Справа от текста
-		text_global_pos.y - 50 # Сверху от текста
+		text_global_pos.x + text_size.x + sprite_offset.x + 250,  # Справа от текста
+		text_global_pos.y - 125 # Сверху от текста
 	)
 	
-	print("Спрайт позиционирован относительно RichTextLabel")
+	print("Спрайт позиционирован относительно RichTextLabel") 
 
 func _notification(what):
 	# Обновляем позицию спрайта при изменении размера окна
@@ -107,7 +114,10 @@ func show_current_dialogue():
 	if dialogue.has("character_sprite"):
 		set_character_sprite(dialogue.character_sprite)
 	elif dialogue.has("illustration"):
-		set_character_sprite(dialogue.illustration)
+		set_illustration(dialogue.illustration)
+		character_sprite.hide()  # Скрываем спрайт
+		mara_sprite.hide()
+		illustration_container.show()  
 	
 	name_label.text = dialogue.character_name
 	
@@ -209,6 +219,7 @@ func _input(event):
 		else:
 			var dialogue = dialogue_data[current_dialogue]
 			if current_line < dialogue.dialogue_lines.size() - 1:
+				text_turn.play()
 				current_line += 1
 				show_line(current_line)
 			elif current_dialogue != "choice_dialogue":
@@ -235,3 +246,28 @@ func set_character_sprite(sprite_path: String):
 		print("Спрайт загружен и позиционирован относительно RichTextLabel")
 	else:
 		push_error("Не удалось загрузить спрайт: " + sprite_path)
+
+func set_illustration(illustration_path: String):
+	print("Загрузка иллюстрации: ", illustration_path)
+	
+	if not FileAccess.file_exists(illustration_path):
+		push_error("Иллюстрация не найдена: " + illustration_path)
+		return
+	
+	var illustration_texture_resource = load(illustration_path)
+	if illustration_texture_resource:
+		illustration_texture.texture = illustration_texture_resource
+		
+		# Масштабируем иллюстрацию чтобы она вписалась в экран
+		var screen_size = get_viewport().get_visible_rect().size
+		var texture_size = illustration_texture_resource.get_size()
+		
+		var scale_x = screen_size.x * 0.8 / texture_size.x  # 80% ширины экрана
+		var scale_y = screen_size.y * 0.8 / texture_size.y  # 80% высоты экрана
+		var scale = min(scale_x, scale_y, 1.0)  # Не увеличиваем больше оригинального размера
+		
+		illustration_texture.scale = Vector2(scale, scale)
+		
+		print("Иллюстрация загружена и отмасштабирована")
+	else:
+		push_error("Не удалось загрузить иллюстрацию: " + illustration_path)
