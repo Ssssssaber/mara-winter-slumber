@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmjp8iqyl8p8q"]
+[gd_scene load_steps=23 format=3 uid="uid://cmjp8iqyl8p8q"]
 
 [ext_resource type="PackedScene" uid="uid://c4vcy61g6muyu" path="res://scenes/2d/characters/Soul.tscn" id="1_1niic"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4vdcg"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="6_3nml5"]
 [ext_resource type="Texture2D" uid="uid://2x7ydvrut5vu" path="res://assets/2d/environment/new/плашка времени.PNG" id="9_3nml5"]
 [ext_resource type="Texture2D" uid="uid://bpox0op5jetf6" path="res://assets/2d/environment/new/иконка времени.PNG" id="9_q6iye"]
+[ext_resource type="Texture2D" uid="uid://c5khy3fox5v5p" path="res://assets/2d/environment/new/sickle/3.PNG" id="11_22rfm"]
+[ext_resource type="Texture2D" uid="uid://ctcunhjnpcu8v" path="res://assets/2d/environment/new/sickle/2.PNG" id="12_q1sws"]
+[ext_resource type="Texture2D" uid="uid://b3r2xjl5svvta" path="res://assets/2d/environment/new/sickle/1.PNG" id="13_24hug"]
+[ext_resource type="Texture2D" uid="uid://de3bxijkwlpxq" path="res://assets/2d/environment/new/sickle/4.PNG" id="14_lcxhw"]
+[ext_resource type="Texture2D" uid="uid://bjsdel5to1ydj" path="res://assets/2d/environment/new/sickle/5.PNG" id="15_yk0ty"]
+[ext_resource type="Texture2D" uid="uid://dhygfu34rayy0" path="res://assets/2d/environment/new/sickle/6.PNG" id="16_foyse"]
 
 [sub_resource type="SystemFont" id="SystemFont_4vdcg"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -26,6 +32,32 @@ texture = ExtResource("9_3nml5")
 
 [sub_resource type="SystemFont" id="SystemFont_3nml5"]
 font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22rfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_24hug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q1sws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_22rfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lcxhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yk0ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_foyse")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="BattleScene" type="Node2D"]
 
@@ -51,11 +83,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite2D" type="Sprite2D" parent="SoulArea"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(483.99997, 4)
+position = Vector2(484, 4)
 scale = Vector2(0.3098958, 0.31111112)
 texture = ExtResource("3_5p8w8")
 
 [node name="Soul" parent="SoulArea" instance=ExtResource("1_1niic")]
+position = Vector2(-144, -286)
 script = ExtResource("2_1niic")
 
 [node name="IntimidateButton" type="Button" parent="."]
@@ -90,7 +123,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
-battle_duration = 10
 
 [node name="BattleText" type="Label" parent="."]
 anchors_preset = 5
@@ -103,7 +135,7 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme_override_fonts/font = SubResource("SystemFont_80nik")
 theme_override_font_sizes/font_size = 22
-text = "Fisting is 300$"
+text = "Раскулачивание стоит 300 деревянных"
 metadata/_edit_use_anchors_ = true
 
 [node name="CaptureZone" parent="." instance=ExtResource("4_aqiqb")]
@@ -133,3 +165,9 @@ text = "00:00"
 position = Vector2(-36.5, 3)
 scale = Vector2(0.22480616, 0.22480622)
 texture = ExtResource("9_q6iye")
+
+[node name="FrightAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-73.00001, 127)
+scale = Vector2(0.09275, 0.09275)
+sprite_frames = SubResource("SpriteFrames_22rfm")
+speed_scale = 1.3
