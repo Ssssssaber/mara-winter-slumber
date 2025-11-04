@@ -43,7 +43,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("House entered by: ", body.name)
 	pie_timer.stop_timer()
 
-	GameManager.pause_world_entities.emit()
+	GameManager.Pause()
 	_connect_to_dialog_manager()
 
 	if json_dialogue_path == "" or json_dialogue_path == Constants.LAST_BATTLE_ID:

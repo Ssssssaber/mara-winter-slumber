@@ -6,6 +6,7 @@ const WORLD_NODE_PATH = "MainScene/World/"
 var particles_enabled : bool = true
 
 var snow_particles : GPUParticles3D
+var game_pause_menu : Control
 var Camera : Node3D 
 var BuildingGridMap : GridMap
 var FloorGridMap : GridMap 
@@ -29,9 +30,11 @@ signal unpause_world_entities()
 signal OnGameManagerReady()
 
 func Pause() -> void:
+	IsGamePause = true
 	pause_world_entities.emit()
 
 func Unpause() -> void:
+	IsGamePause = false
 	unpause_world_entities.emit()
 
 func _ready() -> void:
@@ -44,27 +47,37 @@ func Initialize() -> void:
 	FloorGridMap = get_parent().get_node(WORLD_NODE_PATH + "GridMaps/FloorGridMap")
 	MainPath = get_parent().get_node(WORLD_NODE_PATH + "Paths/MainPath")
 	CanvasControl = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/CanvasController")
+	game_pause_menu = get_parent().get_node(WORLD_NODE_PATH + "CanvasLayer/GameMenu")
 	SoundManager = get_parent().get_node(WORLD_NODE_PATH + "Scripts/SoundManager")
 	snow_particles = get_parent().get_node(WORLD_NODE_PATH + "SnowParticles")
 	
-	if not particles_enabled:
-		snow_particles.emitting = false
+	snow_particles.emitting = particles_enabled
 
 	Initialized = true
 
 	DialogueManager.dialogue_started.connect(play_enter_house)
-	DialogueManager.one_line_dialogue_started.connect(func freeze(_lines : Array): pause_world_entities.emit())
+	DialogueManager.one_line_dialogue_started.connect(func freeze(_lines : Array): Pause())
 	DialogueManager.dialogue_ended.connect(func play_enter(_json : String): play_exit_house())
 	DialogueManager.battle_ended.connect(func play_enter(_json : String): play_exit_house())
 
-	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): unpause_world_entities.emit())
-	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
-	DialogueManager.battle_ended_out_of_time.connect(func unfreeze(_from_dialogue : String): unpause_world_entities.emit())
-	DialogueManager.one_line_dialogue_ended.connect(func unfreeze(): unpause_world_entities.emit())
+	DialogueManager.dialogue_ended.connect(func unfreeze(_name : String): Unpause())
+	DialogueManager.battle_ended.connect(func unfreeze(_from_dialogue : String): Unpause())
+	DialogueManager.battle_ended_out_of_time.connect(func unfreeze(_from_dialogue : String): Unpause())
+	DialogueManager.one_line_dialogue_ended.connect(func unfreeze(): Unpause())
 
 	GameManager.pause_world_entities.connect(stop_ghost_sound)
 
 	OnGameManagerReady.emit()
+
+func SetShowGamePauseMenu(visible : bool) -> void:
+	game_pause_menu.get_node("UIController").set_menu_visible(visible)
+	if visible:
+		Pause()
+	else:
+		Unpause()
+
+func GetGameMenuVisible() -> bool:
+	return game_pause_menu.visible
 
 func play_enter_house() -> void:
 	SoundManager.enter_house_sound.play()

@@ -58,20 +58,27 @@ func init() -> void:
 	_update_pause_button()
 	_update_camera_button()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("open_menu") and GameManager.Initialized:
+		if GameManager.GetGameMenuVisible():
+			GameManager.SetShowGamePauseMenu(false)
+		elif not GameManager.IsGamePause:
+			GameManager.SetShowGamePauseMenu(true)
+
 func _update_pause_button() -> void:
 	if GameManager.IsGamePause:
-		GameManager.pause_world_entities.emit()
+		GameManager.Pause()
 		pause_button.text = "Продолжить"
 	else:
-		GameManager.unpause_world_entities.emit()
+		GameManager.Unpause()
 		pause_button.text = "Остановить\n время"
 
 func _update_camera_on_mara_button() -> void:
 	if GameManager.IsGamePause:
-		GameManager.pause_world_entities.emit()
+		GameManager.Pause()
 		pause_button.text = "Продолжить"
 	else:
-		GameManager.unpause_world_entities.emit()
+		GameManager.Unpause()
 		pause_button.text = "Остановить\nвремя"
 
 func _update_camera_button() -> void:

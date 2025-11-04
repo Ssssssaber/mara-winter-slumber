@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://duurehmfdf2n2"]
+
+[ext_resource type="PackedScene" uid="uid://bc4k20vlh6tss" path="res://scenes/3d/ui/main_menu.tscn" id="1_qgd2w"]
+
+[node name="GameMenu" instance=ExtResource("1_qgd2w")]
+
+[node name="UIController" parent="." index="2" node_paths=PackedStringArray("parent_control_node")]
+parent_control_node = NodePath("..")
+
+[node name="StartGameButton" parent="MainMenuButtons" index="0"]
+text = "Продолжить игру"

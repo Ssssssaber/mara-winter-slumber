@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc4k20vlh6tss"]
+[gd_scene load_steps=8 format=3 uid="uid://bc4k20vlh6tss"]
 
+[ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4m7lw"]
 [ext_resource type="Script" uid="uid://cnf6js31swr32" path="res://scripts/3d/ui/main_menu/ui_controller.gd" id="1_48svi"]
-[ext_resource type="Texture2D" uid="uid://crcrunkf27lsf" path="res://assets/2d/ui/image2.png" id="1_iewva"]
 [ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="1_yebgj"]
 [ext_resource type="PackedScene" uid="uid://mma4wensmdvx" path="res://scenes/3d/ui/base/base_label.tscn" id="2_1w25l"]
-[ext_resource type="Texture2D" uid="uid://bay3422atf6w0" path="res://assets/2d/ui/image3.png" id="2_4m7lw"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="6_4m7lw"]
 [ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="7_bxt1y"]
 
@@ -19,11 +18,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_iewva")
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Mara" type="TextureRect" parent="."]
 layout_mode = 1
@@ -32,19 +33,22 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -567.0
-offset_top = -589.0
-offset_right = 969.0
-offset_bottom = 1459.0
+offset_left = -536.0
+offset_top = -602.0
+offset_right = 2464.0
+offset_bottom = 3398.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_4m7lw")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_4m7lw")
 
-[node name="UIController" type="Node" parent="." node_paths=PackedStringArray("main_menu_layout", "options_layout")]
+[node name="UIController" type="Node" parent="." node_paths=PackedStringArray("main_menu_layout", "options_layout", "fog_toggle", "bloom_toggle", "snow_toggle")]
 script = ExtResource("1_48svi")
 main_menu_layout = NodePath("../MainMenuButtons")
 options_layout = NodePath("../OptionsContainer")
+fog_toggle = NodePath("../OptionsContainer/FogToggle/FogCheckBox")
+bloom_toggle = NodePath("../OptionsContainer/BloomToggle/BloomCheckBox")
+snow_toggle = NodePath("../OptionsContainer/SnowToggle/SnowCheckBox")
 
 [node name="GameTitle" parent="." instance=ExtResource("2_1w25l")]
 layout_mode = 0
