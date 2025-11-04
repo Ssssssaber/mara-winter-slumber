@@ -51,8 +51,9 @@ shadow_mesh = SubResource("ArrayMesh_rjr45")
 [sub_resource type="SphereShape3D" id="SphereShape3D_wxdv0"]
 radius = 19.25
 
-[node name="SpecialTree" type="Node3D"]
+[node name="SpecialTree" type="Node3D" node_paths=PackedStringArray("apply_buff_timer")]
 script = ExtResource("1_3f56f")
+apply_buff_timer = NodePath("ApplyBuffTimer")
 activated = true
 
 [node name="TreeMesh" type="MeshInstance3D" parent="."]
@@ -66,3 +67,6 @@ collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("SphereShape3D_wxdv0")
+
+[node name="ApplyBuffTimer" type="Timer" parent="."]
+wait_time = 0.5
