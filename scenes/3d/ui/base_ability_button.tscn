@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://d3ecctp5ea0os"]
 
 [ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="1_iptru"]
-[ext_resource type="Texture2D" uid="uid://0uhsab6s75hv" path="res://assets/3d/ui/фон для иконок.png" id="2_306b2"]
+[ext_resource type="Texture2D" uid="uid://0uhsab6s75hv" path="res://assets/2d/ui/фон для иконок.png" id="2_306b2"]
 [ext_resource type="Script" uid="uid://bmx7l2ggyah8a" path="res://scripts/3d/ui/ability_button.gd" id="3_8r5ny"]
-[ext_resource type="Texture2D" uid="uid://51hvl5hxnh3s" path="res://assets/3d/ui/рамка для иконок отдельно.png" id="4_ug4v2"]
+[ext_resource type="Texture2D" uid="uid://51hvl5hxnh3s" path="res://assets/2d/ui/рамка для иконок отдельно.png" id="4_ug4v2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kq7l3"]
 texture = ExtResource("2_306b2")
@@ -31,6 +31,18 @@ pivot_offset = Vector2(42.84, 17.935)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 theme_override_fonts/font = ExtResource("1_iptru")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_kq7l3")
