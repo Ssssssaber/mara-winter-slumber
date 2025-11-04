@@ -2,6 +2,7 @@ extends Node
 
 @export_category("General")
 @export var dialogue_choices_handler : Node
+@export var no_setup : bool = false
 
 @export_category("Setup")
 @export var mara : Node3D
@@ -114,5 +115,6 @@ func _on_tree_event_area(_body : Node3D) -> void:
 		special_tree.visible = true
 
 func _on_start_last_home() -> void:
+	GameManager.call_deferred("Pause")
 	DialogueManager.StartOneLineDialogue(["Чую я, что это последняя душа на сегодня.."])
 	fourth_home.pie_timer.start_timer(fourth_home_until_death)

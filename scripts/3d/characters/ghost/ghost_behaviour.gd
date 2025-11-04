@@ -13,6 +13,7 @@ func _ready() -> void:
 	interaction_area.body_entered.connect(_on_interaction_area_entered)
 	interaction_area.body_exited.connect(_on_interaction_area_exited)
 	vanish_timer.timeout.connect(vanish)
+	animation_manager.play("walk")
 
 func _on_interaction_area_entered(body : Node3D) -> void:
 	if body.name == "Mara":
