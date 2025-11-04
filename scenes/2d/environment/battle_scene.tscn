@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmjp8iqyl8p8q"]
+[gd_scene load_steps=24 format=3 uid="uid://cmjp8iqyl8p8q"]
 
 [ext_resource type="PackedScene" uid="uid://c4vcy61g6muyu" path="res://scenes/2d/characters/Soul.tscn" id="1_1niic"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4vdcg"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://de3bxijkwlpxq" path="res://assets/2d/environment/new/sickle/4.PNG" id="14_lcxhw"]
 [ext_resource type="Texture2D" uid="uid://bjsdel5to1ydj" path="res://assets/2d/environment/new/sickle/5.PNG" id="15_yk0ty"]
 [ext_resource type="Texture2D" uid="uid://dhygfu34rayy0" path="res://assets/2d/environment/new/sickle/6.PNG" id="16_foyse"]
+[ext_resource type="AudioStream" uid="uid://o130xbodbbgr" path="res://assets/sounds/scythe1.mp3" id="17_q1sws"]
 
 [sub_resource type="SystemFont" id="SystemFont_4vdcg"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -170,4 +171,7 @@ texture = ExtResource("9_q6iye")
 position = Vector2(-73.00001, 127)
 scale = Vector2(0.09275, 0.09275)
 sprite_frames = SubResource("SpriteFrames_22rfm")
-speed_scale = 1.3
+speed_scale = 2.4
+
+[node name="ScytheSwing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_q1sws")

@@ -12,6 +12,7 @@ class_name BattleController
 @onready var battle_timer: Timer = get_node("../Timer")
 @onready var timer_label: Label = get_node("../TimerLabel")
 @onready var intimidate_animation: AnimatedSprite2D = get_node("../FrightAnimation")
+@onready var scythe_swing = get_node("../ScytheSwing")
 
 @export var battle_duration: int = 20
 var time_remaining: float = 0
@@ -46,6 +47,7 @@ func _ready():
 	
 	add_to_group("battle_controller")
 	_start_battle_timer()
+
 
 func _start_battle_timer():
 	time_remaining = battle_duration
@@ -137,6 +139,7 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 		intimidate_animation.position = mouse_global_pos
 		intimidate_animation.play("default")
 		intimidate_animation.scale = Vector2(0.1, 0.1)
+		scythe_swing.play()
 		soul.intimidate_from_point(mouse_global_pos)
 		
 		# Визуализируем точку испуга
@@ -145,7 +148,7 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 		battle_text.text = "Душа испугана! Она убегает от точки испуга."
 		
 		# Удаляем точку через короткое время
-		var timer = get_tree().create_timer(0.9)
+		var timer = get_tree().create_timer(0.5)
 		await timer.timeout
 		_remove_intimidate_point()
 		
