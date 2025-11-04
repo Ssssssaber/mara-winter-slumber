@@ -24,16 +24,19 @@ func _ready() -> void:
 	interaction_area.body_entered.connect(_on_interaction_area_entered)
 	movement = get_node_or_null("MovementSystem")
 
+func _input(event : InputEvent) -> void:
+	if GameManager.IsGamePause:
+		return
+
+	if event.is_action_pressed("change_direction"):
+		_change_movement_direction()
+
 func set_path_follower(path_follower : PathFollow3D) -> void:
 	print("path follower set")
 	_path_follower = path_follower
 
 	_animated_sprite.play("walk")
 	set_process_input(true)
-
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("change_direction"):
-		_change_movement_direction()
 
 func _change_movement_direction() -> void:
 	if not _path_follower:

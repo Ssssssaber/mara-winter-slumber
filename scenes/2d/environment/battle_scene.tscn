@@ -123,6 +123,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BattleController" type="Node" parent="."]
 script = ExtResource("2_5p8w8")
+battle_duration = 15
 
 [node name="BattleText" type="Label" parent="."]
 anchors_preset = 5

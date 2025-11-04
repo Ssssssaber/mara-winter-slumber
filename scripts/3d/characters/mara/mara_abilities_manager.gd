@@ -31,6 +31,15 @@ func init_with_canvas_controller(canvas_controller : Node) -> void:
 	GameManager.pause_world_entities.connect(_pause_ability_timers)
 	GameManager.unpause_world_entities.connect(_unpause_ability_timers)
 
+func _input(event : InputEvent) -> void:
+	if GameManager.IsGamePause:
+		return
+	
+	if event.is_action_pressed("ignore_ghosts"):
+		_on_ingnore_ghost_debuff_activated()
+	if event.is_action_pressed("move_speed_buff"):
+		_on_speed_buff_activated()
+
 func _pause_ability_timers() -> void:
 	_speed_buff_cooldown_timer.paused = true
 	_ignore_ghosts_cooldown_timer.paused = true
