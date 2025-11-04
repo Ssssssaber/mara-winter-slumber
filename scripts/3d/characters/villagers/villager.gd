@@ -20,6 +20,7 @@ var is_scared = false
 
 func _ready() -> void:
 	walk_around_area_sphere = walk_around_area.get_node("CollisionShape3D")
+	walk_around_timer.wait_time += randf_range(-1.0, 3)
 	walk_around_timer.timeout.connect(walk_around)
 	interaction_area.body_entered.connect(_on_interaction_area_body_entered)
 	
