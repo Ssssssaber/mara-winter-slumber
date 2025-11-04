@@ -69,9 +69,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_modifier_added(modifier_name : String) -> void:
+	if not is_instance_valid(self):
+		return
 	audio_manager.walking_audio.pitch_scale = 2 *_movement._calculate_effective_speed() / _movement.base_speed
 
 func _on_modifier_removed(_modifier_name : String) -> void:
+	if not is_instance_valid(self):
+		return
 	audio_manager.walking_audio.pitch_scale = 2 * _movement._calculate_effective_speed() / _movement.base_speed
 
 func _on_interaction_area_body_entered(body : Node3D) -> void:
