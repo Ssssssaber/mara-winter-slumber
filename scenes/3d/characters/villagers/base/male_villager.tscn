@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://bk0rtbmpfe25v"]
+
+[ext_resource type="PackedScene" uid="uid://dw8mg5s0gx6pl" path="res://scenes/3d/characters/villagers/base/female_villager.tscn" id="1_8d7c4"]
+[ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="2_4dnsq"]
+[ext_resource type="Texture2D" uid="uid://dg87csvcw3jov" path="res://assets/3d/characters/villagers/male_villager.png" id="3_qscti"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dydj1"]
+render_priority = 0
+shader = ExtResource("2_4dnsq")
+shader_parameter/sprite_texture = ExtResource("3_qscti")
+shader_parameter/enable_billboard = false
+shader_parameter/enable_outline = true
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/glowSize = 0.886000042085
+shader_parameter/glowDensity = 6
+shader_parameter/glowRadialCoverage = 4
+shader_parameter/glowAngle = 1.57
+shader_parameter/glowSharpness = 0.0
+shader_parameter/alphaThreshold = 0.166000007885
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vsfc"]
+atlas = ExtResource("3_qscti")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xawew"]
+atlas = ExtResource("3_qscti")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hnh"]
+atlas = ExtResource("3_qscti")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcw8g"]
+atlas = ExtResource("3_qscti")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5mw1"]
+atlas = ExtResource("3_qscti")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hqn7"]
+atlas = ExtResource("3_qscti")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dckt"]
+atlas = ExtResource("3_qscti")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxe41"]
+atlas = ExtResource("3_qscti")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ycvd"]
+atlas = ExtResource("3_qscti")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yicxm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vsfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xawew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hnh")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcw8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5mw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hqn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dckt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxe41")
+}],
+"loop": true,
+"name": &"scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ycvd")
+}],
+"loop": true,
+"name": &"standing",
+"speed": 5.0
+}]
+
+[node name="BaseCharacter" instance=ExtResource("1_8d7c4")]
+
+[node name="AnimatedSprite3D" parent="RotatableNodes" index="0"]
+material_override = SubResource("ShaderMaterial_dydj1")
+sprite_frames = SubResource("SpriteFrames_yicxm")
+animation = &"scared"
+frame_progress = 0.9578648
+
+[node name="AudioManager" parent="." index="9" node_paths=PackedStringArray("scream_audio")]
+scream_audio = NodePath("AudioStreamPlayer3D")

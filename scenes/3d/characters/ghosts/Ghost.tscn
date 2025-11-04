@@ -1,23 +1,48 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4i5q1xmww22i"]
+[gd_scene load_steps=13 format=3 uid="uid://d4i5q1xmww22i"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_gp6pm"]
 [ext_resource type="Script" uid="uid://cpvkaqvunumpl" path="res://scripts/3d/characters/ghost/ghost_behaviour.gd" id="2_2ovv7"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_70odj"]
 [ext_resource type="Material" uid="uid://c33bm40wj1nk0" path="res://assets/3d/characters/materials/ghost_outline.tres" id="3_ggydj"]
-[ext_resource type="Texture2D" uid="uid://cwiwjhx5rjrv7" path="res://assets/3d/characters/ghost/ghost.png" id="4_70odj"]
+[ext_resource type="Texture2D" uid="uid://df8d2box7ghtw" path="res://assets/3d/characters/ghost/ghost_walk.png" id="5_pn7lr"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_pn7lr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtia4"]
 radius = 5.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x3gc"]
+atlas = ExtResource("5_pn7lr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1ec4"]
+atlas = ExtResource("5_pn7lr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c53mu"]
+atlas = ExtResource("5_pn7lr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxwim"]
+atlas = ExtResource("5_pn7lr")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_60gv5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_70odj")
+"texture": SubResource("AtlasTexture_6x3gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1ec4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c53mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxwim")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -41,16 +66,17 @@ shape = SubResource("SphereShape3D_wtia4")
 script = ExtResource("3_70odj")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="RotatableNodes" index="0"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 material_override = ExtResource("3_ggydj")
 transparent = false
 double_sided = false
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_60gv5")
-animation = &"new_animation"
+animation = &"walk"
+frame_progress = 0.6957759
 
 [node name="FlipH" parent="." index="5" instance=ExtResource("6_pn7lr")]
 
 [node name="VanishTimer" type="Timer" parent="." index="6"]
-wait_time = 30.0
+wait_time = 60.0
 autostart = true

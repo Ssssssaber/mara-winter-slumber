@@ -1,43 +1,67 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw8mg5s0gx6pl"]
+[gd_scene load_steps=21 format=3 uid="uid://dw8mg5s0gx6pl"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_uenaw"]
 [ext_resource type="Material" uid="uid://dr5wv8oy7xnk1" path="res://assets/3d/characters/materials/villager_outline.tres" id="2_dsnd5"]
 [ext_resource type="Script" uid="uid://peno2kywocfc" path="res://scripts/3d/characters/villagers/villager.gd" id="2_g164r"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_xdtvi"]
-[ext_resource type="Texture2D" uid="uid://ycl31k74gncn" path="res://assets/3d/characters/villagers/female_villager.png" id="5_2psbh"]
+[ext_resource type="Texture2D" uid="uid://chonemsq5jlpc" path="res://assets/3d/characters/villagers/Sprite_babka.png" id="5_6sdx0"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_2psbh"]
 [ext_resource type="Script" uid="uid://bwd63wkrp36xh" path="res://scripts/3d/characters/villagers/villager_audio_manager.gd" id="7_6sdx0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dsnd5"]
 radius = 1.214
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71xes"]
-atlas = ExtResource("5_2psbh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy14t"]
+atlas = ExtResource("5_6sdx0")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6sdx0"]
-atlas = ExtResource("5_2psbh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_eophk"]
+atlas = ExtResource("5_6sdx0")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dy14t"]
-atlas = ExtResource("5_2psbh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_trmij"]
+atlas = ExtResource("5_6sdx0")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6w8iu"]
-atlas = ExtResource("5_2psbh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a65ab"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qom4o"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b6gq"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w06b4"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3seld"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17xan"]
+atlas = ExtResource("5_6sdx0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ecn0"]
+atlas = ExtResource("5_6sdx0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eophk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_71xes")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6sdx0")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_dy14t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eophk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trmij")
 }],
 "loop": true,
 "name": &"moving",
@@ -45,7 +69,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6w8iu")
+"texture": SubResource("AtlasTexture_a65ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qom4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b6gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w06b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3seld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17xan")
+}],
+"loop": true,
+"name": &"scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ecn0")
 }],
 "loop": true,
 "name": &"standing",
@@ -73,7 +120,8 @@ script = ExtResource("3_xdtvi")
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 material_override = ExtResource("2_dsnd5")
 sprite_frames = SubResource("SpriteFrames_eophk")
-animation = &"moving"
+animation = &"standing"
+frame_progress = 0.7942448
 
 [node name="WalkAroundTimer" type="Timer" parent="." index="5"]
 wait_time = 3.0
@@ -88,12 +136,11 @@ shape = SubResource("SphereShape3D_xdtvi")
 
 [node name="FlipH" parent="." index="7" instance=ExtResource("6_2psbh")]
 
-[node name="AudioManager" type="Node3D" parent="." index="8" node_paths=PackedStringArray("audio_manager", "scream_timer")]
+[node name="ScaredTimer" type="Timer" parent="." index="8"]
+wait_time = 10.0
+
+[node name="AudioManager" type="Node3D" parent="." index="9" node_paths=PackedStringArray("scream_audio")]
 script = ExtResource("7_6sdx0")
-audio_manager = NodePath("AudioStreamPlayer3D")
-scream_timer = NodePath("ScreamingTimer")
+scream_audio = NodePath("AudioStreamPlayer3D")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
-
-[node name="ScreamingTimer" type="Timer" parent="AudioManager" index="1"]
-wait_time = 3.0

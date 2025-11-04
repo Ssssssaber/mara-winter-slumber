@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dr5wv8oy7xnk1"]
 
 [ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="1_awnpd"]
-[ext_resource type="Texture2D" uid="uid://ycl31k74gncn" path="res://assets/3d/characters/villagers/female_villager.png" id="2_awnpd"]
+[ext_resource type="Texture2D" uid="uid://chonemsq5jlpc" path="res://assets/3d/characters/villagers/Sprite_babka.png" id="2_awnpd"]
 
 [resource]
 render_priority = 0

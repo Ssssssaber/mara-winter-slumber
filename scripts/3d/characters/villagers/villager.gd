@@ -15,6 +15,7 @@ class_name Villager
 @onready var _flipH : FlipHCamera = get_node("FlipH")
 
 var walk_around_area_sphere : Node3D
+var is_scared = false
 
 func _ready() -> void:
 	walk_around_area_sphere = walk_around_area.get_node("CollisionShape3D")
@@ -25,6 +26,8 @@ func _ready() -> void:
 	GameManager.unpause_world_entities.connect(unpause_timer)
 
 func walk_around() -> void:
+	if is_scared:
+		return
 	var random_position := _random_point_on_circle(walk_around_area_sphere.get_shape().radius, walk_around_area.global_transform.origin); 
 	navigation_agent.set_target_position(random_position)
 	animated_sprite.play("moving")
@@ -45,20 +48,28 @@ func pause_timer() -> void:
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector3.ZERO
+	if is_scared:
+		return
+
 	var destination = navigation_agent.get_next_path_position()
 	var distance_to_destination = global_position.distance_to(destination)
-	if distance_to_destination > 0.1:  # Only move if far enough
+	if distance_to_destination > 0.1:
 		var local_destination = destination - global_position
 		var direction = local_destination.normalized()
 		_flipH.SetDirection(direction)
 		velocity = direction * movement_system.base_speed
+		animated_sprite.play("moving")
 	else:
 		animated_sprite.play("standing")
-
 	move_and_slide()
 
 func _on_interaction_area_body_entered(body : Node3D) -> void:
-	audio_manager.scream()
+	is_scared = true
+	audio_manager.scream_audio.play()
+	animated_sprite.play("scared")  # Play the scared animation here
+	await get_tree().create_timer(1.0).timeout
+	is_scared = false
+
 	var direction_away = (global_position - body.global_position).normalized()
 	var new_position = global_position + direction_away * flee_distance
 	_flipH.SetDirection(direction_away)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8uedb33bkpvf"]
+
+[ext_resource type="Script" uid="uid://bbkase2o7cud5" path="res://scripts/3d/characters/villagers/villager_walking_around.gd" id="1_ves8k"]
+[ext_resource type="PackedScene" uid="uid://bk0rtbmpfe25v" path="res://scenes/3d/characters/villagers/base/male_villager.tscn" id="2_tbxyy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m275m"]
+radius = 7.0
+
+[node name="MaleWalkingAround" type="Node3D"]
+script = ExtResource("1_ves8k")
+
+[node name="BaseCharacter" parent="." node_paths=PackedStringArray("walk_around_area") instance=ExtResource("2_tbxyy")]
+walk_around_area = NodePath("../Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_m275m")
