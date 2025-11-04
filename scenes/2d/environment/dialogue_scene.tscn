@@ -2,12 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ce17bsgxtplec" path="res://scripts/2d/environment/dialogue.gd" id="1_fndms"]
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="2_fh283"]
-[ext_resource type="Texture2D" uid="uid://cmf4y7br72lli" path="res://assets/2d/environment/new/окно с фоном.PNG" id="3_xvyb3"]
+[ext_resource type="Texture2D" uid="uid://8xlw32lm0mou" path="res://assets/2d/environment/new/диалоговое окно.png" id="3_7ysu2"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="4_7ysu2"]
 [ext_resource type="Texture2D" uid="uid://bqq6dos0cqqvq" path="res://assets/2d/environment/new/плашка 2.PNG" id="5_srfqe"]
-
-[sub_resource type="SystemFont" id="SystemFont_fh283"]
-font_names = PackedStringArray("Monomakh Unicode")
 
 [sub_resource type="SystemFont" id="SystemFont_002kp"]
 font_names = PackedStringArray("Monomakh Unicode")
@@ -16,6 +13,9 @@ font_names = PackedStringArray("Monomakh Unicode")
 font_names = PackedStringArray("Monomakh Unicode")
 
 [sub_resource type="SystemFont" id="SystemFont_nkvew"]
+font_names = PackedStringArray("Monomakh Unicode")
+
+[sub_resource type="SystemFont" id="SystemFont_fh283"]
 font_names = PackedStringArray("Monomakh Unicode")
 
 [node name="DialogueScene" type="Control"]
@@ -31,48 +31,42 @@ offset_top = -218.0
 offset_right = 1153.0
 offset_bottom = 431.0
 
-[node name="CharacterName" type="Label" parent="."]
-layout_mode = 0
-offset_left = 691.0
-offset_top = -60.0
-offset_right = 813.0
-offset_bottom = -31.0
-theme_override_fonts/font = SubResource("SystemFont_fh283")
-theme_override_font_sizes/font_size = 28
-text = "Заглушка"
-
 [node name="Mara" type="Sprite2D" parent="."]
-position = Vector2(258, -6)
-scale = Vector2(0.09, 0.09)
+position = Vector2(104.99996, 191)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("2_fh283")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
-position = Vector2(87, 39)
+position = Vector2(140, 75)
 
 [node name="Dialogue" type="Sprite2D" parent="."]
-position = Vector2(580.055, 264)
-scale = Vector2(0.24927859, 0.21)
-texture = ExtResource("3_xvyb3")
+position = Vector2(566.24677, 287.18)
+scale = Vector2(0.1823588, 0.16343495)
+texture = ExtResource("3_7ysu2")
 
 [node name="DialogueText" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 204.0
-offset_right = 923.0
-offset_bottom = 335.0
+offset_left = 347.99997
+offset_top = 262.0
+offset_right = 838.0
+offset_bottom = 354.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_002kp")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "Тест"
 
 [node name="AcceptButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 563.0
-offset_top = 25.0
-offset_right = 713.0
-offset_bottom = 90.0
+offset_left = 652.69507
+offset_top = 23.0
+offset_right = 870.0
+offset_bottom = 126.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = SubResource("SystemFont_j5je7")
-text = "Принять"
+theme_override_font_sizes/font_size = 20
+text = "Согласиться"
 icon = ExtResource("4_7ysu2")
 flat = true
 icon_alignment = 1
@@ -80,13 +74,27 @@ expand_icon = true
 
 [node name="DeclineButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 551.0
-offset_top = 65.0
-offset_right = 713.0
-offset_bottom = 132.0
+offset_left = 682.0
+offset_top = 82.0
+offset_right = 867.0
+offset_bottom = 175.0
 theme_override_fonts/font = SubResource("SystemFont_nkvew")
-text = "Отклонить"
+theme_override_font_sizes/font_size = 20
+text = "Упокоить"
 icon = ExtResource("5_srfqe")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="CharacterName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 380.99997
+offset_top = 203.0
+offset_right = 489.99997
+offset_bottom = 232.0
+theme_override_fonts/font = SubResource("SystemFont_fh283")
+theme_override_font_sizes/font_size = 25
+text = "Заглушка"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

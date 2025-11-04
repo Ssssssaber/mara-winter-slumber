@@ -11,6 +11,7 @@ class_name BattleController
 @onready var capture_btn: Button = get_node("../CaptureButton")
 @onready var battle_timer: Timer = get_node("../Timer")
 @onready var timer_label: Label = get_node("../TimerLabel")
+@onready var intimidate_animation: AnimatedSprite2D = get_node("../FrightAnimation")
 
 @export var battle_duration: int = 20
 var time_remaining: float = 0
@@ -132,6 +133,10 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 	var area_global_rect = Rect2(soul_area.global_position, soul_area.size)
 	if area_global_rect.has_point(mouse_global_pos):
 		# Передаем глобальные координаты напрямую!
+		intimidate_animation.visible = true
+		intimidate_animation.position = mouse_global_pos
+		intimidate_animation.play("default")
+		intimidate_animation.scale = Vector2(0.1, 0.1)
 		soul.intimidate_from_point(mouse_global_pos)
 		
 		# Визуализируем точку испуга
@@ -140,12 +145,15 @@ func _finalize_intimidate_placement(mouse_event: InputEventMouseButton):
 		battle_text.text = "Душа испугана! Она убегает от точки испуга."
 		
 		# Удаляем точку через короткое время
-		var timer = get_tree().create_timer(0.5)
+		var timer = get_tree().create_timer(0.9)
 		await timer.timeout
 		_remove_intimidate_point()
 		
 		is_placing_intimidate = false
 		_start_intimidate_cooldown()  # Запускаем кулдаун для ИСПУГА
+
+		intimidate_animation.stop()
+		intimidate_animation.visible = false
 	else:
 		battle_text.text = "Позиция вне области души! Попробуйте еще раз."
 

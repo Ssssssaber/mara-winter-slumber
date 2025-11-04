@@ -23,6 +23,10 @@ var typing_speed: float = 0.05  # Скорость появления букв
 var waiting_for_battle_click: bool = false  # Флаг ожидания клика для битвы
 var dialogue_playing: bool = false
 
+# Настройки позиционирования спрайта
+@export var sprite_offset: Vector2 = Vector2(-100, -100)  # Смещение относительно RichTextLabel
+@export var sprite_scale: Vector2 = Vector2(0.11, 0.11)  # Масштаб спрайта
+
 
 func _ready():
 	print("=== ДИАЛОГ СИСТЕМА: _ready() запущен ===")
@@ -32,6 +36,9 @@ func _ready():
 	# Подключаем сигналы кнопок
 	accept_button.pressed.connect(_on_accept_pressed)
 	decline_button.pressed.connect(_on_decline_pressed)
+	
+	# Позиционируем спрайт относительно RichTextLabel
+	position_sprite_relative_to_text()
 
 func parse_json_start_dialogue(dialogue_json_path: String):
 	if dialogue_playing:
@@ -56,6 +63,22 @@ func parse_json_start_dialogue(dialogue_json_path: String):
 	else:
 		push_error("Не удалось открыть файл: " + test_json_path)
 
+func position_sprite_relative_to_text():
+	# Позиционируем спрайт относительно правого верхнего угла RichTextLabel
+	var text_global_pos = dialogue_text.global_position
+	var text_size = dialogue_text.size
+	
+	character_sprite.global_position = Vector2(
+		text_global_pos.x + text_size.x + sprite_offset.x + 300,  # Справа от текста
+		text_global_pos.y - 50 # Сверху от текста
+	)
+	
+	print("Спрайт позиционирован относительно RichTextLabel")
+
+func _notification(what):
+	# Обновляем позицию спрайта при изменении размера окна
+	if what == NOTIFICATION_RESIZED || what == NOTIFICATION_WM_SIZE_CHANGED:
+		position_sprite_relative_to_text()
 
 func choice_buttons_hide():
 	accept_button.hide()
@@ -169,7 +192,6 @@ func handle_next_step(next_step: String):
 
 func start_battle():
 	waiting_for_battle_click = false
-
 	dialog_ended_with_battle.emit(_current_dialog_path)
 	queue_free()
 
@@ -205,21 +227,11 @@ func set_character_sprite(sprite_path: String):
 	var sprite_texture = load(sprite_path)
 	if sprite_texture:
 		character_sprite.texture = sprite_texture
+		character_sprite.scale = sprite_scale
 		
-		# Получаем размеры экрана
-		var screen_size = get_viewport().get_visible_rect().size
+		# Обновляем позицию относительно RichTextLabel
+		position_sprite_relative_to_text()
 		
-		# Настраиваем масштаб (пример)
-		character_sprite.scale = Vector2(0.087, 0.087)
-		
-		# Позиционируем в правом верхнем углу с отступами
-		var sprite_size = sprite_texture.get_size() * character_sprite.scale
-		character_sprite.position = Vector2(
-			screen_size.x - sprite_size.x - 75,  # Отступ 80 пикселей от правого края
-			-50  # Отступ 50 пикселей от верхнего края
-		)
-		
-		print("Спрайт позиционирован в правом верхнем углу")
+		print("Спрайт загружен и позиционирован относительно RichTextLabel")
 	else:
 		push_error("Не удалось загрузить спрайт: " + sprite_path)
-

@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Soul
 
 # Настройки движения
-var movement_speed: float = 15.0
+var movement_speed: float = 35.0
 var current_direction: Vector2 = Vector2(1, 0)
 var is_moving: bool = true
 
@@ -141,7 +141,7 @@ func _move_soul(delta):
 	# Разная скорость в зависимости от состояния
 	var current_speed = movement_speed
 	if is_frightened:
-		current_speed = 20.0  # Ускорение при испуге
+		current_speed = 45.0  # Ускорение при испуге
 	
 	velocity = current_direction * current_speed
 	
@@ -268,56 +268,10 @@ func intimidate_from_point(fright_point_global: Vector2):
 	# Активируем режим испуга
 	is_frightened = true
 	fright_timer = 0.0
-	movement_speed = 20.0
+	movement_speed = 45.0
 	
 	print("Установлено направление испуга: ", fright_direction)
 	print("Приоритет: ВЫСШИЙ (игнорируем зоны захвата)")
-
-# Альтернативный вариант - испуг в противоположную сторону
-func intimidate_from_point_alternative(fright_point_global: Vector2):
-	print("=== АЛЬТЕРНАТИВНЫЙ ИСПУГ ===")
-	
-	# Вектор от души к точке испуга
-	var to_fright_point = fright_point_global - global_position
-	print("Вектор к точке испуга: ", to_fright_point)
-	
-	# Двигаемся в ПРОТИВОПОЛОЖНУЮ сторону
-	var direction_away = -to_fright_point.normalized()
-	
-	print("Направление ОТ точки: ", direction_away)
-	
-	current_direction = direction_away.normalized()
-	target_direction = current_direction
-	
-	is_frightened = true
-	fright_timer = 0.0
-	movement_speed = 20.0
-	
-	get_tree().create_timer(fright_duration).timeout.connect(
-		func(): 
-			if is_moving and is_instance_valid(self):
-				movement_speed = 15.0
-				is_frightened = false
-	, CONNECT_ONE_SHOT)
-
-# Простой испуг (старая механика)
-func intimidate():
-	print("=== ПРОСТОЙ ИСПУГ (ВЫСШИЙ ПРИОРИТЕТ) ===")
-	fright_direction = -current_direction  # Просто разворачиваемся
-	current_direction = fright_direction
-	target_direction = current_direction
-	
-	is_frightened = true
-	fright_timer = 0.0
-	movement_speed = 20.0
-	
-	# Возвращаем нормальную скорость через время
-	get_tree().create_timer(fright_duration).timeout.connect(
-		func(): 
-			if is_moving and is_instance_valid(self):
-				movement_speed = 15.0
-				is_frightened = false
-	, CONNECT_ONE_SHOT)
 
 func take_damage() -> bool:
 	if current_health > 0:
