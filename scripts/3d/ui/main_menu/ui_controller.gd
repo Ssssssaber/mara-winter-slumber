@@ -23,6 +23,7 @@ func set_menu_visible(value : bool) -> void:
 	parent_control_node.visible = value
 
 func _on_start_game_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	if not GameManager.Initialized:
 		GameManager.StartGame(get_parent())
 	else:
@@ -30,24 +31,30 @@ func _on_start_game_button_pressed() -> void:
 		GameManager.Unpause()
 
 func _on_quit_game_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	get_tree().quit()
 
 func _on_options_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	main_menu_layout.visible = false
 	options_layout.visible = true
 
 func _on_options_main_menu_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	main_menu_layout.visible = true
 	options_layout.visible = false
 
 func _on_snow_check_box_toggled(toggled_on: bool) -> void:
+	GameManager.PlayButtonSound()
 	if GameManager.Initialized:
 		GameManager.snow_particles.emitting = toggled_on
 	else:
 		GameManager.particles_enabled = toggled_on
 
 func _on_fog_check_box_toggled(toggled_on: bool) -> void:
+	GameManager.PlayButtonSound()
 	GameManager.world_environment.environment.fog_enabled = toggled_on
 
 func _on_bloom_check_box_toggled(toggled_on: bool) -> void:
+	GameManager.PlayButtonSound()
 	GameManager.world_environment.environment.glow_enabled = toggled_on

@@ -90,18 +90,23 @@ func _update_camera_button() -> void:
 		camera_on_mara_button.text = "Фокус\nна Мару"
 
 func _on_change_direciton_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	change_direction.emit()
 
 func _on_speed_ability_button_ability_pressed() -> void:
+	GameManager.PlayButtonSound()
 	speed_buff_activated.emit()
 
 func _on_ignore_ghosts_ability_button_ability_pressed() -> void:
+	GameManager.PlayButtonSound()
 	ghost_ignore_activated.emit()
 
 func _on_camera_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	camera_on_mara = not camera_on_mara
 	_update_camera_button()
 
 func _on_pause_button_pressed() -> void:
+	GameManager.PlayButtonSound()
 	GameManager.IsGamePause = not GameManager.IsGamePause
 	_update_pause_button()

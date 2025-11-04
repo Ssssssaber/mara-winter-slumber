@@ -5,6 +5,9 @@ const WORLD_NODE_PATH = "MainScene/World/"
 @onready var world_environment : WorldEnvironment = get_parent().get_node("MainScene/WorldEnvironment")
 var particles_enabled : bool = true
 
+var ButtonPressSound : AudioStreamPlayer
+var _buttonPressedStream := load("res://assets/sounds/button_press.mp3")
+
 var snow_particles : GPUParticles3D
 var game_pause_menu : Control
 var Camera : Node3D 
@@ -38,8 +41,16 @@ func Unpause() -> void:
 	unpause_world_entities.emit()
 
 func _ready() -> void:
+	ButtonPressSound = AudioStreamPlayer.new()
+	ButtonPressSound.stream = _buttonPressedStream
+
+	get_tree().root.add_child.call_deferred(ButtonPressSound)
+
 	if _auto_initilize:
 		Initialize()
+
+func PlayButtonSound() -> void:
+	ButtonPressSound.play()
 
 func Initialize() -> void:
 	Camera = get_parent().get_node(WORLD_NODE_PATH + "CameraParent/CameraController")
