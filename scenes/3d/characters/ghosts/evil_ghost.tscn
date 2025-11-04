@@ -12,6 +12,8 @@ base_speed = 10.0
 
 [node name="AnimatedSprite3D" parent="RotatableNodes" index="0"]
 material_override = ExtResource("2_0wogg")
+animation = &"vanish"
+frame_progress = 0.0
 
 [node name="VanishTimer" parent="." index="6"]
 wait_time = 10000.0

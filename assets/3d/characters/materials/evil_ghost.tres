@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://u0d4p8dbex08"]
 
 [ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="1_niufe"]
-[ext_resource type="Texture2D" uid="uid://df8d2box7ghtw" path="res://assets/3d/characters/ghost/ghost_walk.png" id="2_niufe"]
+[ext_resource type="Texture2D" uid="uid://h15qvfigiuar" path="res://assets/3d/characters/ghost/Sprite_ghost.png" id="2_niufe"]
 
 [resource]
 render_priority = 0

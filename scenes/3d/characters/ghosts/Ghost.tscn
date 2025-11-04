@@ -1,56 +1,133 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4i5q1xmww22i"]
+[gd_scene load_steps=22 format=3 uid="uid://d4i5q1xmww22i"]
 
 [ext_resource type="PackedScene" uid="uid://cp1rsicixl8if" path="res://scenes/3d/characters/base/BaseCharacter.tscn" id="1_gp6pm"]
 [ext_resource type="Script" uid="uid://cpvkaqvunumpl" path="res://scripts/3d/characters/ghost/ghost_behaviour.gd" id="2_2ovv7"]
 [ext_resource type="Script" uid="uid://b3h0gorrof7wu" path="res://scripts/3d/characters/sprites/billboard.gd" id="3_70odj"]
-[ext_resource type="Material" uid="uid://c33bm40wj1nk0" path="res://assets/3d/characters/materials/ghost_outline.tres" id="3_ggydj"]
-[ext_resource type="Texture2D" uid="uid://df8d2box7ghtw" path="res://assets/3d/characters/ghost/ghost_walk.png" id="5_pn7lr"]
+[ext_resource type="Shader" uid="uid://da6lpstm2istk" path="res://assets/3d/shaders/BaseCharacter.gdshader" id="4_pn7lr"]
+[ext_resource type="Texture2D" uid="uid://h15qvfigiuar" path="res://assets/3d/characters/ghost/Sprite_ghost.png" id="5_6x3gc"]
 [ext_resource type="PackedScene" uid="uid://dy8vwjbdwhldr" path="res://scenes/3d/characters/base/FlipH.tscn" id="6_pn7lr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtia4"]
 radius = 5.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6x3gc"]
-atlas = ExtResource("5_pn7lr")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1ec4"]
-atlas = ExtResource("5_pn7lr")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1ec4"]
+render_priority = 0
+shader = ExtResource("4_pn7lr")
+shader_parameter/sprite_texture = ExtResource("5_6x3gc")
+shader_parameter/enable_billboard = false
+shader_parameter/enable_outline = true
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/glowSize = 1.134000053865
+shader_parameter/glowDensity = 6
+shader_parameter/glowRadialCoverage = 4
+shader_parameter/glowAngle = 1.57
+shader_parameter/glowSharpness = 0.0
+shader_parameter/alphaThreshold = 0.166000007885
+shader_parameter/modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c53mu"]
-atlas = ExtResource("5_pn7lr")
-region = Rect2(64, 0, 32, 32)
+atlas = ExtResource("5_6x3gc")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxwim"]
-atlas = ExtResource("5_pn7lr")
+atlas = ExtResource("5_6x3gc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rqba"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gtod"]
+atlas = ExtResource("5_6x3gc")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwijt"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymoy3"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4prs8"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1l0p"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ucqf"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6jkd"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq3wb"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dj20"]
+atlas = ExtResource("5_6x3gc")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_60gv5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6x3gc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1ec4")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_c53mu")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pxwim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rqba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gtod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwijt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymoy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4prs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1l0p")
+}],
+"loop": true,
+"name": &"vanish",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ucqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6jkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq3wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dj20")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[node name="Ghost" node_paths=PackedStringArray("_animated_sprite") instance=ExtResource("1_gp6pm")]
+[node name="Ghost" node_paths=PackedStringArray("animation_manager", "_animated_sprite") instance=ExtResource("1_gp6pm")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("2_2ovv7")
 slow_duration = 3.0
+animation_manager = NodePath("RotatableNodes/AnimatedSprite3D")
 _animated_sprite = NodePath("RotatableNodes/AnimatedSprite3D")
 
 [node name="MovementSystem" parent="." index="1"]
@@ -67,13 +144,13 @@ script = ExtResource("3_70odj")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="RotatableNodes" index="0"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
-material_override = ExtResource("3_ggydj")
+material_override = SubResource("ShaderMaterial_k1ec4")
 transparent = false
 double_sided = false
 alpha_cut = 2
 sprite_frames = SubResource("SpriteFrames_60gv5")
 animation = &"walk"
-frame_progress = 0.6957759
+frame_progress = 0.76107574
 
 [node name="FlipH" parent="." index="5" instance=ExtResource("6_pn7lr")]
 
