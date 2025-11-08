@@ -10,6 +10,10 @@ shader = ExtResource("2_4dnsq")
 shader_parameter/sprite_texture = ExtResource("3_qscti")
 shader_parameter/enable_billboard = false
 shader_parameter/enable_outline = true
+shader_parameter/replacing_color = true
+shader_parameter/target_color = Color(0.3882353, 0.36862746, 0.3882353, 1)
+shader_parameter/replacement_color = Color(4.813075e-08, 0.18190277, 0.30988872, 1)
+shader_parameter/tolerance = 0.05
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/glowSize = 0.886000042085
 shader_parameter/glowDensity = 6
@@ -107,6 +111,3 @@ material_override = SubResource("ShaderMaterial_dydj1")
 sprite_frames = SubResource("SpriteFrames_yicxm")
 animation = &"scared"
 frame_progress = 0.9578648
-
-[node name="AudioManager" parent="." index="9" node_paths=PackedStringArray("walking_audio")]
-walking_audio = NodePath("Moving")

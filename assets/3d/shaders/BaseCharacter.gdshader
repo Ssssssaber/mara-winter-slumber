@@ -5,6 +5,11 @@ uniform sampler2D sprite_texture : source_color, filter_nearest;
 uniform bool enable_billboard = true;
 uniform bool enable_outline = true;
 
+uniform bool replacing_color = false; 
+uniform vec4 target_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance = 0.05;
+
 uniform vec4 line_color : source_color = vec4(1.0,1.0,1.0,1.0);
 uniform float glowSize: hint_range(0.0, 300) = 15.0;
 uniform int glowDensity: hint_range(0, 30) = 3;
@@ -36,7 +41,24 @@ void vertex() {
 void fragment() {
     vec4 col = texture(sprite_texture, UV);
 
-    ALBEDO = col.rgb;
+
+
+	if (replacing_color)
+	{
+		float r_diff = abs(col.r - target_color.r);
+		float g_diff = abs(col.g - target_color.g);
+		float b_diff = abs(col.b - target_color.b);
+		 if (r_diff < tolerance && g_diff < tolerance && b_diff < tolerance) {
+	        ALBEDO = replacement_color.rgb;
+    	}
+		 else {
+	        ALBEDO = col.rgb;
+	    }
+	}
+    else {
+        ALBEDO = col.rgb;
+    }
+
     ALPHA = col.a;
 
     // Apply modulate tint to the sprite
