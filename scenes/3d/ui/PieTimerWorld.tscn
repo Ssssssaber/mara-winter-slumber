@@ -12,6 +12,7 @@ script = ExtResource("1_wg5xy")
 [node name="ViewportTextureSprite" type="Sprite3D" parent="."]
 billboard = 1
 no_depth_test = true
+alpha_cut = 2
 texture = SubResource("ViewportTexture_xnnse")
 
 [node name="SubViewport" type="SubViewport" parent="ViewportTextureSprite"]
