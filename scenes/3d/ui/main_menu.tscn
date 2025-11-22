@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc4k20vlh6tss"]
+[gd_scene load_steps=10 format=3 uid="uid://bc4k20vlh6tss"]
 
 [ext_resource type="Texture2D" uid="uid://defaaj7nge71" path="res://assets/2d/characters/new/мара 0.1.PNG" id="1_4m7lw"]
 [ext_resource type="Script" uid="uid://cnf6js31swr32" path="res://scripts/3d/ui/main_menu/ui_controller.gd" id="1_48svi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d4hu80aq5fmn6" path="res://scenes/3d/ui/base/base_button.tscn" id="1_yebgj"]
 [ext_resource type="PackedScene" uid="uid://mma4wensmdvx" path="res://scenes/3d/ui/base/base_label.tscn" id="2_1w25l"]
 [ext_resource type="Texture2D" uid="uid://bln3pg8bmoixx" path="res://assets/2d/environment/new/плашка 3.PNG" id="6_4m7lw"]
+[ext_resource type="Script" uid="uid://dmpt8o5u17nx5" path="res://scripts/3d/ui/slider_volume.gd" id="6_ebmuf"]
 [ext_resource type="FontFile" uid="uid://cex32sl16elqa" path="res://assets/2d/temporary/ofont.ru_Monomakh Unicode.ttf" id="7_bxt1y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bxt1y"]
@@ -102,6 +103,16 @@ offset_left = 80.0
 offset_top = 191.0
 offset_right = 454.0
 offset_bottom = 623.0
+
+[node name="EnvironmentVolume" type="HSlider" parent="OptionsContainer"]
+layout_mode = 2
+script = ExtResource("6_ebmuf")
+bus_name = "Environment"
+
+[node name="UIVolume" type="HSlider" parent="OptionsContainer"]
+layout_mode = 2
+script = ExtResource("6_ebmuf")
+bus_name = "UI"
 
 [node name="SnowToggle" type="Panel" parent="OptionsContainer"]
 custom_minimum_size = Vector2(265, 105)

@@ -147,8 +147,10 @@ scream_audio = NodePath("Scared")
 walking_audio = NodePath("Moving")
 
 [node name="Scared" type="AudioStreamPlayer3D" parent="AudioManager" index="0"]
+bus = &"Environment"
 
 [node name="Moving" type="AudioStreamPlayer3D" parent="AudioManager" index="1"]
 stream = ExtResource("8_6sdx0")
 volume_db = -16.842
 pitch_scale = 2.0
+bus = &"Environment"

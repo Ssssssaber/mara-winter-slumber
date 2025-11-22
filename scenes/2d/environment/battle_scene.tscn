@@ -141,6 +141,7 @@ speed_scale = 2.4
 
 [node name="ScytheSwing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_q1sws")
+bus = &"UI"
 
 [node name="CaptureButton" parent="." instance=ExtResource("16_22rfm")]
 offset_left = 762.0

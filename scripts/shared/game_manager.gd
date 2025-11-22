@@ -43,6 +43,7 @@ func Unpause() -> void:
 func _ready() -> void:
 	ButtonPressSound = AudioStreamPlayer.new()
 	ButtonPressSound.stream = _buttonPressedStream
+	ButtonPressSound.bus = "UI"
 
 	get_tree().root.add_child.call_deferred(ButtonPressSound)
 
